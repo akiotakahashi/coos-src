@@ -1,0 +1,112 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F76AFDCB-2D48-499F-A363-C7B7E76F7DE4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CooS</RootNamespace>
+    <AssemblyName>csjava</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>0</FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.0.2, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Formats\Java\AssemblyDefInfo.cs" />
+    <Compile Include="Formats\Java\BasicTypes.cs" />
+    <Compile Include="Formats\Java\ClassFile.cs" />
+    <Compile Include="Formats\Java\Description\FieldSig.cs" />
+    <Compile Include="Formats\Java\Description\MethodSig.cs" />
+    <Compile Include="Formats\Java\Description\Reader.cs" />
+    <Compile Include="Formats\Java\FieldDefInfo.cs" />
+    <Compile Include="Formats\Java\JavaUtility.cs" />
+    <Compile Include="Formats\Java\MemberDeclInfo.cs" />
+    <Compile Include="Formats\Java\MemberRefInfo.cs" />
+    <Compile Include="Formats\Java\Metadata\AccessFlag.cs" />
+    <Compile Include="Formats\Java\Metadata\attribute_info.cs" />
+    <Compile Include="Formats\Java\Metadata\class_info.cs" />
+    <Compile Include="Formats\Java\Metadata\code_attribute.cs" />
+    <Compile Include="Formats\Java\Metadata\ConstantTag.cs" />
+    <Compile Include="Formats\Java\Metadata\cp_info.cs" />
+    <Compile Include="Formats\Java\Metadata\double_info.cs" />
+    <Compile Include="Formats\Java\Metadata\fieldref_info.cs" />
+    <Compile Include="Formats\Java\Metadata\field_info.cs" />
+    <Compile Include="Formats\Java\Metadata\float_info.cs" />
+    <Compile Include="Formats\Java\Metadata\integer_info.cs" />
+    <Compile Include="Formats\Java\Metadata\interfacemethodref_info.cs" />
+    <Compile Include="Formats\Java\Metadata\long_info.cs" />
+    <Compile Include="Formats\Java\Metadata\memberref_info.cs" />
+    <Compile Include="Formats\Java\Metadata\member_info.cs" />
+    <Compile Include="Formats\Java\Metadata\methodref_info.cs" />
+    <Compile Include="Formats\Java\Metadata\method_info.cs" />
+    <Compile Include="Formats\Java\Metadata\nameandtype_info.cs" />
+    <Compile Include="Formats\Java\Metadata\string_info.cs" />
+    <Compile Include="Formats\Java\Metadata\Utf8Index.cs" />
+    <Compile Include="Formats\Java\Metadata\utf8_info.cs" />
+    <Compile Include="Formats\Java\MethodDefInfo.cs" />
+    <Compile Include="Formats\Java\ReversiveReader.cs" />
+    <Compile Include="Formats\Java\TypeDeclInfo.cs" />
+    <Compile Include="Formats\Java\TypeDefInfo.cs" />
+    <Compile Include="Formats\Java\TypeSpecInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\Java\AssemblyImpl.cs" />
+    <Compile Include="Reflection\Java\FieldImpl.cs" />
+    <Compile Include="Reflection\Java\LoaderImpl.cs" />
+    <Compile Include="Reflection\Java\Metatype\ClassType.cs" />
+    <Compile Include="Reflection\Java\Metatype\ConcreteType.cs" />
+    <Compile Include="Reflection\Java\Metatype\InterfaceType.cs" />
+    <Compile Include="Reflection\Java\Metatype\ObjectType.cs" />
+    <Compile Include="Reflection\Java\MethodImpl.cs" />
+    <Compile Include="Reflection\Java\TypeImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\csreflection\csreflection.csproj">
+      <Project>{16A2748F-4B8F-4DD6-9293-7F06F06E2DEE}</Project>
+      <Name>csreflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csutility\csutility.csproj">
+      <Project>{FF7256E9-F3AC-484C-924F-52F33177F73B}</Project>
+      <Name>csutility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csformat\csformat.csproj">
+      <Project>{4452E2D1-90B8-401A-8F4E-9189FA930575}</Project>
+      <Name>csformat</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

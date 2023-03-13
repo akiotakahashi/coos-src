@@ -1,0 +1,186 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CCE2AAB1-F4B8-4676-A953-B9D2898D5CE7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>cskernel</RootNamespace>
+    <AssemblyName>cskernel</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Runtime\ByRefPointer.cs" />
+    <Compile Include="Runtime\ByValPointer.cs" />
+    <Compile Include="Core\ProgramManager.cs" />
+    <Compile Include="Machine.cs" />
+    <Compile Include="Architectures\IA32\InterruptManager.cs" />
+    <Compile Include="Core\InterruptManager.cs" />
+    <Compile Include="Architectures\IA32\ServiceHandler.cs" />
+    <Compile Include="Architectures\InterruptHandler.cs" />
+    <Compile Include="Architectures\IOPort.cs" />
+    <Compile Include="Core\AssemblyManager.cs" />
+    <Compile Include="Core\FileSystemManager.cs" />
+    <Compile Include="Initializer.cs" />
+    <Compile Include="Drivers\ATAPI\ATADevice.cs" />
+    <Compile Include="Drivers\ATAPI\ATAPIController.cs" />
+    <Compile Include="Drivers\ATAPI\ATAPIDevice.cs" />
+    <Compile Include="Drivers\ATAPI\ATAPIException.cs" />
+    <Compile Include="Drivers\ATAPI\ATAPITimeoutException.cs" />
+    <Compile Include="Drivers\ATAPI\CDROM\CdromDevice.cs" />
+    <Compile Include="Drivers\ATAPI\CDROM\CdromMedia.cs" />
+    <Compile Include="Drivers\ATAPI\CDROM\MediaAttributes.cs" />
+    <Compile Include="Drivers\ATAPI\CDROM\SenseKey.cs" />
+    <Compile Include="Drivers\ATAPI\DeviceBase.cs" />
+    <Compile Include="Drivers\ATAPI\DeviceFeatures.cs" />
+    <Compile Include="Drivers\ATAPI\DeviceType.cs" />
+    <Compile Include="Drivers\ATAPI\Harddisk\HarddiskDevice.cs" />
+    <Compile Include="Drivers\ATAPI\Harddisk\HddMedia.cs" />
+    <Compile Include="Drivers\ATAPI\InterruptReason.cs" />
+    <Compile Include="Drivers\ATAPI\InterruptState.cs" />
+    <Compile Include="Drivers\ATAPI\MediaAccessMode.cs" />
+    <Compile Include="Drivers\ATAPI\MediaBase.cs" />
+    <Compile Include="Drivers\ATAPI\MediaControlMode.cs" />
+    <Compile Include="Drivers\ATAPI\MediaType.cs" />
+    <Compile Include="Drivers\ATAPI\StatusRegister.cs" />
+    <Compile Include="Drivers\Controllers\DMAController.cs" />
+    <Compile Include="Drivers\Controllers\InterruptController.cs" />
+    <Compile Include="Drivers\Controllers\IntervalTimer.cs" />
+    <Compile Include="Drivers\DisplayAdapters\Generic.cs" />
+    <Compile Include="Drivers\DisplayAdapters\VBE\ModeInfoBlock.cs" />
+    <Compile Include="Drivers\DisplayAdapters\VBE\PMInfoBlock.cs" />
+    <Compile Include="Drivers\DisplayAdapters\VBE\VbeInfoBlock.cs" />
+    <Compile Include="Drivers\PS2\KeyboardController.cs" />
+    <Compile Include="Drivers\PS2\Keyboard\KeyCode.cs" />
+    <Compile Include="Drivers\PS2\Keyboard\KeyCodeConverter.cs" />
+    <Compile Include="Drivers\PS2\Keyboard\KeyStatus.cs" />
+    <Compile Include="Drivers\PS2\Keyboard\PS2Keyboard.cs" />
+    <Compile Include="Drivers\PS2\Keyboard\ScanCodeConverter.cs" />
+    <Compile Include="Drivers\PS2\Mouse\PS2Mouse.cs" />
+    <Compile Include="Drivers\StorageDevices\FDD\FloppyDisk.cs" />
+    <Compile Include="Drivers\StorageDevices\FDD\FloppyDiskController.cs" />
+    <Compile Include="Drivers\StorageDevices\FDD\FloppyDiskDrive.cs" />
+    <Compile Include="Drivers\StorageDevices\FDD\ReadDataResult.cs" />
+    <Compile Include="Drivers\StorageDevices\FDD\ST0.cs" />
+    <Compile Include="FileSystem\Archive.cs" />
+    <Compile Include="FileSystem\Aspect.cs" />
+    <Compile Include="FileSystem\BasePerspective.cs" />
+    <Compile Include="FileSystem\Book.cs" />
+    <Compile Include="FileSystem\BookInfo.cs" />
+    <Compile Include="FileSystem\CDFS\DirectoryRecord.cs" />
+    <Compile Include="FileSystem\CDFS\FileFlags.cs" />
+    <Compile Include="FileSystem\CDFS\Iso9660.cs" />
+    <Compile Include="FileSystem\CDFS\Iso9660Archive.cs" />
+    <Compile Include="FileSystem\CDFS\Iso9660Directory.cs" />
+    <Compile Include="FileSystem\CDFS\Iso9660File.cs" />
+    <Compile Include="FileSystem\CDFS\Iso9660Item.cs" />
+    <Compile Include="FileSystem\CDFS\LongDateTime.cs" />
+    <Compile Include="FileSystem\CDFS\ShortDateTime.cs" />
+    <Compile Include="FileSystem\CDFS\u16b.cs" />
+    <Compile Include="FileSystem\CDFS\u32b.cs" />
+    <Compile Include="FileSystem\CDFS\VolumeDescriptor.cs" />
+    <Compile Include="FileSystem\CDFS\VolumeDescriptorBase.cs" />
+    <Compile Include="FileSystem\CooS\CoosFileSystem.cs" />
+    <Compile Include="FileSystem\CooS\CoosStringFile.cs" />
+    <Compile Include="FileSystem\CooS\CoosSystemDirectory.cs" />
+    <Compile Include="FileSystem\DirectoryAspect.cs" />
+    <Compile Include="FileSystem\FAT\BPB.cs" />
+    <Compile Include="FileSystem\FAT\BPB16.cs" />
+    <Compile Include="FileSystem\FAT\BPB32.cs" />
+    <Compile Include="FileSystem\FAT\DirectoryEntry.cs" />
+    <Compile Include="FileSystem\FAT\FATArchive.cs" />
+    <Compile Include="FileSystem\FAT\FATAttribute.cs" />
+    <Compile Include="FileSystem\FAT\FATContainer.cs" />
+    <Compile Include="FileSystem\FAT\FATDate.cs" />
+    <Compile Include="FileSystem\FAT\FATDirectory.cs" />
+    <Compile Include="FileSystem\FAT\FATEntity.cs" />
+    <Compile Include="FileSystem\FAT\FATFile.cs" />
+    <Compile Include="FileSystem\FAT\FATFileSystem.cs" />
+    <Compile Include="FileSystem\FAT\FATRootDirectory.cs" />
+    <Compile Include="FileSystem\FAT\FATTime.cs" />
+    <Compile Include="FileSystem\FAT\FATTypes.cs" />
+    <Compile Include="FileSystem\FAT\LongNameEntry.cs" />
+    <Compile Include="FileSystem\FileAspect.cs" />
+    <Compile Include="FileSystem\FileSystemProvider.cs" />
+    <Compile Include="FileSystem\Page.cs" />
+    <Compile Include="FileSystem\Partition.cs" />
+    <Compile Include="FileSystem\PathInfo.cs" />
+    <Compile Include="FileSystem\Perspective.cs" />
+    <Compile Include="FileSystem\PerspectiveFilter.cs" />
+    <Compile Include="FileSystem\Storage.cs" />
+    <Compile Include="Kernel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\CLI\RuntimeImpl.cs" />
+    <Compile Include="Runtime\SzArray.cs" />
+    <Compile Include="Runtime\Array.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cscompile\cscompile.csproj">
+      <Project>{3C92B793-6607-4191-BF5A-52FABBDFCE58}</Project>
+      <Name>cscompile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csexecution\csexecution.csproj">
+      <Project>{D32A4DFC-F649-4176-9772-F8AC04EAD527}</Project>
+      <Name>csexecution</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cskorlib\cskorlib.vcproj">
+      <Project>{D871E6FC-6CC1-4B3B-AB1F-4BEDB7C6144C}</Project>
+      <Name>cskorlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csreflection\csreflection.csproj">
+      <Project>{16A2748F-4B8F-4DD6-9293-7F06F06E2DEE}</Project>
+      <Name>csreflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csutility\csutility.csproj">
+      <Project>{FF7256E9-F3AC-484C-924F-52F33177F73B}</Project>
+      <Name>csutility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ia32assembler\ia32assembler.csproj">
+      <Project>{8952F266-E92D-4FEB-AD76-1743841FDFF4}</Project>
+      <Name>ia32assembler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Drivers\TimerDevices\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

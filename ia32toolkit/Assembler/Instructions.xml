@@ -1,0 +1,2119 @@
+<?xml version="1.0" encoding="shift_jis" ?>
+<instructionset>
+	<operation mnemonic="AAA">
+		<instruction opcode="37" operands="">加算後にAL をASCII 調整する。</instruction>
+	</operation>
+	<operation mnemonic="AAD">
+		<instruction opcode="D5 0A" operands="">除算前にAX をASCII 調整する。</instruction>
+	</operation>
+	<operation mnemonic="AAM">
+		<instruction opcode="D4 0A" operands="">乗算後にAX をASCII 調整する。</instruction>
+	</operation>
+	<operation mnemonic="AAS">
+		<instruction opcode="3F" operands="">減算後にAL をASCII 調整する。</instruction>
+	</operation>
+	<operation mnemonic="ADC">
+		<instruction opcode="14 ib" operands="AL,imm8">キャリーを加えてimm8 をAL に加算する。</instruction>
+		<instruction opcode="15 iw" operands="AX,imm16">キャリーを加えてimm16 をAX に加算する。</instruction>
+		<instruction opcode="15 id" operands="EAX,imm32">キャリーを加えてimm32 をEAX に加算する。</instruction>
+		<instruction opcode="80 /2 ib" operands="r/m8,imm8">キャリーを加えてimm8 をr/m8 に加算する。</instruction>
+		<instruction opcode="81 /2 iw" operands="r/m16,imm16">キャリーを加えてimm16 をr/m16 に加算する。</instruction>
+		<instruction opcode="81 /2 id" operands="r/m32,imm32">CF を加えてimm32 をr/m32 に加算する。</instruction>
+		<instruction opcode="83 /2 ib" operands="r/m16,imm8">CF を加えて符号拡張imm8 をr/m16 に加算する。</instruction>
+		<instruction opcode="83 /2 ib" operands="r/m32,imm8">CF を加えて符号拡張imm8 をr/m32 に加算する。</instruction>
+		<instruction opcode="10 /r" operands="r/m8,r8">キャリーを加えてバイト・レジスタをr/m8 に加算する。</instruction>
+		<instruction opcode="11 /r" operands="r/m16,r16">キャリーを加えてr16 をr/m16 に加算する。</instruction>
+		<instruction opcode="11 /r" operands="r/m32,r32">CF を加えてr32 をr/m32 に加算する。</instruction>
+		<instruction opcode="12 /r" operands="r8,r/m8">キャリーを加えてr/m8 をバイト・レジスタに加算する。</instruction>
+		<instruction opcode="13 /r" operands="r16,r/m16">キャリーを加えてr/m16 をr16 に加算する。</instruction>
+		<instruction opcode="13 /r" operands="r32,r/m32">CF を加えてr/m32 をr32 に加算する。</instruction>
+	</operation>
+	<operation mnemonic="ADD">
+		<instruction opcode="04 ib" operands="AL,imm8">imm8 をAL に加算する。</instruction>
+		<instruction opcode="05 iw" operands="AX,imm16">imm16 をAX に加算する。</instruction>
+		<instruction opcode="05 id" operands="EAX,imm32">imm32 をEAX に加算する。</instruction>
+		<instruction opcode="80 /0 ib" operands="r/m8,imm8">imm8 をr/m8 に加算する。</instruction>
+		<instruction opcode="81 /0 iw" operands="r/m16,imm16">imm16 をr/m16 に加算する。</instruction>
+		<instruction opcode="81 /0 id" operands="r/m32,imm32">imm32 をr/m32 に加算する。</instruction>
+		<instruction opcode="83 /0 ib" operands="r/m16,imm8">符号拡張imm8 をrm16 に加算する。</instruction>
+		<instruction opcode="83 /0 ib" operands="r/m32,imm8">符号拡張imm8 をrm32 に加算する。</instruction>
+		<instruction opcode="00 /r" operands="r/m8,r8">r8 をr/m8 に加算する。</instruction>
+		<instruction opcode="01 /r" operands="r/m16,r16">r16 をr/m16 に加算する。</instruction>
+		<instruction opcode="01 /r" operands="r/m32,r32">r32 をr/m32 に加算する。</instruction>
+		<instruction opcode="02 /r" operands="r8,r/m8">r/m8 をr8 に加算する。</instruction>
+		<instruction opcode="03 /r" operands="r16,r/m16">r/m16 をr16 に加算する。</instruction>
+		<instruction opcode="03 /r" operands="r32,r/m32">r/m32 をr32 に加算する。</instruction>
+	</operation>
+	<operation mnemonic="ADDPD">
+		<instruction opcode="66 0F 58 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド倍精度浮動小数点値を</instruction>
+		<instruction opcode="66 0F 55 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のAND NOT（否定</instruction>
+	</operation>
+	<operation mnemonic="ADDPS">
+		<instruction opcode="0F 58 /r" operands="xmm1,xmm2/m128">xmm1 およびxmm2/m128 のパックド単精度浮動小数点</instruction>
+	</operation>
+	<operation mnemonic="ADDSD">
+		<instruction opcode="F2 0F 58 /r" operands="xmm1,xmm2/m64">xmm2/m64 とxmm1 の下位の倍精度浮動小数点値を加</instruction>
+	</operation>
+	<operation mnemonic="AND">
+		<instruction opcode="24 ib" operands="AL,imm8">AL とimm8 とのAND をとる。</instruction>
+		<instruction opcode="25 iw" operands="AX,imm16">AX とimm16 とのAND をとる。</instruction>
+		<instruction opcode="25 id" operands="EAX,imm32">EAX とimm32 とのAND をとる。</instruction>
+		<instruction opcode="80 /4 ib" operands="r/m8,imm8">r/m8 とimm8 とのAND をとる。</instruction>
+		<instruction opcode="81 /4 iw" operands="r/m16,imm16">r/m16 とimm16 とのAND をとる。</instruction>
+		<instruction opcode="81 /4 id" operands="r/m32,imm32">r/m32 とimm32 とのAND をとる。</instruction>
+		<instruction opcode="83 /4 ib" operands="r/m16,imm8">r/m16 とimm8 ( 符号拡張) とのAND をとる。</instruction>
+		<instruction opcode="83 /4 ib" operands="r/m32,imm8">r/m32 とimm8 ( 符号拡張) とのAND をとる。</instruction>
+		<instruction opcode="20 /r" operands="r/m8,r8">r/m8 とr8 とのAND をとる。</instruction>
+		<instruction opcode="21 /r" operands="r/m16,r16">r/m16 とr16 とのAND をとる。</instruction>
+		<instruction opcode="21 /r" operands="r/m32,r32">r/m32 とr32 とのAND をとる。</instruction>
+		<instruction opcode="22 /r" operands="r8,r/m8">r8 とr/m8 とのAND をとる。</instruction>
+		<instruction opcode="23 /r" operands="r16,r/m16">r16 とr/m16 とのAND をとる。</instruction>
+		<instruction opcode="23 /r" operands="r32,r/m32">r32 とr/m32 とのAND をとる。</instruction>
+	</operation>
+	<operation mnemonic="ANDNPS">
+		<instruction opcode="0F 55 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のAND（論理積）</instruction>
+	</operation>
+	<operation mnemonic="ANDPD">
+		<instruction opcode="66 0F 54 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のAND（論理積）</instruction>
+	</operation>
+	<operation mnemonic="ANDPS">
+		<instruction opcode="0F 54 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のAND（論理積）</instruction>
+	</operation>
+	<operation mnemonic="ARPL">
+		<instruction opcode="63 /r" operands="r/m16,r16">r/m16 のRPL をr16 のRPL 未満に調整する。</instruction>
+	</operation>
+	<operation mnemonic="BOUND">
+		<instruction opcode="62 /r" operands="r16,m16&amp;16">r16 ( 配列インデックス) がm16&amp;16 の指定範囲内かどうか</instruction>
+		<instruction opcode="62 /r" operands="r32,m32&amp;32">r32 ( 配列インデックス) がm16&amp;16 の指定範囲内かどうか</instruction>
+	</operation>
+	<operation mnemonic="BSF">
+		<instruction opcode="0F BC" operands="r16,r/m16">r/m16 を順方向にビット・スキャンする。</instruction>
+		<instruction opcode="0F BC" operands="r32,r/m32">r/m32 を順方向にビット・スキャンする。</instruction>
+	</operation>
+	<operation mnemonic="BSR">
+		<instruction opcode="0F BD" operands="r16,r/m16">r/m16 を逆方向にビット・スキャンする。</instruction>
+		<instruction opcode="0F BD" operands="r32,r/m32">r/m32 を逆方向にビット・スキャンする。</instruction>
+	</operation>
+	<operation mnemonic="BSWAP">
+		<instruction opcode="0F C8 +rd" operands="r32">32 ビット・レジスタのバイト順序を逆にする。</instruction>
+	</operation>
+	<operation mnemonic="BT">
+		<instruction opcode="0F A3" operands="r/m16,r16">選択したビットをCF フラグにストアする。</instruction>
+		<instruction opcode="0F A3" operands="r/m32,r32">選択したビットをCF フラグにストアする。</instruction>
+		<instruction opcode="0F BA /4 ib" operands="r/m16,imm8">選択したビットをCF フラグにストアする。</instruction>
+		<instruction opcode="0F BA /4 ib" operands="r/m32,imm8">選択したビットをCF フラグにストアする。</instruction>
+	</operation>
+	<operation mnemonic="BTC">
+		<instruction opcode="0F BB" operands="r/m16,r16">選択したビットをCF フラグにストアし、補数をとる。</instruction>
+		<instruction opcode="0F BB" operands="r/m32,r32">選択したビットをCF フラグにストアし、補数をとる。</instruction>
+		<instruction opcode="0F BA /7 ib" operands="r/m16,imm8">選択したビットをCF フラグにストアし、補数をとる。</instruction>
+		<instruction opcode="0F BA /7 ib" operands="r/m32,imm8">選択したビットをCF フラグにストアし、補数をとる。</instruction>
+	</operation>
+	<operation mnemonic="BTR">
+		<instruction opcode="0F B3" operands="r/m16,r16">選択したビットをCF フラグにストアし、クリアする。</instruction>
+		<instruction opcode="0F B3" operands="r/m32,r32">選択したビットをCF フラグにストアし、クリアする。</instruction>
+		<instruction opcode="0F BA /6 ib" operands="r/m16,imm8">選択したビットをCF フラグにストアし、クリアする。</instruction>
+		<instruction opcode="0F BA /6 ib" operands="r/m32,imm8">選択したビットをCF フラグにストアし、クリアする。</instruction>
+	</operation>
+	<operation mnemonic="BTS">
+		<instruction opcode="0F AB" operands="r/m16,r16">選択したビットをCF フラグにストアし、セットする。</instruction>
+		<instruction opcode="0F AB" operands="r/m32,r32">選択したビットをCF フラグにストアし、セットする。</instruction>
+		<instruction opcode="0F BA /5 ib" operands="r/m16,imm8">選択したビットをCF フラグにストアし、セットする。</instruction>
+		<instruction opcode="0F BA /5 ib" operands="r/m32,imm8">選択したビットをCF フラグにストアし、セットする。</instruction>
+	</operation>
+	<operation mnemonic="C7">
+		<instruction opcode="0F" operands="">/1 m64 CMPXCHG8B m64 EDX:EAX をm64 と比較し、等しい場合はZF をセットし、</instruction>
+	</operation>
+	<operation mnemonic="CALL">
+		<instruction opcode="E8 cw" operands="rel16">相対near コール、次の命令とディスプレースメント相対。</instruction>
+		<instruction opcode="E8 cd" operands="rel32">相対near コール、次の命令とディスプレースメント相対。</instruction>
+		<instruction opcode="FF /2" operands="r/m16">絶対間接near コール、r/m16 でアドレスを指定。</instruction>
+		<instruction opcode="FF /2" operands="r/m32">絶対間接near コール、r/m32 でアドレスを指定。</instruction>
+		<instruction opcode="9A cd" operands="ptr16:16">絶対far コール、オペランドでアドレスを指定。</instruction>
+		<instruction opcode="9A cp" operands="ptr16:32">絶対far コール、オペランドでアドレスを指定。</instruction>
+		<instruction opcode="FF /3" operands="m16:16">絶対間接far コール、m16:16 でアドレスを指定。</instruction>
+		<instruction opcode="FF /3" operands="m16:32">絶対間接far コール、m16:32 でアドレスを指定。</instruction>
+	</operation>
+	<operation mnemonic="CBW">
+		<instruction opcode="98" operands="AX">← AL の符号拡張</instruction>
+	</operation>
+	<operation mnemonic="CDQ">
+		<instruction opcode="99" operands="">EDX:EAX ← EAX の符号拡張</instruction>
+	</operation>
+	<operation mnemonic="CLC">
+		<instruction opcode="F8" operands="">CF フラグをクリアする。</instruction>
+	</operation>
+	<operation mnemonic="CLD">
+		<instruction opcode="FC" operands="">DF フラグをクリアする。</instruction>
+	</operation>
+	<operation mnemonic="CLFLUSH">
+		<instruction opcode="0F AE /7" operands="m8">m8 が入っているキャッシュ・ラインをフラッシュする。</instruction>
+	</operation>
+	<operation mnemonic="CLI">
+		<instruction opcode="FA" operands="">割り込みフラグをクリアする。割り込みフラグがクリアさ</instruction>
+	</operation>
+	<operation mnemonic="CLTS">
+		<instruction opcode="0F 06" operands="CR0">のTS フラグをクリアする。</instruction>
+	</operation>
+	<operation mnemonic="CMC">
+		<instruction opcode="F5" operands="">CF フラグの状態を反転する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVA">
+		<instruction opcode="0F 47 /r" operands="r16,r/m16">より上 (CF=0 およびZF=0) の場合転送する。</instruction>
+		<instruction opcode="0F 47 /r" operands="r32,r/m32">より上 (CF=0 およびZF=0) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVAE">
+		<instruction opcode="0F 43 /r" operands="r16,r/m16">より上か等しい (CF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 43 /r" operands="r32,r/m32">より上か等しい (CF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVB">
+		<instruction opcode="0F 42 /r" operands="r16,r/m16">より下 (CF=1) の場合転送する。</instruction>
+		<instruction opcode="0F 42 /r" operands="r32,r/m32">より下 (CF=1) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVBE">
+		<instruction opcode="0F 46 /r" operands="r16,r/m16">より下か等しい (CF=1 またはZF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 46 /r" operands="r32,r/m32">より下か等しい (CF=1 またはZF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVC">
+		<instruction opcode="0F 42 /r" operands="r16,r/m16">キャリーがある (CF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 42 /r" operands="r32,r/m32">キャリーがある (CF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVE">
+		<instruction opcode="0F 44 /r" operands="r16,r/m16">等しい (ZF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 44 /r" operands="r32,r/m32">等しい (ZF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVG">
+		<instruction opcode="0F 4F /r" operands="r16,r/m16">より大きい (ZF=0 およびSF=OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4F /r" operands="r32,r/m32">より大きい (ZF=0 およびSF=OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVGE">
+		<instruction opcode="0F 4D /r" operands="r16,r/m16">より大きいか等しい (SF=OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4D /r" operands="r32,r/m32">より大きいか等しい (SF=OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVL">
+		<instruction opcode="0F 4C /r" operands="r16,r/m16">より小さい (SF&lt;&gt;OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4C /r" operands="r32,r/m32">より小さい (SF&lt;&gt;OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVLE">
+		<instruction opcode="0F 4E /r" operands="r16,r/m16">より小さいか等しい (ZF=1 またはSF&lt;&gt;OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4E /r" operands="r32,r/m32">より小さいか等しい (ZF=1 またはSF&lt;&gt;OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNA">
+		<instruction opcode="0F 46 /r" operands="r16,r/m16">より上でない (CF=1 またはZF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 46 /r" operands="r32,r/m32">より上でない (CF=1 またはZF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNAE">
+		<instruction opcode="0F 42 /r" operands="r16,r/m16">より上でなく等しくない (CF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 42 /r" operands="r32,r/m32">より上でなく等しくない (CF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNB">
+		<instruction opcode="0F 43 /r" operands="r16,r/m16">より下でない (CF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 43 /r" operands="r32,r/m32">より下でない (CF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNBE">
+		<instruction opcode="0F 47 /r" operands="r16,r/m16">より下でなく等しくない (CF=0 およびZF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 47 /r" operands="r32,r/m32">より下でなく等しくない (CF=0 およびZF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNC">
+		<instruction opcode="0F 43 /r" operands="r16,r/m16">キャリーがない (CF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 43 /r" operands="r32,r/m32">キャリーがない (CF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNE">
+		<instruction opcode="0F 45 /r" operands="r16,r/m16">等しくない (ZF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 45 /r" operands="r32,r/m32">等しくない (ZF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNG">
+		<instruction opcode="0F 4E /r" operands="r16,r/m16">より大きくない (ZF=1 またはSF&lt;&gt;OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4E /r" operands="r32,r/m32">より大きくない (ZF=1 またはSF&lt;&gt;OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNGE">
+		<instruction opcode="0F 4C /r" operands="r16,r/m16">より大きくなく等しくない (SF&lt;&gt;OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4C /r" operands="r32,r/m32">より大きくなく等しくない (SF&lt;&gt;OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNL">
+		<instruction opcode="0F 4D /r" operands="r16,r/m16">より小さくない (SF=OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4D /r" operands="r32,r/m32">より小さくない (SF=OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNLE">
+		<instruction opcode="0F 4F /r" operands="r16,r/m16">より小さくなく等しくない (ZF=0 およびSF=OF) 場合転送する。</instruction>
+		<instruction opcode="0F 4F /r" operands="r32,r/m32">より小さくなく等しくない (ZF=0 およびSF=OF) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNO">
+		<instruction opcode="0F 41 /r" operands="r16,r/m16">オーバフローがない (OF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 41 /r" operands="r32,r/m32">オーバフローがない (OF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNP">
+		<instruction opcode="0F 4B /r" operands="r16,r/m16">パリティがない (PF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 4B /r" operands="r32,r/m32">パリティがない (PF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNS">
+		<instruction opcode="0F 49 /r" operands="r16,r/m16">符号がない (SF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 49 /r" operands="r32,r/m32">符号がない (SF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVNZ">
+		<instruction opcode="0F 45 /r" operands="r16,r/m16">ゼロでない (ZF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 45 /r" operands="r32,r/m32">ゼロでない (ZF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVO">
+		<instruction opcode="0F 40 /r" operands="r16,r/m16">オーバフローがある (OF=0) 場合転送する。</instruction>
+		<instruction opcode="0F 40 /r" operands="r32,r/m32">オーバフローがある (OF=0 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVP">
+		<instruction opcode="0F 4A /r" operands="r16,r/m16">パリティがある (PF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 4A /r" operands="r32,r/m32">パリティがある (PF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVPE">
+		<instruction opcode="0F 4A /r" operands="r16,r/m16">パリティが偶数 (PF=1) の場合転送する。</instruction>
+		<instruction opcode="0F 4A /r" operands="r32,r/m32">パリティが偶数 (PF=1) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVPO">
+		<instruction opcode="0F 4B /r" operands="r16,r/m16">パリティが奇数 (PF=0) の場合転送する。</instruction>
+		<instruction opcode="0F 4B /r" operands="r32,r/m32">パリティが奇数 (PF=0) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVS">
+		<instruction opcode="0F 48 /r" operands="r16,r/m16">符号がある (SF=1) 場合転送する。</instruction>
+		<instruction opcode="0F 48 /r" operands="r32,r/m32">符号がある (SF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMOVZ">
+		<instruction opcode="0F 44 /r" operands="r16,r/m16">ゼロ (ZF=1) の場合転送する。</instruction>
+		<instruction opcode="0F 44 /r" operands="r32,r/m32">ゼロ (ZF=1) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="CMP">
+		<instruction opcode="3C ib" operands="AL,imm8">imm8 をAL と比較する。</instruction>
+		<instruction opcode="3D iw" operands="AX,imm16">imm16 をAX と比較する。</instruction>
+		<instruction opcode="3D id" operands="EAX,imm32">imm32 をEAX と比較する。</instruction>
+		<instruction opcode="80 /7 ib" operands="r/m8,imm8">imm8 をr/m8 と比較する。</instruction>
+		<instruction opcode="81 /7 iw" operands="r/m16,imm16">imm16 をr/m16 と比較する。</instruction>
+		<instruction opcode="81 /7 id" operands="r/m32,imm32">imm32 をr/m32 と比較する。</instruction>
+		<instruction opcode="83 /7 ib" operands="r/m16,imm8">imm8 をr/m16 と比較する。</instruction>
+		<instruction opcode="83 /7 ib" operands="r/m32,imm8">imm8 をr/m32 と比較する。</instruction>
+		<instruction opcode="38 /r" operands="r/m8,r8">r8 をr/m8 と比較する。</instruction>
+		<instruction opcode="39 /r" operands="r/m16,r16">r16 をr/m16 と比較する。</instruction>
+		<instruction opcode="39 /r" operands="r/m32,r32">r32 をr/m32 と比較する。</instruction>
+		<instruction opcode="3A /r" operands="r8,r/m8">r/m8 をr8 と比較する。</instruction>
+		<instruction opcode="3B /r" operands="r16,r/m16">r/m16 をr16 と比較する。</instruction>
+		<instruction opcode="3B /r" operands="r32,r/m32">r/m32 をr32 と比較する。</instruction>
+	</operation>
+	<operation mnemonic="CMPPD">
+		<instruction opcode="66 0F C2 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="CMPPS">
+		<instruction opcode="0F C2 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="CMPS">
+		<instruction opcode="A6" operands="m8,m8">アドレスDS:(E)SI のバイトをアドレスES:(E)DI のバイト</instruction>
+		<instruction opcode="A7" operands="m16,m16">アドレスDS:(E)SI のワードをアドレスES:(E)DI のワード</instruction>
+		<instruction opcode="A7" operands="m32,m32">アドレスDS:(E)SI のダブルワードをアドレスES:(E)DI の</instruction>
+	</operation>
+	<operation mnemonic="CMPSB">
+		<instruction opcode="A6" operands="">アドレスDS:(E)SI のバイトをアドレスES:(E)DI のバイト</instruction>
+	</operation>
+	<operation mnemonic="CMPSD">
+		<instruction opcode="A7" operands="">アドレスDS:(E)SI のダブルワードをアドレスES:(E)DI の</instruction>
+		<instruction opcode="F2 0F C2 /r ib" operands="xmm1,xmm2/m64,imm8"></instruction>
+	</operation>
+	<operation mnemonic="CMPSS">
+		<instruction opcode="F3 0F C2 /r ib" operands="xmm1,xmm2/m32,imm8"></instruction>
+	</operation>
+	<operation mnemonic="CMPSW">
+		<instruction opcode="A7" operands="">アドレスDS:(E)SI のワードをアドレスES:(E)DI のワード</instruction>
+	</operation>
+	<operation mnemonic="COMISD">
+		<instruction opcode="66 0F 2F /r" operands="xmm1,xmm2/m64">xmm1 とxmm2/mem64 の下位の倍精度浮動小数点値を</instruction>
+	</operation>
+	<operation mnemonic="COMISS">
+		<instruction opcode="0F 2F /r" operands="xmm1,xmm2/m32">xmm1 とxmm2/mem32 の最下位の単精度浮動小数点値</instruction>
+	</operation>
+	<operation mnemonic="CPUID">
+		<instruction opcode="0F A2" operands="EAX">レジスタに最初に入力された値に応じて、プロセッサ</instruction>
+	</operation>
+	<operation mnemonic="CVTDQ2PD">
+		<instruction opcode="F3 0F E6" operands="xmm1,xmm2/m64">xmm2/m128 の2 つのパックド符号付きダブルワー</instruction>
+	</operation>
+	<operation mnemonic="CVTDQ2PS">
+		<instruction opcode="0F 5B /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="CVTPD2DQ">
+		<instruction opcode="F2 0F E6" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="CVTPD2PI">
+		<instruction opcode="66 0F 2D /r" operands="mm,xmm/m128">xmm/m128 の2 つのパックド倍精度浮動小数点値を</instruction>
+	</operation>
+	<operation mnemonic="CVTPD2PS">
+		<instruction opcode="66 0F 5A /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="CVTPI2PD">
+		<instruction opcode="66 0F 2A /r" operands="xmm,mm/m64">mm/mem64 の2 つのパックド符号付きダブルワード整</instruction>
+	</operation>
+	<operation mnemonic="CVTPI2PS">
+		<instruction opcode="0F 2A /r" operands="xmm,mm/m64">mm/m64 の2 つのパックド符号付きダブルワード整数</instruction>
+	</operation>
+	<operation mnemonic="CVTPS2DQ">
+		<instruction opcode="66 0F 5B /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="CVTPS2PD">
+		<instruction opcode="0F 5A /r" operands="xmm1,xmm2/m64"></instruction>
+	</operation>
+	<operation mnemonic="CVTPS2PI">
+		<instruction opcode="0F 2D /r" operands="mm,xmm/m64">xmm/m64 の2 つのパックド単精度浮動小数点値を、</instruction>
+	</operation>
+	<operation mnemonic="CVTSD2SI">
+		<instruction opcode="F2 0F 2D /r" operands="r32,xmm/m64">xmm/m64 の1 つの倍精度浮動小数点値をr32 の1 つの</instruction>
+	</operation>
+	<operation mnemonic="CVTSD2SS">
+		<instruction opcode="F2 0F 5A /r" operands="xmm1,xmm2/m64">xmm2/m64 の1 つの倍精度浮動小数点値をxmm1 の</instruction>
+	</operation>
+	<operation mnemonic="CVTSI2SD">
+		<instruction opcode="F2 0F 2A /r" operands="xmm,r/m32">r/m32 の1 つの符号付きダブルワード整数をxmm の1 つの</instruction>
+	</operation>
+	<operation mnemonic="CVTSI2SS">
+		<instruction opcode="F3 0F 2A /r" operands="xmm,r/m32">r/m32 の1 つの符号付きダブルワード整数をxmm の1 つの</instruction>
+	</operation>
+	<operation mnemonic="CVTSS2SD">
+		<instruction opcode="F3 0F 5A /r" operands="xmm1,xmm2/m32">xmm2/m32 の1 つの単精度浮動小数点値をxmm1 の</instruction>
+	</operation>
+	<operation mnemonic="CVTSS2SI">
+		<instruction opcode="F3 0F 2D /r" operands="r32,xmm/m32">xmm/m32 の1 つの単精度浮動小数点値をr32 の1 つの</instruction>
+	</operation>
+	<operation mnemonic="CVTTPD2DQ">
+		<instruction opcode="66 0F E6" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="CVTTPD2PI">
+		<instruction opcode="66 0F 2C /r" operands="mm,xmm/m128">切り捨てを使用して、xmm/m128 の2 つのパックド倍</instruction>
+	</operation>
+	<operation mnemonic="CVTTPS2DQ">
+		<instruction opcode="F3 0F 5B /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="CVTTPS2PI">
+		<instruction opcode="0F 2C /r" operands="mm,xmm/m64">切り捨てを使用して、xmm/m64 の下位の2 つの単精度</instruction>
+	</operation>
+	<operation mnemonic="CVTTSD2SI">
+		<instruction opcode="F2 0F 2C /r" operands="r32,xmm/m64">切り捨てを使用して、xmm/m64 の1 つの倍精度浮動小</instruction>
+	</operation>
+	<operation mnemonic="CVTTSS2SI">
+		<instruction opcode="F3 0F 2C /r" operands="r32,xmm/m32">切り捨てを使用して、xmm/32 の1 つの単精度浮動小数</instruction>
+	</operation>
+	<operation mnemonic="CWD">
+		<instruction opcode="99" operands="">DX:AX ← AX の符号拡張</instruction>
+	</operation>
+	<operation mnemonic="CWDE">
+		<instruction opcode="98" operands="EAX">← AX の符号拡張</instruction>
+	</operation>
+	<operation mnemonic="DAA">
+		<instruction opcode="27" operands="">加算後にAL を10 進調整する。</instruction>
+	</operation>
+	<operation mnemonic="DAS">
+		<instruction opcode="2F" operands="">減算後にAL を10 進調整する。</instruction>
+	</operation>
+	<operation mnemonic="DEC">
+		<instruction opcode="FE /1" operands="r/m8">r/m8 を1 デクリメントする。</instruction>
+		<instruction opcode="FF /1" operands="r/m16">r/m16 を1 デクリメントする。</instruction>
+		<instruction opcode="FF /1" operands="r/m32">r/m32 を1 デクリメントする。</instruction>
+		<instruction opcode="48 +rw" operands="r16">r16 を1 デクリメントする。</instruction>
+		<instruction opcode="48 +rd" operands="r32">r32 を1 デクリメントする。</instruction>
+	</operation>
+	<operation mnemonic="DIV">
+		<instruction opcode="F6 /6" operands="r/m8">AX をr/m8 で符号なし除算する。結果は次のようにストア</instruction>
+		<instruction opcode="F7 /6" operands="r/m16">DX:AX をr/m16 で符号なし除算する。結果は次のようにス</instruction>
+		<instruction opcode="F7 /6" operands="r/m32">EDX:EAX をr/m32 で符号なし除算する。結果は次のよう</instruction>
+	</operation>
+	<operation mnemonic="DIVPD">
+		<instruction opcode="66 0F 5E /r" operands="xmm1,xmm2/m128">xmm1 のパックド倍精度浮動小数点値をxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="DIVPS">
+		<instruction opcode="0F 5E /r" operands="xmm1,xmm2/m128">xmm1 のパックド単精度浮動小数点値をxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="DIVSD">
+		<instruction opcode="F2 0F 5E /r" operands="xmm1,xmm2/m64">xmm1 の下位の倍精度浮動小数点値をxmm2/mem64 の</instruction>
+	</operation>
+	<operation mnemonic="DIVSS">
+		<instruction opcode="F3 0F 5E /r" operands="xmm1,xmm2/m32">xmm1 の下位の単精度浮動小数点値をxmm2/m32 の下</instruction>
+	</operation>
+	<operation mnemonic="E2">
+		<instruction opcode="DB" operands="">FNCLEX* 未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="E3">
+		<instruction opcode="DB" operands="">FNINIT* 未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="EMMS">
+		<instruction opcode="0F 77" operands="">x87 FP タグ・ワードを空に設定する。</instruction>
+	</operation>
+	<operation mnemonic="ENTER">
+		<instruction opcode="C8 iw ib" operands="imm16,imm8">プロシージャのネストされたスタック・フレームを作成す</instruction>
+	</operation>
+	<operation mnemonic="F2XM1">
+		<instruction opcode="D9 F0" operands="ST(0)">を (2ST(0) - 1) で置き換える。</instruction>
+	</operation>
+	<operation mnemonic="FABS">
+		<instruction opcode="D9 E1" operands="ST">をその絶対値で置き換える。</instruction>
+	</operation>
+	<operation mnemonic="FADD">
+		<instruction opcode="D8 /0" operands="m32fp">m32fp をST(0) に加え、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC /0" operands="m64fp">m64fp をST(0) に加え、結果をST(0) にストアする。</instruction>
+		<instruction opcode="D8 C0 +i" operands="ST(0),ST(i)">ST(0) をST(i) に加え、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC C0 +i" operands="ST(i),ST(0)">ST(i) をST(0) に加え、結果をST(i) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FADDP">
+		<instruction opcode="DE C0 +i" operands="ST(i),ST(0)">ST(0) をST(i) に加え、結果をST(i) にストアし、レジス</instruction>
+		<instruction opcode="DE C1" operands="ST(0)">をST(1) に加え、結果をST(1) にストアし、レジス</instruction>
+	</operation>
+	<operation mnemonic="FBLD">
+		<instruction opcode="DF /4" operands="">m80 dec BCD 値を浮動小数点に変換し、FPU スタックにプッシュ</instruction>
+	</operation>
+	<operation mnemonic="FBSTP">
+		<instruction opcode="DF /6" operands="">m80bcd ST(0) をm80bcd にストアし、ST(0) をポップする。</instruction>
+	</operation>
+	<operation mnemonic="FCHS">
+		<instruction opcode="D9 E0" operands="ST(0)">の符号を反転する。</instruction>
+	</operation>
+	<operation mnemonic="FCLEX">
+		<instruction opcode="9B DB E2" operands="">未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="FCMOVB">
+		<instruction opcode="DA C0 +i" operands="ST(0),ST(i)">より下 (CF=1) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVBE">
+		<instruction opcode="DA D0 +i" operands="ST(0),ST(i)">より下か等しい (CF=1 またはZF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVE">
+		<instruction opcode="DA C8 +i" operands="ST(0),ST(i)">等しい (ZF=1) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVNB">
+		<instruction opcode="DB C0 +i" operands="ST(0),ST(i)">より下でない (CF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVNBE">
+		<instruction opcode="DB D0 +i" operands="ST(0),ST(i)">より下でなく等しくない (CF=0 およびZF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVNE">
+		<instruction opcode="DB C8 +i" operands="ST(0),ST(i)">等しくない (ZF=0) 場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVNU">
+		<instruction opcode="DB D8 +i" operands="ST(0),ST(i)">順序付け (PF=0) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCMOVU">
+		<instruction opcode="DA D8 +i" operands="ST(0),ST(i)">順序付けなし (PF=1) の場合転送する。</instruction>
+	</operation>
+	<operation mnemonic="FCOM">
+		<instruction opcode="D8 /2" operands="m32fp">ST(0) をm32fp と比較する。</instruction>
+		<instruction opcode="DC /2" operands="m64fp">ST(0) をm64fp と比較する。</instruction>
+		<instruction opcode="D8 D0 +i" operands="ST(i)">ST(0) をST(i) と比較する。</instruction>
+		<instruction opcode="D8 D1" operands="ST(0)">をST(1) と比較する。</instruction>
+	</operation>
+	<operation mnemonic="FCOMI">
+		<instruction opcode="DB F0 +i" operands="ST,ST(i)">ST(0) をST(i) と比較し、結果に従ってステータス・フラグ</instruction>
+	</operation>
+	<operation mnemonic="FCOMIP">
+		<instruction opcode="DF F0 +i" operands="ST,ST(i)">ST(0) をST(i) と比較し、結果に従ってステータス・フラグ</instruction>
+	</operation>
+	<operation mnemonic="FCOMP">
+		<instruction opcode="D8 /3" operands="m32fp">ST(0) をm32fp と比較し、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DC /3" operands="m64fp">ST(0) をm64fp と比較し、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="D8 D8 +i" operands="ST(i)">ST(0) をST(i) と比較し、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="D8 D9" operands="ST(0)">をST(1) と比較し、レジスタ・スタックをポップする。</instruction>
+	</operation>
+	<operation mnemonic="FCOMPP">
+		<instruction opcode="DE D9" operands="ST(0)">をST(1) と比較し、レジスタ・スタックを2 回ポップする。</instruction>
+	</operation>
+	<operation mnemonic="FCOS">
+		<instruction opcode="D9 FF" operands="ST(0)">をその余弦で置き換える。</instruction>
+	</operation>
+	<operation mnemonic="FDECSTP">
+		<instruction opcode="D9 F6" operands="">FPU ステータス・ワードのTOP フィールドをデクリメン</instruction>
+	</operation>
+	<operation mnemonic="FDIV">
+		<instruction opcode="D8 /6" operands="m32fp">ST(0) をm32fp で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC /6" operands="m64fp">ST(0) をm64fp で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="D8 F0 +i" operands="ST(0),ST(i)">ST(0) をST(i) で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC F8 +i" operands="ST(i),ST(0)">ST(i) をST(0) で割り、結果をST(i) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FDIVP">
+		<instruction opcode="DE F8 +i" operands="ST(i),ST(0)">ST(i) をST(0) で割り、結果をST(i) にストアし、レジス</instruction>
+		<instruction opcode="DE F9" operands="ST(1)">をST(0) で割り、結果をST(1) にストアし、レジス</instruction>
+	</operation>
+	<operation mnemonic="FDIVR">
+		<instruction opcode="D8 /7" operands="m32fp">m32fp をST(0) で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC /7" operands="m64fp">m64fp をST(0) で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="D8 F8 +i" operands="ST(0),ST(i)">ST(i) をST(0) で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC F0 +i" operands="ST(i),ST(0)">ST(0) をST(i) で割り、結果をST(i) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FDIVRP">
+		<instruction opcode="DE F0 +i" operands="ST(i),ST(0)">ST(0) をST(i) で割り、結果をST(i) にストアし、レジス</instruction>
+		<instruction opcode="DE F1" operands="ST(0)">をST(1) で割り、結果をST(1) にストアし、レジス</instruction>
+	</operation>
+	<operation mnemonic="FFREE">
+		<instruction opcode="DD C0 +i" operands="ST(i)">ST(i) のタグを空に設定する。</instruction>
+	</operation>
+	<operation mnemonic="FIADD">
+		<instruction opcode="DA /0" operands="m32int">m32int をST(0) に加え、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DE /0" operands="m16int">m16int をST(0) に加え、結果をST(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FICOM">
+		<instruction opcode="DE /2" operands="m16int">ST(0) をm16int と比較する。</instruction>
+		<instruction opcode="DA /2" operands="m32int">ST(0) をm32int と比較する。</instruction>
+	</operation>
+	<operation mnemonic="FICOMP">
+		<instruction opcode="DE /3" operands="m16int">ST(0) をm16int と比較し、スタック・レジスタをポップする。</instruction>
+		<instruction opcode="DA /3" operands="m32int">ST(0) をm32int と比較し、スタック・レジスタをポップする。</instruction>
+	</operation>
+	<operation mnemonic="FIDIV">
+		<instruction opcode="DA /6" operands="m32int">ST(0) をm32int で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DE /6" operands="m16int">ST(0) をm64int で割り、結果をST(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FIDIVR">
+		<instruction opcode="DA /7" operands="m32int">m32int をST(0) で割り、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DE /7" operands="m16int">m16int をST(0) で割り、結果をST(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FILD">
+		<instruction opcode="DF /0" operands="m16int">m16int をFPU レジスタ・スタックにプッシュする。</instruction>
+		<instruction opcode="DB /0" operands="m32int">m32int をFPU レジスタ・スタックにプッシュする。</instruction>
+		<instruction opcode="DF /5" operands="m64int">m64int をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FIMUL">
+		<instruction opcode="DA /1" operands="m32int">ST(0) にm32int を掛け、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DE /1" operands="m16int">ST(0) にm16int を掛け、結果をST(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FINCSTP">
+		<instruction opcode="D9 F7" operands="">FPU ステータス・レジスタのTOP フィールドをインクリ</instruction>
+	</operation>
+	<operation mnemonic="FINIT">
+		<instruction opcode="9B DB E3" operands="">未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="FIST">
+		<instruction opcode="DF /2" operands="m16int">ST(0) をm16int にストアする。</instruction>
+		<instruction opcode="DB /2" operands="m32int">ST(0) をm32int にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FISTP">
+		<instruction opcode="DF /3" operands="m16int">ST(0) をm16int にストアし、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DB /3" operands="m32int">ST(0) をm32int にストアし、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DF /7" operands="m64int">ST(0) をm64int にストアし、レジスタ・スタックをポップする。</instruction>
+	</operation>
+	<operation mnemonic="FISUB">
+		<instruction opcode="DA /4" operands="m32int">ST(0) からm32int を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DE /4" operands="m16int">ST(0) からm16int を引き、結果をST(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FISUBR">
+		<instruction opcode="DA /5" operands="m32int">m32int からST(0) を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DE /5" operands="m16int">m16int からST(0) を引き、結果をST(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FLD">
+		<instruction opcode="D9 /0" operands="m32fp">m32fp をFPU レジスタ・スタックにプッシュする。</instruction>
+		<instruction opcode="DD /0" operands="m64fp">m64fp をFPU レジスタ・スタックにプッシュする。</instruction>
+		<instruction opcode="DB /5" operands="m80fp">m80fp をFPU レジスタ・スタックにプッシュする。</instruction>
+		<instruction opcode="D9 C0 +i" operands="ST(i)">ST(i) をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLD1">
+		<instruction opcode="D9 E8" operands="">+1.0 をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLDCW">
+		<instruction opcode="D9 /5" operands="">m2byte m2byte からFPU 制御ワードをロードする。</instruction>
+	</operation>
+	<operation mnemonic="FLDENV">
+		<instruction opcode="D9 /4" operands="">m14/28byte m14byte またはm28byte からFPU 環境をロードする。</instruction>
+	</operation>
+	<operation mnemonic="FLDL2E">
+		<instruction opcode="D9 EA" operands="">log2e をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLDL2T">
+		<instruction opcode="D9 E9" operands="">log210 をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLDLG2">
+		<instruction opcode="D9 EC" operands="">log102 をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLDLN2">
+		<instruction opcode="D9 ED" operands="">loge2 をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLDPI">
+		<instruction opcode="D9 EB" operands="">π をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FLDZ">
+		<instruction opcode="D9 EE" operands="">+0.0 をFPU レジスタ・スタックにプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="FMUL">
+		<instruction opcode="D8 /1" operands="m32fp">ST(0) にm32fp を掛け、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC /1" operands="m64fp">ST(0) にm64fp を掛け、結果をST(0) にストアする。</instruction>
+		<instruction opcode="D8 C8 +i" operands="ST(0),ST(i)">ST(0) にST(i) を掛け、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC C8 +i" operands="ST(i),ST(0)">ST(i) にST(0) を掛け、結果をST(i) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FMULP">
+		<instruction opcode="DE C8 +i" operands="ST(i),ST(0)">ST(i) にST(0) を掛け、結果をST(i) にストアし、レジス</instruction>
+		<instruction opcode="DE C9" operands="ST(1)">にST(0) を掛け、結果をST(1) にストアし、レジス</instruction>
+	</operation>
+	<operation mnemonic="FNOP">
+		<instruction opcode="D9 D0" operands="">何の操作も実行されない。</instruction>
+	</operation>
+	<operation mnemonic="FPATAN">
+		<instruction opcode="D9 F3" operands="ST(1)">をarctan(ST(1)/ST(0)) で置き換え、レジスタ・ス</instruction>
+	</operation>
+	<operation mnemonic="FPREM">
+		<instruction opcode="D9 F8" operands="ST(0)">をST(1) で割って得られる剰余でST(0) を置き換え</instruction>
+	</operation>
+	<operation mnemonic="FPREM1">
+		<instruction opcode="D9 F5" operands="ST(0)">をST(1) で割って得られるIEEE 剰余でST(0) を置き</instruction>
+	</operation>
+	<operation mnemonic="FRNDINT">
+		<instruction opcode="D9 FC" operands="ST(0)">を整数に丸める。</instruction>
+	</operation>
+	<operation mnemonic="FRSTOR">
+		<instruction opcode="DD /4" operands="">m94/108byte m94byte またはm108byte からFPU 状態をロードする。</instruction>
+	</operation>
+	<operation mnemonic="FSAVE">
+		<instruction opcode="9B DD /6" operands="">m94/108byte 未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="FSCALE">
+		<instruction opcode="D9 FD" operands="ST(0)">をST(1) でスケーリングする。</instruction>
+	</operation>
+	<operation mnemonic="FSIN">
+		<instruction opcode="D9 FE" operands="ST(0)">をその正弦で置き換える。</instruction>
+	</operation>
+	<operation mnemonic="FSINCOS">
+		<instruction opcode="D9 FB" operands="ST(0)">の正弦と余弦を計算し、ST(0) を正弦で置き換え、余</instruction>
+	</operation>
+	<operation mnemonic="FSQRT">
+		<instruction opcode="D9 FA" operands="ST(0)">の平方根を計算し、結果をSTO(0) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FST">
+		<instruction opcode="D9 /2" operands="m32fp">ST(0) をm32fp にコピーする。</instruction>
+		<instruction opcode="DD /2" operands="m64fp">ST(0) をm64fp にコピーする。</instruction>
+		<instruction opcode="DD D0 +i" operands="ST(i)">ST(0) をST(i) にコピーする。</instruction>
+	</operation>
+	<operation mnemonic="FSTCW">
+		<instruction opcode="9B D9 /7" operands="">m2byte 未処理のマスクされていない浮動小数点定例外の有無をチェック</instruction>
+	</operation>
+	<operation mnemonic="FSTENV">
+		<instruction opcode="9B D9 /6" operands="">m14/28byte 未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="FSTP">
+		<instruction opcode="D9 /3" operands="m32fp">ST(0) をm32fp にコピーし、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DD /3" operands="m64fp">ST(0) をm64fp にコピーし、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DB /7" operands="m80fp">ST(0) をm80fp にコピーし、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DD D8 +i" operands="ST(i)">ST(0) をST(i) にコピーし、レジスタ・スタックをポップする。</instruction>
+	</operation>
+	<operation mnemonic="FSTSW">
+		<instruction opcode="9B DD /7" operands="">m2byte 未処理のマスクされていない浮動小数点例外の有無を</instruction>
+		<instruction opcode="9B DF E0" operands="AX">未処理のマスクされていない浮動小数点例外の有無を</instruction>
+	</operation>
+	<operation mnemonic="FSUB">
+		<instruction opcode="D8 /4" operands="m32fp">ST(0) からm32fp を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC /4" operands="m64fp">ST(0) からm64fp を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="D8 E0 +i" operands="ST(0),ST(i)">ST(0) からST(i) を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC E8 +i" operands="ST(i),ST(0)">ST(i) からST(0) を引き、結果をST(i) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FSUBP">
+		<instruction opcode="DE E8 +i" operands="ST(i),ST(0)">ST(i) からST(0) を引き、結果をST(i) にストアし、レジス</instruction>
+		<instruction opcode="DE E9" operands="ST(1)">からST(0) を引き、結果をST(1) にストアし、レジ</instruction>
+	</operation>
+	<operation mnemonic="FSUBR">
+		<instruction opcode="D8 /5" operands="m32fp">m32fp からST(0) を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC /5" operands="m64fp">m64fp からST(0) を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="D8 E8 +i" operands="ST(0),ST(i)">ST(i) からST(0) を引き、結果をST(0) にストアする。</instruction>
+		<instruction opcode="DC E0 +i" operands="ST(i),ST(0)">ST(0) からST(i) を引き、結果をST(i) にストアする。</instruction>
+	</operation>
+	<operation mnemonic="FSUBRP">
+		<instruction opcode="DE E0 +i" operands="ST(i),ST(0)">ST(0) からST(i) を引き、結果をST(i) にストアし、レジス</instruction>
+		<instruction opcode="DE E1" operands="ST(0)">からST(1) を引き、結果をST(1) にストアし、レジ</instruction>
+	</operation>
+	<operation mnemonic="FTST">
+		<instruction opcode="D9 E4" operands="ST(0)">を0.0 と比較する。</instruction>
+	</operation>
+	<operation mnemonic="FUCOM">
+		<instruction opcode="DD E0 +i" operands="ST(i)">ST(0) をST(i) と比較する。</instruction>
+		<instruction opcode="DD E1" operands="ST(0)">をST(1) と比較する。</instruction>
+	</operation>
+	<operation mnemonic="FUCOMI">
+		<instruction opcode="DB E8 +i" operands="ST,ST(i)">ST(0) をST(i) と比較し、順序付け値の有無をチェックし、</instruction>
+	</operation>
+	<operation mnemonic="FUCOMIP">
+		<instruction opcode="DF E8 +i" operands="ST,ST(i)">ST(0) をST(i) と比較し、順序付け値の有無をチェックし、</instruction>
+	</operation>
+	<operation mnemonic="FUCOMP">
+		<instruction opcode="DD E8 +i" operands="ST(i)">ST(0) をST(i) と比較し、レジスタ・スタックをポップする。</instruction>
+		<instruction opcode="DD E9" operands="ST(0)">をST(1) と比較し、レジスタ・スタックをポップする。</instruction>
+	</operation>
+	<operation mnemonic="FUCOMPP">
+		<instruction opcode="DA E9" operands="ST(0)">をST(1) と比較し、レジスタ・スタックを2 回ポップする。</instruction>
+	</operation>
+	<operation mnemonic="FWAIT">
+		<instruction opcode="9B" operands="">未処理のマスクされていない浮動小数点例外をチェックする。</instruction>
+	</operation>
+	<operation mnemonic="FXAM">
+		<instruction opcode="D9 E5" operands="ST(0)">の値または数値をクラスに分類する。</instruction>
+	</operation>
+	<operation mnemonic="FXCH">
+		<instruction opcode="D9 C8 +i" operands="ST(i)">ST(0) とST(i) の内容を入れ換える。</instruction>
+		<instruction opcode="D9 C9" operands="ST(0)">とST(1) の内容を入れ換える。</instruction>
+	</operation>
+	<operation mnemonic="FXRSTOR">
+		<instruction opcode="0F AE /1" operands="">m512byte x87 FPU レジスタ状態、MMX テクノロジ・レジスタ状態、</instruction>
+	</operation>
+	<operation mnemonic="FXSAVE">
+		<instruction opcode="0F AE /0" operands="">m512byte x87 FPU レジスタ状態、MMX テクノロジ・レジスタ状態、XMM レ</instruction>
+	</operation>
+	<operation mnemonic="FXTRACT">
+		<instruction opcode="D9 F4" operands="ST(0)">の値を指数と仮数に分け、指数をST(0) にストアし、</instruction>
+	</operation>
+	<operation mnemonic="FYL2X">
+		<instruction opcode="D9 F1" operands="ST(1)">を(ST(1) ? log2ST(0)) で置き換え、レジスタ・ス</instruction>
+	</operation>
+	<operation mnemonic="FYL2XP1">
+		<instruction opcode="D9 F9" operands="ST(1)">を (ST(1) ? log2(ST(0) + 1.0)) で置き換え、レジスタ・</instruction>
+	</operation>
+	<operation mnemonic="HLT">
+		<instruction opcode="F4" operands="">Halt</instruction>
+	</operation>
+	<operation mnemonic="IDIV">
+		<instruction opcode="F6 /7" operands="r/m8">AX をr/m8 で符号付き除算する。結果は次のようにストアされ</instruction>
+		<instruction opcode="F7 /7" operands="r/m16">DX:AX をr/m16 で符号付き除算する。結果は次のようにストアさ</instruction>
+		<instruction opcode="F7 /7" operands="r/m32">EDX:EAX をr/m32 で符号付き除算する。結果は次のようにスト</instruction>
+	</operation>
+	<operation mnemonic="IMUL">
+		<instruction opcode="F6 /5" operands="r/m8">AX← AL? r/m バイト</instruction>
+		<instruction opcode="F7 /5" operands="r/m16">DX:AX ← AX ? r/m ワード</instruction>
+		<instruction opcode="F7 /5" operands="r/m32">EDX:EAX ← EAX ? r/m ダブルワード</instruction>
+		<instruction opcode="0F AF /r" operands="r16,r/m16">ワード・レジスタ ← ワード・レジスタ ?r/m ワード</instruction>
+		<instruction opcode="0F AF /r" operands="r32,r/m32">ダブルワード・レジスタ ← ダブルワード・レジスタ ? r/m ダ</instruction>
+		<instruction opcode="6B /r ib" operands="r16,r/m16,imm8">ワード・レジスタ ← r/m16 ? 符号拡張即値バイト</instruction>
+		<instruction opcode="6B /r ib" operands="r32,r/m32,imm8">ダブルワード・レジスタ ← r/m32 ? 符号拡張即値バイト</instruction>
+		<instruction opcode="6B /r ib" operands="r16,imm8">ワード・レジスタ ← ワード・レジスタ ? 符号拡張即値バイト</instruction>
+		<instruction opcode="6B /r ib" operands="r32,imm8">ダブルワード・レジスタ ← ダブルワード・レジスタ ? 符号拡</instruction>
+		<instruction opcode="69 /r iw" operands="r16,r/m16,imm16">ワード・レジスタ ← r/m16 ? 即値ワード</instruction>
+		<instruction opcode="69 /r id" operands="r32,r/m32,imm32">ダブルワード・レジスタ ← r/m32 ? 即値ダブルワード</instruction>
+		<instruction opcode="69 /r iw" operands="r16,imm16">ワード・レジスタ ← r/m16 ? 即値ワード</instruction>
+		<instruction opcode="69 /r id" operands="r32,imm32">ダブルワード・レジスタ ← r/m32 ? 即値ダブルワード</instruction>
+	</operation>
+	<operation mnemonic="IN">
+		<instruction opcode="E4 ib" operands="AL,imm8">I/O ポート・アドレスimm8 からAL にバイトを入力する。</instruction>
+		<instruction opcode="E5 ib" operands="AX,imm8">I/O ポート・アドレスimm8 からAX にバイトを入力する。</instruction>
+		<instruction opcode="E5 ib" operands="EAX,imm8">I/O ポート・アドレスimm8 からEAX にバイトを入力する。</instruction>
+		<instruction opcode="EC" operands="AL,DX">DX 内のI/O ポートからAL にバイトを入力する。</instruction>
+		<instruction opcode="ED" operands="AX,DX">DX 内のI/O ポートからAX にワードを入力する。</instruction>
+		<instruction opcode="ED" operands="EAX,DX">DX 内のI/O ポートからEAX にダブルワードを入力する。</instruction>
+	</operation>
+	<operation mnemonic="INC">
+		<instruction opcode="FE /0" operands="r/m8">r/m バイトを1 インクリメントする。</instruction>
+		<instruction opcode="FF /0" operands="r/m16">r/m ワードを1 インクリメントする。</instruction>
+		<instruction opcode="FF /0" operands="r/m32">r/m ダブルワードを1 インクリメントする。</instruction>
+		<instruction opcode="40 +rw" operands="r16">ワード・レジスタを1 インクリメントする。</instruction>
+		<instruction opcode="40 +rd" operands="r32">ダブルワード・レジスタを1 インクリメントする。</instruction>
+	</operation>
+	<operation mnemonic="INS">
+		<instruction opcode="6C" operands="m8,DX">バイトをDX で指定された I/O ポートからES:(E)DI で指定</instruction>
+		<instruction opcode="6D" operands="m16,DX">ワードをDX で指定された I/O ポートからES:(E)DI で指定</instruction>
+		<instruction opcode="6D" operands="m32,DX">ダブルワードをDX で指定された I/O ポートからES:(E)DI</instruction>
+	</operation>
+	<operation mnemonic="INSB">
+		<instruction opcode="6C" operands="">バイトをDX で指定された I/O ポートからES:(E)DI で指定</instruction>
+	</operation>
+	<operation mnemonic="INSD">
+		<instruction opcode="6D" operands="">ダブルワードをDX で指定された I/O ポートからES:(E)DI</instruction>
+	</operation>
+	<operation mnemonic="INSW">
+		<instruction opcode="6D" operands="">ワードをDX で指定された I/O ポートからES:(E)DI で指定</instruction>
+	</operation>
+	<operation mnemonic="INT">
+		<instruction opcode="CC" operands="">3 割り込み3 - デバッガへのトラップ。</instruction>
+		<instruction opcode="CD ib" operands="imm8">割り込みベクタ番号の即値バイトによる指定。</instruction>
+	</operation>
+	<operation mnemonic="INTO">
+		<instruction opcode="CE" operands="">割り込み4 - オーバフロー・フラグが1 である場合。</instruction>
+	</operation>
+	<operation mnemonic="INVD">
+		<instruction opcode="0F 08" operands="">内部キャッシュをフラッシュする。外部キャッシュのフ</instruction>
+	</operation>
+	<operation mnemonic="IRET">
+		<instruction opcode="CF" operands="">割り込みリターン ( オペランド・サイズ: 16 ビット)。</instruction>
+	</operation>
+	<operation mnemonic="IRETD">
+		<instruction opcode="CF" operands="">割り込みリターン ( オペランド・サイズ: 32 ビット)。</instruction>
+	</operation>
+	<operation mnemonic="JA">
+		<instruction opcode="77 cb" operands="rel8">より上 (CF=0 およびZF=0) の場合short ジャンプする。</instruction>
+		<instruction opcode="0F 87 cw/cd" operands="rel16/32">より上 (CF=0 およびZF=0) の場合near ジャンプ。</instruction>
+	</operation>
+	<operation mnemonic="JAE">
+		<instruction opcode="73 cb" operands="rel8">より上か等しい (CF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 83 cw/cd" operands="rel16/32">より上か等しい (CF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JB">
+		<instruction opcode="72 cb" operands="rel8">より下 (CF=1) の場合short ジャンプする。</instruction>
+		<instruction opcode="0F 82 cw/cd" operands="rel16/32">より下 (CF=1) の場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JBE">
+		<instruction opcode="76 cb" operands="rel8">より下か等しい (CF=1 またはZF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 86 cw/cd" operands="rel16/32">より下か等しい (CF=1 またはZF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JC">
+		<instruction opcode="72 cb" operands="rel8">キャリーがある (CF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 82 cw/cd" operands="rel16/32">キャリーがある (CF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JCXZ">
+		<instruction opcode="E3 cb" operands="rel8">CX レジスタが0 の場合short ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JE">
+		<instruction opcode="74 cb" operands="rel8">等しい (ZF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 84 cw/cd" operands="rel16/32">等しい (ZF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JECXZ">
+		<instruction opcode="E3 cb" operands="rel8">ECX レジスタが0 の場合short ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JG">
+		<instruction opcode="7F cb" operands="rel8">より大きい (ZF=0 およびSF=OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8F cw/cd" operands="rel16/32">より大きい (ZF=0 およびSF=OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JGE">
+		<instruction opcode="7D cb" operands="rel8">より大きいか等しい (SF=OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8D cw/cd" operands="rel16/32">より大きいか等しい (SF=OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JL">
+		<instruction opcode="7C cb" operands="rel8">より小さい (SF&lt;&gt;OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8C cw/cd" operands="rel16/32">より小さい (SF&lt;&gt;OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JLE">
+		<instruction opcode="7E cb" operands="rel8">より小さいか等しい (ZF=1 またはSF&lt;&gt;OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8E cw/cd" operands="rel16/32">より小さいか等しい (ZF=1 またはSF&lt;&gt;OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JMP">
+		<instruction opcode="EB cb" operands="rel8">次の命令との相対分量分だけ相対short ジャンプする。</instruction>
+		<instruction opcode="E9 cw" operands="rel16">次の命令との相対分量分だけ相対near ジャンプする。</instruction>
+		<instruction opcode="E9 cd" operands="rel32">次の命令との相対分量分だけ相対near ジャンプする。</instruction>
+		<instruction opcode="FF /4" operands="r/m16">r/m16 で指定されるアドレスに絶対間接near ジャンプする。</instruction>
+		<instruction opcode="FF /4" operands="r/m32">r/m32 で指定されるアドレスに絶対間接near ジャンプする。</instruction>
+		<instruction opcode="EA cd" operands="ptr16:16">オペランドで指定されるアドレスに絶対far ジャンプする。</instruction>
+		<instruction opcode="EA cp" operands="ptr16:32">オペランドで指定されるアドレスに絶対far ジャンプする。</instruction>
+		<instruction opcode="FF /5" operands="m16:16">m16:16 で指定されるアドレスに絶対間接far ジャンプする。</instruction>
+		<instruction opcode="FF /5" operands="m16:32">m16:32 で指定されるアドレスに絶対間接far ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNA">
+		<instruction opcode="76 cb" operands="rel8">より上でない (CF=1 またはZF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 86 cw/cd" operands="rel16/32">より上でない (CF=1 またはZF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNAE">
+		<instruction opcode="72 cb" operands="rel8">より上でなく等しくない (CF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 82 cw/cd" operands="rel16/32">より上でなく等しくない (CF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNB">
+		<instruction opcode="73 cb" operands="rel8">より下でない (CF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 83 cw/cd" operands="rel16/32">より下でない (CF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNBE">
+		<instruction opcode="77 cb" operands="rel8">より下でなく等しくない(CF=0 およびZF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 87 cw/cd" operands="rel16/32">より下でなく等しくない (CF=0 およびZF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNC">
+		<instruction opcode="73 cb" operands="rel8">キャリーがない (CF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 83 cw/cd" operands="rel16/32">キャリーがない (CF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNE">
+		<instruction opcode="75 cb" operands="rel8">等しくない (ZF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 85 cw/cd" operands="rel16/32">等しくない (ZF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNG">
+		<instruction opcode="7E cb" operands="rel8">より大きくない (ZF=1 またはSF&lt;&gt;OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8E cw/cd" operands="rel16/32">より大きくない (ZF=1 またはSF&lt;&gt;OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNGE">
+		<instruction opcode="7C cb" operands="rel8">より大きくなく等しくない (SF&lt;&gt;OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8C cw/cd" operands="rel16/32">より大きくなく等しくない (SF&lt;&gt;OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNL">
+		<instruction opcode="7D cb" operands="rel8">より小さくない (SF=OF) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8D cw/cd" operands="rel16/32">より小さくない (SF=OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNLE">
+		<instruction opcode="7F cb" operands="rel8">より小さくなく等しくない (ZF=0 およびSF=OF) 場合short ジャンプす</instruction>
+		<instruction opcode="0F 8F cw/cd" operands="rel16/32">より小さくなく等しくない (ZF=0 およびSF=OF) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNO">
+		<instruction opcode="71 cb" operands="rel8">オーバフローがない (OF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 81 cw/cd" operands="rel16/32">オーバフローがない (OF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNP">
+		<instruction opcode="7B cb" operands="rel8">パリティがない (PF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8B cw/cd" operands="rel16/32">パリティがない (PF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNS">
+		<instruction opcode="79 cb" operands="rel8">符号がない (SF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 89 cw/cd" operands="rel16/32">符号がない (SF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JNZ">
+		<instruction opcode="75 cb" operands="rel8">ゼロでない (ZF=0) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 85 cw/cd" operands="rel16/32">ゼロでない (ZF=0) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JO">
+		<instruction opcode="70 cb" operands="rel8">オーバフローがある (OF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 80 cw/cd" operands="rel16/32">オーバフローがある (OF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JP">
+		<instruction opcode="7A cb" operands="rel8">パリティがある (PF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8A cw/cd" operands="rel16/32">パリティがある (PF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JPE">
+		<instruction opcode="7A cb" operands="rel8">パリティが偶数 (PF=1) の場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8A cw/cd" operands="rel16/32">パリティが偶数 (PF=1) の場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JPO">
+		<instruction opcode="7B cb" operands="rel8">パリティが奇数 (PF=0) の場合short ジャンプする。</instruction>
+		<instruction opcode="0F 8B cw/cd" operands="rel16/32">パリティが奇数 (PF=0) の場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JS">
+		<instruction opcode="78 cb" operands="rel8">符号がある (SF=1) 場合short ジャンプする。</instruction>
+		<instruction opcode="0F 88 cw/cd" operands="rel16/32">符号がある (SF=1) 場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="JZ">
+		<instruction opcode="74 cb" operands="rel8">ゼロ (ZF=1) の場合short ジャンプする。</instruction>
+		<instruction opcode="0F 84 cw/cd" operands="rel16/32">ゼロ (ZF=1) の場合near ジャンプする。</instruction>
+	</operation>
+	<operation mnemonic="LAHF">
+		<instruction opcode="9F" operands="AH">← EFLAGS(SF:ZF:0:AF:0:PF:1:CF) をロードする。</instruction>
+	</operation>
+	<operation mnemonic="LAR">
+		<instruction opcode="0F 02 /r" operands="r16,r/m16">r16 ← FF00H でマスクされたr/m16。</instruction>
+		<instruction opcode="0F 02 /r" operands="r32,r/m32">r32 ← 00FxFF00H でマスクされたr/m32。</instruction>
+	</operation>
+	<operation mnemonic="LDS">
+		<instruction opcode="C5 /r" operands="r16,m16:16">メモリからDS:r16 にfar ポインタをロードする。</instruction>
+		<instruction opcode="C5 /r" operands="r32,m16:32">メモリからDS:r32 にfar ポインタをロードする。</instruction>
+	</operation>
+	<operation mnemonic="LEA">
+		<instruction opcode="8D /r" operands="r16,m">m の実効アドレスをレジスタr16 にストアする。</instruction>
+		<instruction opcode="8D /r" operands="r32,m">m の実効アドレスをレジスタr32 にストアする。</instruction>
+	</operation>
+	<operation mnemonic="LEAVE">
+		<instruction opcode="C9" operands="SP">をBP に設定し、次にBP をポップする。</instruction>
+		<instruction opcode="C9" operands="ESP">をEBP に設定し、次にEBP をポップする。</instruction>
+	</operation>
+	<operation mnemonic="LES">
+		<instruction opcode="C4 /r" operands="r16,m16:16">メモリからES:r16 にfar ポインタをロードする。</instruction>
+		<instruction opcode="C4 /r" operands="r32,m16:32">メモリからES:r32 にfar ポインタをロードする。</instruction>
+	</operation>
+	<operation mnemonic="LFENCE">
+		<instruction opcode="0F AE /5" operands="">ロード操作をシリアル化する。</instruction>
+	</operation>
+	<operation mnemonic="LFS">
+		<instruction opcode="0F B4 /r" operands="r16,m16:16">メモリからFS:r16 にfar ポインタをロードする。</instruction>
+		<instruction opcode="0F B4 /r" operands="r32,m16:32">メモリからFS:r32 にfar ポインタをロードする。</instruction>
+	</operation>
+	<operation mnemonic="LGDT">
+		<instruction opcode="0F 01 /2" operands="m16&amp;32">m をGDTR にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LGS">
+		<instruction opcode="0F B5 /r" operands="r16,m16:16">メモリからGS:r16 にfar ポインタをロードする。</instruction>
+		<instruction opcode="0F B5 /r" operands="r32,m16:32">メモリからGS:r32 にfar ポインタをロードする。</instruction>
+	</operation>
+	<operation mnemonic="LIDT">
+		<instruction opcode="0F 01 /3" operands="m16&amp;32">m をIDTR にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LLDT">
+		<instruction opcode="0F 00 /2" operands="r/m16">セグメント・セレクタr/m16 をLDTR にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LMSW">
+		<instruction opcode="0F 01 /6" operands="r/m16">r/m16 をCR0 のマシン・ステータス・ワードにロードす</instruction>
+	</operation>
+	<operation mnemonic="LOCK">
+		<instruction opcode="F0" operands="">後の命令の実行中LOCK# 信号をアサートする。</instruction>
+	</operation>
+	<operation mnemonic="LODS">
+		<instruction opcode="AC" operands="m8">アドレスDS:(E)SI のバイトをAL にロードする。</instruction>
+		<instruction opcode="AD" operands="m16">アドレスDS:(E)SI のワードをAX にロードする。</instruction>
+		<instruction opcode="AD" operands="m32">アドレスDS:(E)SI のダブルワードをEAX にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LODSB">
+		<instruction opcode="AC" operands="">アドレスDS:(E)SI のバイトをAL にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LODSD">
+		<instruction opcode="AD" operands="">アドレスDS:(E)SI のダブルワードをEAX にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LODSW">
+		<instruction opcode="AD" operands="">アドレスDS:(E)SI のワードをAX にロードする。</instruction>
+	</operation>
+	<operation mnemonic="LOOP">
+		<instruction opcode="E2 cb" operands="rel8">カウントをデクリメントし、カウント ≠ 0 の場合short</instruction>
+	</operation>
+	<operation mnemonic="LOOPE">
+		<instruction opcode="E1 cb" operands="rel8">カウントをデクリメントし、カウント ≠ 0 でかつZF=1 の</instruction>
+	</operation>
+	<operation mnemonic="LOOPNE">
+		<instruction opcode="E0 cb" operands="rel8">カウントをデクリメントし、カウント ≠ 0 でかつZF=0 の</instruction>
+	</operation>
+	<operation mnemonic="LOOPNZ">
+		<instruction opcode="E0 cb" operands="rel8">カウントをデクリメントし、カウント ≠ 0 でかつZF=0 の</instruction>
+	</operation>
+	<operation mnemonic="LOOPZ">
+		<instruction opcode="E1 cb" operands="rel8">カウントをデクリメントし、カウント ≠ 0 でかつZF=1 の</instruction>
+	</operation>
+	<operation mnemonic="LSL">
+		<instruction opcode="0F 03 /r" operands="r16,r/m16">"r16 ← セグメント範囲、セレクタr/m16 " のロードを行う。</instruction>
+		<instruction opcode="0F 03 /r" operands="r32,r/m32">"r32 ← セグメント範囲、セレクタr/m32 " のロードを行う。</instruction>
+	</operation>
+	<operation mnemonic="LSS">
+		<instruction opcode="0F B2 /r" operands="r16,m16:16">メモリからSS:r16 にfar ポインタをロードする。</instruction>
+		<instruction opcode="0F B2 /r" operands="r32,m16:32">メモリからSS:r32 にfar ポインタをロードする。</instruction>
+	</operation>
+	<operation mnemonic="LTR">
+		<instruction opcode="0F 00 /3" operands="r/m16">r/m16 をタスク・レジスタにロードする。</instruction>
+	</operation>
+	<operation mnemonic="MASKMOVDQU">
+		<instruction opcode="66 0F F7 /r" operands="xmm1,xmm2">xmm2 のバイト・マスクを使用して、xmm1 のバイ</instruction>
+	</operation>
+	<operation mnemonic="MASKMOVQ">
+		<instruction opcode="0F F7 /r" operands="mm1,mm2">mm2 のバイト・マスクを使用して、mm1 のバイトを選択</instruction>
+	</operation>
+	<operation mnemonic="MAXPD">
+		<instruction opcode="66 0F 5F /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の間で倍精度浮動小数点値の最大</instruction>
+	</operation>
+	<operation mnemonic="MAXPS">
+		<instruction opcode="0F 5F /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の単精度浮動小数点値を比較し</instruction>
+	</operation>
+	<operation mnemonic="MAXSD">
+		<instruction opcode="F2 0F 5F /r" operands="xmm1,xmm2/m64">xmm2/mem64 とxmm1 の間でスカラ倍精度浮動小数点</instruction>
+	</operation>
+	<operation mnemonic="MAXSS">
+		<instruction opcode="F3 0F 5F /r" operands="xmm1,xmm2/m32">xmm2/mem32 とxmm1 のスカラ単精度浮動小数点値を</instruction>
+	</operation>
+	<operation mnemonic="MFENCE">
+		<instruction opcode="0F AE /6" operands="">ロード操作とストア操作をシリアル化する。</instruction>
+	</operation>
+	<operation mnemonic="MINPD">
+		<instruction opcode="66 0F 5D /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の間で倍精度浮動小数点値の最小</instruction>
+	</operation>
+	<operation mnemonic="MINPS">
+		<instruction opcode="0F 5D /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の単精度浮動小数点値を比較し</instruction>
+	</operation>
+	<operation mnemonic="MINSD">
+		<instruction opcode="F2 0F 5D /r" operands="xmm1,xmm2/m64">xmm2/mem64 とxmm1 の間でスカラ倍精度浮動小数点</instruction>
+	</operation>
+	<operation mnemonic="MINSS">
+		<instruction opcode="F3 0F 5D /r" operands="xmm1,xmm2/m32">xmm2/mem32 とxmm1 のスカラ単精度浮動小数点値を</instruction>
+	</operation>
+	<operation mnemonic="MOV">
+		<instruction opcode="88 /r" operands="r/m8,r8">r8 をr/m8 に転送する。</instruction>
+		<instruction opcode="89 /r" operands="r/m16,r16">r16 をr/m16 に転送する。</instruction>
+		<instruction opcode="89 /r" operands="r/m32,r32">r32 をr/m32 に転送する。</instruction>
+		<instruction opcode="8A /r" operands="r8,r/m8">r/m8 をr8 に転送する。</instruction>
+		<instruction opcode="8B /r" operands="r16,r/m16">r/m16 をr16 に転送する。</instruction>
+		<instruction opcode="8B /r" operands="r32,r/m32">r/m32 をr32 に転送する。</instruction>
+		<instruction opcode="8C /r" operands="r/m16,Sreg">セグメント・レジスタをr/m16 に転送する。</instruction>
+		<instruction opcode="8E /r" operands="Sreg,r/m16">r/m16 をセグメント・レジスタに転送する。</instruction>
+		<instruction opcode="A0" operands="AL,moffs8">( セグメント: オフセット) のバイトをAL に転送する。</instruction>
+		<instruction opcode="A1" operands="AX,moffs16">( セグメント: オフセット) のワードをAX に転送する。</instruction>
+		<instruction opcode="A1" operands="EAX,moffs32">( セグメント: オフセット) のダブルワードをEAX に転送する。</instruction>
+		<instruction opcode="A2" operands="moffs8,AL">AL を( セグメント: オフセット) に転送する。</instruction>
+		<instruction opcode="A3" operands="moffs16,AX">AX を( セグメント: オフセット) に転送する。</instruction>
+		<instruction opcode="A3" operands="moffs32,EAX">EAX を( セグメント: オフセット) に転送する。</instruction>
+		<instruction opcode="B0 +rb" operands="r8,imm8">imm8 をr8 に転送する。</instruction>
+		<instruction opcode="B8 +rw" operands="r16,imm16">imm16 をr16 に転送する。</instruction>
+		<instruction opcode="B8 +rd" operands="r32,imm32">imm32 をr32 に転送する。</instruction>
+		<instruction opcode="C6 /0" operands="r/m8,imm8">imm8 をr/m8 に転送する。</instruction>
+		<instruction opcode="C7 /0" operands="r/m16,imm16">imm16 をr/m16 に転送する。</instruction>
+		<instruction opcode="C7 /0" operands="r/m32,imm32">imm32 をr/m32 に転送する。</instruction>
+		<instruction opcode="0F 22 /r" operands="CR0,r32">0F 22 r32 をCR0 に転送する。</instruction>
+		<instruction opcode="0F 22 /r" operands="CR2,r32">0F 22 r32 をCR2 に転送する。</instruction>
+		<instruction opcode="0F 22 /r" operands="CR3,r32">0F 22 r32 をCR3 に転送する。</instruction>
+		<instruction opcode="0F 22 /r" operands="CR4,r32">0F 22 r32 をCR4 に転送する。</instruction>
+		<instruction opcode="0F 20 /r" operands="r32,CR0">0F 20 CR0 をr32 に転送する。</instruction>
+		<instruction opcode="0F 20 /r" operands="r32,CR2">0F 20 CR2 をr32 に転送する。</instruction>
+		<instruction opcode="0F 20 /r" operands="r32,CR3">0F 20 CR3 をr32 に転送する。</instruction>
+		<instruction opcode="0F 20 /r" operands="r32,CR4">0F 20 CR4 をr32 に転送する。</instruction>
+		<instruction opcode="0F 23 /r" operands="DR0-DR7,r32">r32 をデバッグ・レジスタに転送する。</instruction>
+	</operation>
+	<operation mnemonic="MOVAPD">
+		<instruction opcode="66 0F 28 /r" operands="xmm1,xmm2/m128"></instruction>
+		<instruction opcode="66 0F 29 /r" operands="xmm2/m128,xmm1"></instruction>
+	</operation>
+	<operation mnemonic="MOVAPS">
+		<instruction opcode="0F 28 /r" operands="xmm1,xmm2/m128"></instruction>
+		<instruction opcode="0F 29 /r" operands="xmm2/m128,xmm1"></instruction>
+	</operation>
+	<operation mnemonic="MOVD">
+		<instruction opcode="0F 6E /r" operands="mm,r/m32">ダブルワードをr/m32 からmm に転送する。</instruction>
+		<instruction opcode="0F 7E /r" operands="r/m32,mm">ダブルワードをmm からr/m32 に転送する。</instruction>
+		<instruction opcode="66 0F 6E /r" operands="xmm,r/m32">ダブルワードをr/m32 からxmm に転送する。</instruction>
+		<instruction opcode="66 0F 7E /r" operands="r/m32,xmm">ダブルワードをxmm レジスタからr/m32 に転送する。</instruction>
+	</operation>
+	<operation mnemonic="MOVDQ2Q">
+		<instruction opcode="F2 0F D6" operands="mm,xmm">xmm レジスタの下位クワッドワードをmmx テクノロジ・</instruction>
+	</operation>
+	<operation mnemonic="MOVDQA">
+		<instruction opcode="66 0F 6F /r" operands="xmm1,xmm2/m128"></instruction>
+		<instruction opcode="66 0F 7F /r" operands="xmm2/m128,xmm1"></instruction>
+	</operation>
+	<operation mnemonic="MOVDQU">
+		<instruction opcode="F3 0F 6F /r" operands="xmm1,xmm2/m128"></instruction>
+		<instruction opcode="F3 0F 7F /r" operands="xmm2/m128,xmm1"></instruction>
+	</operation>
+	<operation mnemonic="MOVHPD">
+		<instruction opcode="66 0F 16 /r" operands="xmm,m64">m64 からxmm の上位クワッドワードに倍精度浮動小数点</instruction>
+		<instruction opcode="66 0F 17 /r" operands="m64,xmm">xmm の上位クワッドワードからm64 に倍精度浮動小数点</instruction>
+	</operation>
+	<operation mnemonic="MOVHPS">
+		<instruction opcode="0F 16 /r" operands="xmm,m64">2 つのパックド単精度浮動小数点値を、m64 からxmm の</instruction>
+		<instruction opcode="0F 17 /r" operands="m64,xmm">2 つのパックド単精度浮動小数点値を、xmm の上位クワッ</instruction>
+	</operation>
+	<operation mnemonic="MOVLPD">
+		<instruction opcode="66 0F 12 /r" operands="xmm,m64">m64 からxmm レジスタの下位クワッドワードに倍精度浮</instruction>
+		<instruction opcode="66 0F 13 /r" operands="m64,xmm">xmm レジスタの下位クワッドワードからm64 に倍精度浮</instruction>
+	</operation>
+	<operation mnemonic="MOVLPS">
+		<instruction opcode="0F 12 /r" operands="xmm,m64">2 つのパックド単精度浮動小数点値を、m64 からxmm の</instruction>
+		<instruction opcode="0F 13 /r" operands="m64,xmm">2 つのパックド単精度浮動小数点値を、xmm の下位クワッ</instruction>
+	</operation>
+	<operation mnemonic="MOVMSKPD">
+		<instruction opcode="66 0F 50 /r" operands="r32,xmm">xmm から2 ビットの符号マスクを抽出し、r32 に格納する。</instruction>
+	</operation>
+	<operation mnemonic="MOVMSKPS">
+		<instruction opcode="0F 50 /r" operands="r32,xmm">xmm から4 ビットの符号マスクを抽出し、r32 に格納する。</instruction>
+	</operation>
+	<operation mnemonic="MOVNI">
+		<instruction opcode="0F C3 /r" operands="m32,r32">非テンポラルなヒントを使用して、r32 からm32 にダブル</instruction>
+	</operation>
+	<operation mnemonic="MOVNTDQ">
+		<instruction opcode="66 0F E7 /r" operands="m128,xmm">非テンポラルなヒントを使用して、xmm からm128 にダブ</instruction>
+	</operation>
+	<operation mnemonic="MOVNTPD">
+		<instruction opcode="66 0F 2B /r" operands="m128,xmm">非テンポラルなヒントを使用して、xmm からm128 にパッ</instruction>
+	</operation>
+	<operation mnemonic="MOVNTPS">
+		<instruction opcode="0F 2B /r" operands="m128,xmm">非テンポラルなヒントを使用して、4 つのパックド単精度</instruction>
+	</operation>
+	<operation mnemonic="MOVNTQ">
+		<instruction opcode="0F E7 /r" operands="m64,mm">非テンポラルなヒントを使用してクワッドワードを、mm</instruction>
+	</operation>
+	<operation mnemonic="MOVQ">
+		<instruction opcode="0F 6F /r" operands="mm,mm/m64">クワッドワードをmm/m64 からmm に転送する。</instruction>
+		<instruction opcode="0F 7F /r" operands="mm/m64,mm">クワッドワードをmm からmm/m64 に転送する。</instruction>
+		<instruction opcode="F3 0F 7E" operands="xmm1,xmm2/m64">クワッドワードをxmm2/mem64 からxmm1 に転送する。</instruction>
+		<instruction opcode="66 0F D6" operands="xmm2/m64,xmm1">クワッドワードをxmm1 からxmm2/mem64 に転送する。</instruction>
+	</operation>
+	<operation mnemonic="MOVQ2DQ">
+		<instruction opcode="F3 0F D6" operands="xmm,mm">mmx のクワッドワードをxmm の下位クワッドワードに移</instruction>
+	</operation>
+	<operation mnemonic="MOVS">
+		<instruction opcode="A4" operands="m8,m8">アドレスDS:(E)SI のバイトをアドレスES:(E)DI に転送する。</instruction>
+		<instruction opcode="A5" operands="m16,m16">アドレスDS:(E)SI のワードをアドレスES:(E)DI に転送する。</instruction>
+		<instruction opcode="A5" operands="m32,m32">アドレスDS:(E)SI のダブルワードをアドレスES:(E)DI に転送</instruction>
+	</operation>
+	<operation mnemonic="MOVSB">
+		<instruction opcode="A4" operands="">アドレスDS:(E)SI のバイトをアドレスES:(E)DI に転送する。</instruction>
+	</operation>
+	<operation mnemonic="MOVSD">
+		<instruction opcode="A5" operands="">アドレスDS:(E)SI のダブルワードをアドレスES:(E)DI に転送</instruction>
+		<instruction opcode="F2 0F 10 /r" operands="xmm1,xmm2/m64">スカラ倍精度浮動小数点値をxmm2/m64 からxmm1 レ</instruction>
+		<instruction opcode="F2 0F 11 /r" operands="xmm2/m64,xmm">スカラ倍精度浮動小数点値をxmm1 レジスタから</instruction>
+	</operation>
+	<operation mnemonic="MOVSS">
+		<instruction opcode="F3 0F 10 /r" operands="xmm1,xmm2/m32">スカラ単精度浮動小数点値を、xmm2/m64 からxmm1</instruction>
+		<instruction opcode="F3 0F 11 /r" operands="xmm2/m32,xmm1">スカラ単精度浮動小数点値を、xmm1 レジスタから</instruction>
+	</operation>
+	<operation mnemonic="MOVSW">
+		<instruction opcode="A5" operands="">アドレスDS:(E)SI のワードをアドレスES:(E)DI に転送する。</instruction>
+	</operation>
+	<operation mnemonic="MOVSX">
+		<instruction opcode="0F BE /r" operands="r16,r/m8">バイトをワードに符号拡張して転送する。</instruction>
+		<instruction opcode="0F BE /r" operands="r32,r/m8">バイトをダブルワードに符号拡張して転送する。</instruction>
+		<instruction opcode="0F BF /r" operands="r32,r/m16">ワードをダブルワードに符号拡張して転送する。</instruction>
+	</operation>
+	<operation mnemonic="MOVUPD">
+		<instruction opcode="66 0F 10 /r" operands="xmm1,xmm2/m128"></instruction>
+		<instruction opcode="66 0F 11 /r" operands="xmm2/m128,xmm"></instruction>
+	</operation>
+	<operation mnemonic="MOVUPS">
+		<instruction opcode="0F 10 /r" operands="xmm1,xmm2/m128"></instruction>
+		<instruction opcode="0F 11 /r" operands="xmm2/m128,xmm1"></instruction>
+	</operation>
+	<operation mnemonic="MOVZX">
+		<instruction opcode="0F B6 /r" operands="r16,r/m8">バイトをワードにゼロ拡張して転送する。</instruction>
+		<instruction opcode="0F B6 /r" operands="r32,r/m8">バイトをダブルワードにゼロ拡張して転送する。</instruction>
+		<instruction opcode="0F B7 /r" operands="r32,r/m16">ワードをダブルワードにゼロ拡張して転送する。</instruction>
+	</operation>
+	<operation mnemonic="MUL">
+		<instruction opcode="F6 /4" operands="r/m8">符号なし乗算(AX ← AL? r/m8)</instruction>
+		<instruction opcode="F7 /4" operands="r/m16">符号なし乗算(DX:AX ← AX ? r/m16)</instruction>
+		<instruction opcode="F7 /4" operands="r/m32">符号なし乗算(EDX:EAX ← EAX? r/m32)</instruction>
+	</operation>
+	<operation mnemonic="MULPD">
+		<instruction opcode="66 0F 59 /r" operands="xmm1,xmm2/m128">xmm2/m128 のパックド倍精度浮動小数点値にxmm1 の</instruction>
+	</operation>
+	<operation mnemonic="MULPS">
+		<instruction opcode="0F 59 /r" operands="xmm1,xmm2/m128">xmm1 のパックド単精度浮動小数点値にxmm2/mem の</instruction>
+	</operation>
+	<operation mnemonic="MULSD">
+		<instruction opcode="F2 0F 59 /r" operands="xmm1,xmm2/m64">xmm2/mem64 の下位の倍精度浮動小数点値にxmm1 の</instruction>
+	</operation>
+	<operation mnemonic="MULSS">
+		<instruction opcode="F3 0F 59 /r" operands="xmm1,xmm2/m32">xmm1 の下位の単精度浮動小数点値にxmm2/mem の下</instruction>
+	</operation>
+	<operation mnemonic="NEG">
+		<instruction opcode="F6 /3" operands="r/m8">2 の補数がr/m8 をネゲートする。</instruction>
+		<instruction opcode="F7 /3" operands="r/m16">2 の補数がr/m16 をネゲートする。</instruction>
+		<instruction opcode="F7 /3" operands="r/m32">2 の補数がr/m32 をネゲートする。</instruction>
+	</operation>
+	<operation mnemonic="NOP">
+		<instruction opcode="90" operands="">操作なし</instruction>
+	</operation>
+	<operation mnemonic="NOT">
+		<instruction opcode="F6 /2" operands="r/m8">r/m8 の各ビットを反転する。</instruction>
+		<instruction opcode="F7 /2" operands="r/m16">r/m16 の各ビットを反転する。</instruction>
+		<instruction opcode="F7 /2" operands="r/m32">r/m32 の各ビットを反転する。</instruction>
+	</operation>
+	<operation mnemonic="OF">
+		<instruction opcode="66" operands="">F4 /r PMULUDQ xmm1, xmm2/m128 xmm1 のパックド符号なしダブルワード整数に</instruction>
+	</operation>
+	<operation mnemonic="OR">
+		<instruction opcode="0C ib" operands="AL,imm8">AL とimm8 とのOR をとる。</instruction>
+		<instruction opcode="0D iw" operands="AX,imm16">AX とimm16 とのOR をとる。</instruction>
+		<instruction opcode="0D id" operands="EAX,imm32">EAX とimm32 とのOR をとる。</instruction>
+		<instruction opcode="80 /1 ib" operands="r/m8,imm8">r/m8 とimm8 とのOR をとる。</instruction>
+		<instruction opcode="81 /1 iw" operands="r/m16,imm16">r/m16 とimm16 とのOR をとる。</instruction>
+		<instruction opcode="81 /1 id" operands="r/m32,imm32">r/m32 とimm32 とのOR をとる。</instruction>
+		<instruction opcode="83 /1 ib" operands="r/m16,imm8">r/m16 とimm8( 符号拡張) とのOR をとる。</instruction>
+		<instruction opcode="83 /1 ib" operands="r/m32,imm8">r/m32 とimm8( 符号拡張) とのOR をとる。</instruction>
+		<instruction opcode="08 /r" operands="r/m8,r8">r/m8 とr8 とのOR をとる。</instruction>
+		<instruction opcode="09 /r" operands="r/m16,r16">r/m16 とr16 とのOR をとる。</instruction>
+		<instruction opcode="09 /r" operands="r/m32,r32">r/m32 とr32 とのOR をとる。</instruction>
+		<instruction opcode="0A /r" operands="r8,r/m8">r8 とr/m8 とのOR をとる。</instruction>
+		<instruction opcode="0B /r" operands="r16,r/m16">r16 とr/m16 とのOR をとる。</instruction>
+		<instruction opcode="0B /r" operands="r32,r/m32">r32 とr/m32 とのOR をとる。</instruction>
+	</operation>
+	<operation mnemonic="ORPD">
+		<instruction opcode="66 0F 56 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のOR（論理和）演</instruction>
+	</operation>
+	<operation mnemonic="ORPS">
+		<instruction opcode="0F 56 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のOR（論理和）演</instruction>
+	</operation>
+	<operation mnemonic="OUT">
+		<instruction opcode="E6 ib" operands="imm8,AL">AL にあるバイトをI/O ポート・アドレスimm8 に出力する。</instruction>
+		<instruction opcode="E7 ib" operands="imm8,AX">AX にあるワードをI/O ポート・アドレスimm8 に出力する。</instruction>
+		<instruction opcode="E7 ib" operands="imm8,EAX">EAX にあるダブルワードをI/O ポート・アドレスimm8 に出力する。</instruction>
+		<instruction opcode="EE" operands="DX,AL">AL にあるバイトをDX にあるI/O ポート・アドレスに出力する。</instruction>
+		<instruction opcode="EF" operands="DX,AX">AX にあるワードをDX にあるI/O ポート・アドレスに出力する。</instruction>
+		<instruction opcode="EF" operands="DX,EAX">EAX にあるダブルワードをDX にあるI/O ポート・アドレスに出力する。</instruction>
+	</operation>
+	<operation mnemonic="OUTS">
+		<instruction opcode="6E" operands="DX,m8">バイトをDS:(E)SI に指定されたメモリ・ロケーションから</instruction>
+		<instruction opcode="6F" operands="DX,m16">ワードをDS:(E)SI に指定されたメモリ・ロケーションから</instruction>
+		<instruction opcode="6F" operands="DX,m32">ダブルワードをDS:(E)SI に指定されたメモリ・ロケーショ</instruction>
+	</operation>
+	<operation mnemonic="OUTSB">
+		<instruction opcode="6E" operands="">バイトをDS:(E)SI に指定されたメモリ・ロケーションから</instruction>
+	</operation>
+	<operation mnemonic="OUTSD">
+		<instruction opcode="6F" operands="">ダブルワードをDS:(E)SI に指定されたメモリ・ロケーショ</instruction>
+	</operation>
+	<operation mnemonic="OUTSW">
+		<instruction opcode="6F" operands="">ワードをDS:(E)SI に指定されたメモリ・ロケーションから</instruction>
+	</operation>
+	<operation mnemonic="PACKSSDW">
+		<instruction opcode="0F 6B /r" operands="mm1,mm2/m64"></instruction>
+		<instruction opcode="66 0F 6B /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PACKSSWB">
+		<instruction opcode="0F 63 /r" operands="mm1,mm2/m64"></instruction>
+		<instruction opcode="66 0F 63 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PACKUSWB">
+		<instruction opcode="0F 67 /r" operands="mm,mm/m64"></instruction>
+		<instruction opcode="66 0F 67 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PADDB">
+		<instruction opcode="0F FC /r" operands="mm,mm/m64">mm/m64 とmm のパックド・バイト整数を加算する。</instruction>
+		<instruction opcode="66 0F FC /r" operands="xmm1,mm2/m128">xmm2/m128 とxmm1 のパックド・バイト整数を加算す</instruction>
+	</operation>
+	<operation mnemonic="PADDD">
+		<instruction opcode="0F FE /r" operands="mm,mm/m64">mm/m64 とmm のパックド・ダブルワード整数を加算</instruction>
+		<instruction opcode="66 0F FE /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド・ダブルワード整数を</instruction>
+	</operation>
+	<operation mnemonic="PADDQ">
+		<instruction opcode="0F D4 /r" operands="mm1,mm2/m64">mm2/m64 とmm1 のクワッドワード整数を加算し、結</instruction>
+		<instruction opcode="66 0F D4 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド・クワッドワード整数</instruction>
+	</operation>
+	<operation mnemonic="PADDSB">
+		<instruction opcode="0F EC /r" operands="mm,mm/m64">mm/m64 とmm のパックド符号付きバイト整数を加</instruction>
+		<instruction opcode="66 0F EC /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド符号付きバイト整</instruction>
+	</operation>
+	<operation mnemonic="PADDSW">
+		<instruction opcode="0F ED /r" operands="mm,mm/m64">mm/m64 とmm のパックド符号付きワード整数を加</instruction>
+		<instruction opcode="66 0F ED /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド符号付きワード整</instruction>
+	</operation>
+	<operation mnemonic="PADDUSB">
+		<instruction opcode="0F DC /r" operands="mm,mm/m64">mm/m64 とmm のパックド符号なしバイト整数を加</instruction>
+		<instruction opcode="66 0F DC /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド符号なしバイト整</instruction>
+	</operation>
+	<operation mnemonic="PADDUSW">
+		<instruction opcode="0F DD /r" operands="mm,mm/m64">mm/m64 とmm のパックド符号なしワード整数を加</instruction>
+		<instruction opcode="66 0F DD /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド符号なしワード整</instruction>
+	</operation>
+	<operation mnemonic="PADDW">
+		<instruction opcode="0F FD /r" operands="mm,mm/m64">mm/m64 とmm のパックド・ワード整数を加算する。</instruction>
+		<instruction opcode="66 0F FD /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド・ワード整数を加算す</instruction>
+	</operation>
+	<operation mnemonic="PAND">
+		<instruction opcode="0F DB /r" operands="mm,mm/m64">mm/m64 とmm のビット単位のAND（論理積）演算を</instruction>
+		<instruction opcode="66 0F DB /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のAND（論理積）</instruction>
+	</operation>
+	<operation mnemonic="PANDN">
+		<instruction opcode="0F DF /r" operands="mm,mm/m64">mm/m64 とmm のビット単位のAND NOT（否定論理</instruction>
+		<instruction opcode="66 0F DF /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のAND NOT（否定</instruction>
+	</operation>
+	<operation mnemonic="PAUSE">
+		<instruction opcode="F3 90" operands="">spin-wait ループのパフォーマンスを向上させるためのヒン</instruction>
+	</operation>
+	<operation mnemonic="PAVGB">
+		<instruction opcode="0F E0 /r" operands="mm1,mm2/m64">丸めを使用して、mm2/m64 とmm1 のパックド符号な</instruction>
+	</operation>
+	<operation mnemonic="PAVGW">
+		<instruction opcode="0F E3 /r" operands="mm1,mm2/m64">丸めを使用して、mm2/m64 とmm1 のパックド符号な</instruction>
+		<instruction opcode="66 0F E3 /r" operands="xmm1,xmm2/m128">丸めを使用して、xmm2/m128 とxmm1 のパックド符号</instruction>
+	</operation>
+	<operation mnemonic="PCMPEQB">
+		<instruction opcode="0F 74 /r" operands="mm,mm/m64">mm/m64 とmm のパックド・バイトを等しいか比</instruction>
+		<instruction opcode="66 0F 74 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド・バイトを等し</instruction>
+	</operation>
+	<operation mnemonic="PCMPEQD">
+		<instruction opcode="0F 76 /r" operands="mm,mm/m64">mm/m64 とmm のパックド・ダブルワードを等し</instruction>
+		<instruction opcode="66 0F 76 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド・ダブルワード</instruction>
+	</operation>
+	<operation mnemonic="PCMPEQW">
+		<instruction opcode="0F 75 /r" operands="mm,mm/m64">mm/m64 とmm のパックド・ワードを等しいか比</instruction>
+		<instruction opcode="66 0F 75 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド・ワードを等し</instruction>
+	</operation>
+	<operation mnemonic="PCMPGTB">
+		<instruction opcode="0F 64 /r" operands="mm,mm/m64">mm とmm/m64 のパックド符号付きバイト整数を、</instruction>
+		<instruction opcode="66 0F 64 /r" operands="xmm1,xmm2/m128">xmm1 とxmm2/m128 のパックド符号付きバイト</instruction>
+	</operation>
+	<operation mnemonic="PCMPGTD">
+		<instruction opcode="0F 66 /r" operands="mm,mm/m64">mm とmm/m64 のパックド符号付きダブルワード</instruction>
+		<instruction opcode="66 0F 66 /r" operands="xmm1,xmm2/m128">xmm1 とxmm2/m128 のパックド符号付きダブル</instruction>
+	</operation>
+	<operation mnemonic="PCMPGTW">
+		<instruction opcode="0F 65 /r" operands="mm,mm/m64">mm とmm/m64 のパックド符号付きワード整数を、</instruction>
+		<instruction opcode="66 0F 65 /r" operands="xmm1,xmm2/m128">xmm1 とxmm2/m128 のパックド符号付きワード</instruction>
+	</operation>
+	<operation mnemonic="PEXTRW">
+		<instruction opcode="0F C5 /r ib" operands="r32,mm,imm8">imm8 によって指定されたワードをmm から抽出し、</instruction>
+		<instruction opcode="66 0F C5 /r ib" operands="r32,xmm,imm8">imm8 によって指定されたワードをxmm から抽出し、</instruction>
+	</operation>
+	<operation mnemonic="PINSRW">
+		<instruction opcode="0F C4 /r ib" operands="mm,r32/m16,imm8">r32 またはm16 の下位ワードを、imm8 で指定され</instruction>
+		<instruction opcode="66 0F C4 /r ib" operands="xmm,r32/m16,imm8">r32 またはm16 の下位ワードを、imm8 で指定され</instruction>
+	</operation>
+	<operation mnemonic="PMADDWD">
+		<instruction opcode="0F F5 /r" operands="mm,mm/m64">mm のパックド・ワードにmm/m64 のパックド・</instruction>
+		<instruction opcode="66 0F F5 /r" operands="xmm1,xmm2/m128">xmm1 のパックド・ワード整数にxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PMAXSW">
+		<instruction opcode="0F EE /r" operands="mm1,mm2/m64">mm2/m64 とmm1 の符号付きワード整数を比較して</instruction>
+		<instruction opcode="66 0F EE /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の符号付きワード整数を比較</instruction>
+	</operation>
+	<operation mnemonic="PMAXUB">
+		<instruction opcode="0F DE /r" operands="mm1,mm2/m64">mm2/m64 とmm1 の符号なしバイト整数を比較して</instruction>
+		<instruction opcode="66 0F DE /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の符号なしバイト整数を比較</instruction>
+	</operation>
+	<operation mnemonic="PMINSW">
+		<instruction opcode="0F EA /r" operands="mm1,mm2/m64">mm2/m64 とmm1 の符号付きワード整数を比較して</instruction>
+		<instruction opcode="66 0F EA /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の符号付きワード整数を比較</instruction>
+	</operation>
+	<operation mnemonic="PMINUB">
+		<instruction opcode="0F DA /r" operands="mm1,mm2/m64">mm2/m64 とmm1 の符号なしバイト整数を比較して</instruction>
+		<instruction opcode="66 0F DA /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 の符号なしバイト整数を比較</instruction>
+	</operation>
+	<operation mnemonic="PMOVMSKB">
+		<instruction opcode="0F D7 /r" operands="r32,mm">mm のバイト・マスクをr32 に移動する。</instruction>
+		<instruction opcode="66 0F D7 /r" operands="r32,xmm">xmm のバイト・マスクをr32 に移動する。</instruction>
+	</operation>
+	<operation mnemonic="PMULHUW">
+		<instruction opcode="0F E4 /r" operands="mm1,mm2/m64">mm1 レジスタとmm2/m64 のパックド符号なし</instruction>
+		<instruction opcode="66 0F E4 /r" operands="xmm1,xmm2/m128">xmm1 とxmm2/m128 のパックド符号なしワード</instruction>
+	</operation>
+	<operation mnemonic="PMULHW">
+		<instruction opcode="0F E5 /r" operands="mm,mm/m64">mm1 レジスタとmm2/m64 のパックド符号付きワード整</instruction>
+		<instruction opcode="66 0F E5 /r" operands="xmm1,xmm2/m128">xmm1 とxmm2/m128 のパックド符号付きワード整数を</instruction>
+	</operation>
+	<operation mnemonic="PMULLW">
+		<instruction opcode="0F D5 /r" operands="mm,mm/m64">mm1 レジスタとmm2/m64 のパックド符号付きワード整</instruction>
+		<instruction opcode="66 0F D5 /r" operands="xmm1,xmm2/m128">xmm1 とxmm2/m128 のパックド符号付きワード整数を</instruction>
+	</operation>
+	<operation mnemonic="PMULUDQ">
+		<instruction opcode="0F F4 /r" operands="mm1,mm2/m64">mm1 の符号なしダブルワード整数にmm2/m64 の符</instruction>
+	</operation>
+	<operation mnemonic="POP">
+		<instruction opcode="8F /0" operands="m16">スタックのトップをm16 にポップし、スタック・ポインタをイン</instruction>
+		<instruction opcode="8F /0" operands="m32">スタックのトップをm32 にポップし、スタック・ポインタをイン</instruction>
+		<instruction opcode="58 +rw" operands="r16">スタックのトップをr16 にポップし、スタック・ポインタをインク</instruction>
+		<instruction opcode="58 +rd" operands="r32">スタックのトップをr32 にポップし、スタック・ポインタをインク</instruction>
+		<instruction opcode="1F" operands="DS">スタックのトップをDS にポップし、スタック・ポインタをインク</instruction>
+		<instruction opcode="07" operands="ES">スタックのトップをES にポップし、スタック・ポインタをインク</instruction>
+		<instruction opcode="17" operands="SS">スタックのトップをSS にポップし、スタック・ポインタをインク</instruction>
+		<instruction opcode="0F A1" operands="FS">スタックのトップをFS にポップし、スタック・ポインタをインク</instruction>
+		<instruction opcode="0F A9" operands="GS">スタックのトップをGS にポップし、スタック・ポインタをインク</instruction>
+	</operation>
+	<operation mnemonic="POPA">
+		<instruction opcode="61" operands="">DI、SI、BP、BX、DX、CX、およびAX をポップする。</instruction>
+	</operation>
+	<operation mnemonic="POPAD">
+		<instruction opcode="61" operands="">EDI、ESI、EBP、EBX、EDX、ECX、およびEAX をポップする。</instruction>
+	</operation>
+	<operation mnemonic="POPF">
+		<instruction opcode="9D" operands="">スタックのトップをEFLAGS の下位16 ビットにポップする。</instruction>
+	</operation>
+	<operation mnemonic="POPFD">
+		<instruction opcode="9D" operands="">スタックのトップをEFLAGS にポップする。</instruction>
+	</operation>
+	<operation mnemonic="POR">
+		<instruction opcode="0F EB /r" operands="mm,mm/m64">mm/m64 とmm のビット単位のOR（論理和）演算を実行す</instruction>
+		<instruction opcode="66 0F EB /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のOR（論理和）演算を</instruction>
+	</operation>
+	<operation mnemonic="PREFETCHNTA">
+		<instruction opcode="0F 18 /0" operands="m8">NTA ヒントを使用して、m8 のデータをプロセッサの近く</instruction>
+	</operation>
+	<operation mnemonic="PREFETCHT0">
+		<instruction opcode="0F 18 /1" operands="m8">T0 ヒントを使用して、m8 のデータをプロセッサの近くに</instruction>
+	</operation>
+	<operation mnemonic="PREFETCHT1">
+		<instruction opcode="0F 18 /2" operands="m8">T1 ヒントを使用して、m8 のデータをプロセッサの近くに</instruction>
+	</operation>
+	<operation mnemonic="PREFETCHT2">
+		<instruction opcode="0F 18 /3" operands="m8">T2 ヒントを使用して、m8 のデータをプロセッサの近くに</instruction>
+	</operation>
+	<operation mnemonic="PSADBW">
+		<instruction opcode="0F F6 /r" operands="mm1,mm2/m64">mm2/m64 とmm1 の符号なしパックド・バイト整数</instruction>
+		<instruction opcode="66 0F F6 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のパックド符号なしバイト整</instruction>
+	</operation>
+	<operation mnemonic="PSHUFD">
+		<instruction opcode="66 0F 70 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="PSHUFHW">
+		<instruction opcode="F3 0F 70 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="PSHUFLW">
+		<instruction opcode="F2 0F 70 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="PSHUFW">
+		<instruction opcode="0F 70 /r ib" operands="mm1,mm2/m64,imm8"></instruction>
+	</operation>
+	<operation mnemonic="PSLLD">
+		<instruction opcode="0F F2 /r" operands="mm,mm/m64">mm のダブルワードをmm/m64 だけ左にシフトし、下</instruction>
+		<instruction opcode="66 0F F2 /r" operands="xmm1,xmm2/m128">xmm1 のダブルワードをxmm2/m128 だけ左にシフト</instruction>
+		<instruction opcode="0F 72 /6 ib" operands="mm,imm8">mm のダブルワードをimm8 だけ左にシフトし、下位は</instruction>
+		<instruction opcode="66 0F 72 /6 ib" operands="xmm1,imm8">xmm1 のダブルワードをimm8 だけ左にシフトし、下位</instruction>
+	</operation>
+	<operation mnemonic="PSLLDQ">
+		<instruction opcode="66 0F 73 /7 ib" operands="xmm1,imm8">imm8 で指定されたバイト数だけxmm1 を左にシフトし、</instruction>
+	</operation>
+	<operation mnemonic="PSLLQ">
+		<instruction opcode="0F F3 /r" operands="mm,mm/m64">mm のクワッドワードをmm/m64 だけ左にシフトし、</instruction>
+		<instruction opcode="66 0F F3 /r" operands="xmm1,xmm2/m128">xmm1 のクワッドワードをxmm2/m128 だけ左にシフト</instruction>
+		<instruction opcode="0F 73 /6 ib" operands="mm,imm8">mm のクワッドワードをimm8 だけ左にシフトし、下位</instruction>
+		<instruction opcode="66 0F 73 /6 ib" operands="xmm1,imm8">xmm1 のクワッドワードをimm8 だけ左にシフトし、下</instruction>
+	</operation>
+	<operation mnemonic="PSLLW">
+		<instruction opcode="0F F1 /r" operands="mm,mm/m64">mm のワードをmm/m64 だけ左にシフトし、下位はゼ</instruction>
+		<instruction opcode="66 0F F1 /r" operands="xmm1,xmm2/m128">xmm1 のワードをxmm2/m128 だけ左にシフトし、下位</instruction>
+		<instruction opcode="0F 71 /6 ib" operands="mm,imm8">mm のワードをimm8 だけ左にシフトし、下位はゼロで</instruction>
+		<instruction opcode="66 0F 71 /6 ib" operands="xmm1,imm8">xmm1 のワードをimm8 だけ左にシフトし、下位はゼロ</instruction>
+	</operation>
+	<operation mnemonic="PSRAD">
+		<instruction opcode="0F E2 /r" operands="mm,mm/m64">mm のダブルワードをmm/m64 だけ右にシフトし、上</instruction>
+		<instruction opcode="66 0F E2 /r" operands="xmm1,xmm2/m128">xmm1 のダブルワードをxmm2/m128 だけ右にシフト</instruction>
+		<instruction opcode="0F 72 /4 ib" operands="mm,imm8">mm のダブルワードをimm8 だけ右にシフトし、上位は</instruction>
+		<instruction opcode="66 0F 72 /4 ib" operands="xmm1,imm8">xmm1 のダブルワードをimm8 だけ右にシフトし、上位</instruction>
+	</operation>
+	<operation mnemonic="PSRAW">
+		<instruction opcode="0F E1 /r" operands="mm,mm/m64">mm のワードをmm/m64 だけ右にシフトし、上位は符</instruction>
+		<instruction opcode="66 0F E1 /r" operands="xmm1,xmm2/m128">xmm1 のワードをxmm2/m128 だけ右にシフトし、上位</instruction>
+		<instruction opcode="0F 71 /4 ib" operands="mm,imm8">mm のワードをimm8 だけ右にシフトし、上位は符号</instruction>
+		<instruction opcode="66 0F 71 /4 ib" operands="xmm1,imm8">xmm1 のワードをimm8 だけ右にシフトし、上位は符号</instruction>
+	</operation>
+	<operation mnemonic="PSRLD">
+		<instruction opcode="0F D2 /r" operands="mm,mm/m64">mm のダブルワードをmm/m64 に指定されたビットだ</instruction>
+		<instruction opcode="66 0F D2 /r" operands="xmm1,xmm2/m128">xmm1 のダブルワードをxmm2/m128 に指定されたビッ</instruction>
+		<instruction opcode="0F 72 /2 ib" operands="mm,imm8">mm のダブルワードをimm8 だけ右にシフトし、上位は</instruction>
+		<instruction opcode="66 0F 72 /2 ib" operands="xmm1,imm8">xmm1 のダブルワードをimm8 だけ右にシフトし、上位</instruction>
+	</operation>
+	<operation mnemonic="PSRLDQ">
+		<instruction opcode="66 0F 73 /3 ib" operands="xmm1,imm8">xmm1 をimm8 だけ右にシフトし、上位はゼロで埋める。</instruction>
+	</operation>
+	<operation mnemonic="PSRLQ">
+		<instruction opcode="0F D3 /r" operands="mm,mm/m64">mm をmm/m64 に指定されたビットだけ右にシフトし、</instruction>
+		<instruction opcode="66 0F D3 /r" operands="xmm1,xmm2/m128">xmm1 のクワッドワードをxmm/m128 に指定された</instruction>
+		<instruction opcode="0F 73 /2 ib" operands="mm,imm8">mm をimm8 だけ右にシフトし、上位はゼロで埋める。</instruction>
+		<instruction opcode="66 0F 73 /2 ib" operands="xmm1,imm8">xmm1 をimm8 だけ右にシフトし、上位はゼロで埋め</instruction>
+	</operation>
+	<operation mnemonic="PSRLW">
+		<instruction opcode="0F D1 /r" operands="mm,mm/m64">mm のワードをmm/m64 に指定されたビットだけ右に</instruction>
+		<instruction opcode="66 0F D1 /r" operands="xmm1,xmm2/m128">xmm1 のワードをxmm2/m128 に指定されたビットだけ</instruction>
+		<instruction opcode="0F 71 /2 ib" operands="mm,imm8">mm のワードをimm8 だけ右にシフトし、上位はゼロで</instruction>
+		<instruction opcode="66 0F 71 /2 ib" operands="xmm1,imm8">xmm1 のワードをimm8 だけ右にシフトし、上位はゼロ</instruction>
+	</operation>
+	<operation mnemonic="PSUBB">
+		<instruction opcode="0F F8 /r" operands="mm,mm/m64">mm のパックド・バイト整数からmm/m64 のパック</instruction>
+		<instruction opcode="66 0F F8 /r" operands="xmm1,xmm2/m128">xmm1 のパックド・バイト整数からxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PSUBD">
+		<instruction opcode="0F FA /r" operands="mm,mm/m64">mm のパックド・ダブルワード整数からmm/m64 の</instruction>
+		<instruction opcode="66 0F FA /r" operands="xmm1,xmm2/m128">xmm1 のパックド・ダブルワード整数からxmm2/m128</instruction>
+	</operation>
+	<operation mnemonic="PSUBQ">
+		<instruction opcode="0F FB /r" operands="mm1,mm2/m64">mm2/m64 からmm1 のクワッドワード整数を引く。</instruction>
+		<instruction opcode="66 0F FB /r" operands="xmm1,xmm2/m128">xmm2/m128 からxmm1 のパックド・クワッドワード整</instruction>
+	</operation>
+	<operation mnemonic="PSUBSB">
+		<instruction opcode="0F E8 /r" operands="mm,mm/m64">mm の符号付きパックド・バイトからmm/m64 の符号</instruction>
+		<instruction opcode="66 0F E8 /r" operands="xmm1,xmm2/m128">xmm1 の符号つきパックド・バイトからxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PSUBSW">
+		<instruction opcode="0F E9 /r" operands="mm,mm/m64">mm の符号付きパックド・ワードからmm/m64 の符号</instruction>
+		<instruction opcode="66 0F E9 /r" operands="xmm1,xmm2/m128">xmm1 の符号つきパックド・ワードからxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PSUBUSB">
+		<instruction opcode="0F D8 /r" operands="mm,mm/m64">mm の符号なしパックド・バイトからmm/m64 の符号</instruction>
+		<instruction opcode="66 0F D8 /r" operands="xmm1,xmm2/m128">xmm1 の符号なしパックド・バイトからxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PSUBUSW">
+		<instruction opcode="0F D9 /r" operands="mm,mm/m64">mm の符号なしパックド・ワードからmm/m64 の符号</instruction>
+		<instruction opcode="66 0F D9 /r" operands="xmm1,xmm2/m128">xmm1 の符号なしパックド・ワードからxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PSUBW">
+		<instruction opcode="0F F9 /r" operands="mm,mm/m64">mm のパックド・ワード整数からmm/m64 のパック</instruction>
+		<instruction opcode="66 0F F9 /r" operands="xmm1,xmm2/m128">xmm1 のパックド・ワード整数からxmm2/m128 の</instruction>
+	</operation>
+	<operation mnemonic="PUNPCKHBW">
+		<instruction opcode="0F 68 /r" operands="mm,mm/m64"></instruction>
+		<instruction opcode="66 0F 68 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKHDQ">
+		<instruction opcode="0F 6A /r" operands="mm,mm/m64"></instruction>
+		<instruction opcode="66 0F 6A /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKHQDQ">
+		<instruction opcode="66 0F 6D /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKHWD">
+		<instruction opcode="0F 69 /r" operands="mm,mm/m64"></instruction>
+		<instruction opcode="66 0F 69 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKLBW">
+		<instruction opcode="0F 60 /r" operands="mm,mm/m32"></instruction>
+		<instruction opcode="66 0F 60 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKLDQ">
+		<instruction opcode="0F 62 /r" operands="mm,mm/m32"></instruction>
+		<instruction opcode="66 0F 62 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKLQDQ">
+		<instruction opcode="66 0F 6C /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUNPCKLWD">
+		<instruction opcode="0F 61 /r" operands="mm,mm/m32"></instruction>
+		<instruction opcode="66 0F 61 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="PUSH">
+		<instruction opcode="FF /6" operands="r/m16">r/m16 をプッシュする。</instruction>
+		<instruction opcode="FF /6" operands="r/m32">r/m32 をプッシュする。</instruction>
+		<instruction opcode="50 +rw" operands="r16">r16 をプッシュする。</instruction>
+		<instruction opcode="50 +rd" operands="r32">r32 をプッシュする。</instruction>
+		<instruction opcode="6A" operands="imm8">imm8 をプッシュする。</instruction>
+		<instruction opcode="68" operands="imm16">imm16 をプッシュする。</instruction>
+		<instruction opcode="68" operands="imm32">imm32 をプッシュする。</instruction>
+		<instruction opcode="0E" operands="CS">CS をプッシュする。</instruction>
+		<instruction opcode="16" operands="SS">SS をプッシュする。</instruction>
+		<instruction opcode="1E" operands="DS">DS をプッシュする。</instruction>
+		<instruction opcode="06" operands="ES">ES をプッシュする。</instruction>
+		<instruction opcode="0F A0" operands="FS">FS をプッシュする。</instruction>
+		<instruction opcode="0F A8" operands="GS">GS をプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="PUSHA">
+		<instruction opcode="60" operands="">AX、CX、DX、BX、元のSP、BP、SI、およびDI をプッ</instruction>
+	</operation>
+	<operation mnemonic="PUSHAD">
+		<instruction opcode="60" operands="">EAX、ECX、EDX、EBX、元のESP、EBP、ESI、および</instruction>
+	</operation>
+	<operation mnemonic="PUSHF">
+		<instruction opcode="9C" operands="">EFLAGS の下位16 ビットをプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="PUSHFD">
+		<instruction opcode="9C" operands="">EFLAGS をプッシュする。</instruction>
+	</operation>
+	<operation mnemonic="PXOR">
+		<instruction opcode="0F EF /r" operands="mm,mm/m64">mm/m64 とmm のビット単位のXOR（排他的論理</instruction>
+		<instruction opcode="66 0F EF /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のXOR（排他的</instruction>
+	</operation>
+	<operation mnemonic="RCL">
+		<instruction opcode="D0 /2" operands="r/m8,1">9 ビット(CF、r/m8) を左に1 回回転させる。</instruction>
+		<instruction opcode="D2 /2" operands="r/m8,CL">9 ビット(CF、r/m8) を左にCL 回回転させる。</instruction>
+		<instruction opcode="C0 /2 ib" operands="r/m8,imm8">9 ビット(CF、r/m8) を左にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /2" operands="r/m16,1">17 ビット(CF、r/m16) を左に1 回回転させる。</instruction>
+		<instruction opcode="D3 /2" operands="r/m16,CL">17 ビット(CF、r/m16) を左にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /2 ib" operands="r/m16,imm8">17 ビット(CF、r/m16) を左にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /2" operands="r/m32,1">33 ビット(CF、r/m32) を左に1 回回転させる。</instruction>
+		<instruction opcode="D3 /2" operands="r/m32,CL">33 ビット(CF、r/m32) を左にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /2 ib" operands="r/m32,imm8">33 ビット(CF、r/m32) を左にimm8 回回転させる。</instruction>
+	</operation>
+	<operation mnemonic="RCPPS">
+		<instruction opcode="0F 53 /r" operands="xmm1,xmm2/m128">xmm2/m128 のパックド単精度浮動小数点値の逆数の</instruction>
+	</operation>
+	<operation mnemonic="RCPSS">
+		<instruction opcode="F3 0F 53 /r" operands="xmm1,xmm2/m32">xmm2/m128 のスカラ単精度浮動小数点値の逆数の近</instruction>
+	</operation>
+	<operation mnemonic="RCR">
+		<instruction opcode="D0 /3" operands="r/m8,1">9 ビット(CF、r/m8) を右に1 回回転させる。</instruction>
+		<instruction opcode="D2 /3" operands="r/m8,CL">9 ビット(CF、r/m8) を右にCL 回回転させる。</instruction>
+		<instruction opcode="C0 /3 ib" operands="r/m8,imm8">9 ビット(CF、r/m8) を右にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /3" operands="r/m16,1">17 ビット(CF、r/m16) を右に1 回回転させる。</instruction>
+		<instruction opcode="D3 /3" operands="r/m16,CL">17 ビット(CF、r/m16) を右にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /3 ib" operands="r/m16,imm8">17 ビット(CF、r/m16) を右にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /3" operands="r/m32,1">33 ビット(CF、r/m32) を右に1 回回転させる。</instruction>
+		<instruction opcode="D3 /3" operands="r/m32,CL">33 ビット(CF、r/m32) を右にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /3 ib" operands="r/m32,imm8">33 ビット(CF、r/m32) を右にimm8 回回転させる。</instruction>
+	</operation>
+	<operation mnemonic="RDMSR">
+		<instruction opcode="0F 32" operands="ECX">によって指定されるMSR をEDX:EAX にロードする。</instruction>
+	</operation>
+	<operation mnemonic="RDPMC">
+		<instruction opcode="0F 33" operands="ECX">によって指定される性能モニタリング・カウンタを</instruction>
+	</operation>
+	<operation mnemonic="RDTSC">
+		<instruction opcode="0F 31" operands="">タイムスタンプ・カウンタをEDX:EAX に読み込む。</instruction>
+	</operation>
+	<operation mnemonic="REP_INS">
+		<instruction opcode="F3 6C" operands="r/m8,DX">(E)CX のバイトをポートDX からES:[(E)DI] に入力する。</instruction>
+		<instruction opcode="F3 6D" operands="r/m16,DX">(E)CX のワードをポートDX からES:[(E)DI] に入力する。</instruction>
+		<instruction opcode="F3 6D" operands="r/m32,DX">(E)CX のダブルワードをポートDX からES:[(E)DI] に入力する。</instruction>
+	</operation>
+	<operation mnemonic="REP_LODS">
+		<instruction opcode="F3 AC" operands="AL">(E)CX のバイトをDS:[(E)SI] からAL にロードする。</instruction>
+		<instruction opcode="F3 AD" operands="AX">(E)CX のワードをDS:[(E)SI] からAX にロードする。</instruction>
+		<instruction opcode="F3 AD" operands="EAX">(E)CX のダブルワードをDS:[(E)SI] からEAX にロードする。</instruction>
+	</operation>
+	<operation mnemonic="REP_MOVS">
+		<instruction opcode="F3 A4" operands="m8,m8">(E)CX のバイトをDS:[(E)SI] からES:[(E)DI] に転送する。</instruction>
+		<instruction opcode="F3 A5" operands="m16,m16">(E)CX のワードをDS:[(E)SI] からES:[(E)DI] に転送する。</instruction>
+		<instruction opcode="F3 A5" operands="m32,m32">(E)CX のダブルワードをDS:[(E)SI] からES:[(E)DI] に転送す</instruction>
+	</operation>
+	<operation mnemonic="REP_OUTS">
+		<instruction opcode="F3 6E" operands="DX,r/m8">(E)CX のバイトをDS:[(E)SI] からポートDX に出力する。</instruction>
+		<instruction opcode="F3 6F" operands="DX,r/m16">(E)CX のワードをDS:[(E)SI] からポートDX に出力する。</instruction>
+		<instruction opcode="F3 6F" operands="DX,r/m32">(E)CX のダブルワードをDS:[(E)SI] からポートDX に出力する。</instruction>
+	</operation>
+	<operation mnemonic="REP_STOS">
+		<instruction opcode="F3 AA" operands="m8">ES:[(E)DI] にある(E)CX のバイトをAL で埋める。</instruction>
+		<instruction opcode="F3 AB" operands="m16">ES:[(E)DI] にある(E)CX のワードをAX で埋める。</instruction>
+		<instruction opcode="F3 AB" operands="m32">ES:[(E)DI] にある(E)CX のダブルワードをEAX で埋める。</instruction>
+	</operation>
+	<operation mnemonic="REPE_CMPS">
+		<instruction opcode="F3 A6" operands="m8,m8">ES:[(E)DI] とDS:[(E)SI] にある一致していないバイトを探す。</instruction>
+		<instruction opcode="F3 A7" operands="m16,m16">ES:[(E)DI] とDS:[(E)SI] にある一致していないワードを探す。</instruction>
+		<instruction opcode="F3 A7" operands="m32,m32">ES:[(E)DI] とDS:[(E)SI] にある一致していないダブルワードを</instruction>
+	</operation>
+	<operation mnemonic="REPE_SCAS">
+		<instruction opcode="F3 AE" operands="m8">ES:[(E)DI] で始まるAL でないバイトを探す。</instruction>
+		<instruction opcode="F3 AF" operands="m16">ES:[(E)DI] で始まるAX でないワードを探す。</instruction>
+		<instruction opcode="F3 AF" operands="m32">ES:[(E)DI] で始まるEAX でないダブルワードを探す。</instruction>
+	</operation>
+	<operation mnemonic="REPNE_CMPS">
+		<instruction opcode="F2 A6" operands="m8,m8">ES:[(E)DI] とDS:[(E)SI] にある一致しているバイトを探す。</instruction>
+		<instruction opcode="F2 A7" operands="m16,m16">ES:[(E)DI] とDS:[(E)SI] にある一致しているワードを探す。</instruction>
+		<instruction opcode="F2 A7" operands="m32,m32">ES:[(E)DI] とDS:[(E)SI] にある一致しているダブルワードを探</instruction>
+	</operation>
+	<operation mnemonic="REPNE_SCAS">
+		<instruction opcode="F2 AE" operands="m8">ES:[(E)DI] で始まるAL を探す。</instruction>
+		<instruction opcode="F2 AF" operands="m16">ES:[(E)DI] で始まるAX を探す。</instruction>
+		<instruction opcode="F2 AF" operands="m32">ES:[(E)DI] で始まるEAX を探す。</instruction>
+	</operation>
+	<operation mnemonic="RET">
+		<instruction opcode="C3" operands="">コール元プロシージャにnear リターンする。</instruction>
+		<instruction opcode="C2 iw" operands="imm16">コール元プロシージャにnear リターンし、imm16 バイト</instruction>
+	</operation>
+	<operation mnemonic="RETF">
+		<instruction opcode="CB" operands="">コール元プロシージャにfar リターンする。</instruction>
+		<instruction opcode="CA iw" operands="imm16">コール元プロシージャにfar リターンし、imm16 バイトを</instruction>
+	</operation>
+	<operation mnemonic="ROL">
+		<instruction opcode="D0 /0" operands="r/m8,1">8 ビットr/m8 を左に1 回回転させる。</instruction>
+		<instruction opcode="D2 /0" operands="r/m8,CL">8 ビットr/m8 を左にCL 回回転させる。</instruction>
+		<instruction opcode="C0 /0 ib" operands="r/m8,imm8">8 ビットr/m8 を左にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /0" operands="r/m16,1">16 ビットr/m16 を左に1 回回転させる。</instruction>
+		<instruction opcode="D3 /0" operands="r/m16,CL">16 ビットr/m16 を左にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /0 ib" operands="r/m16,imm8">16 ビットr/m16 を左にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /0" operands="r/m32,1">32 ビットr/m32 を左に1 回回転させる。</instruction>
+		<instruction opcode="D3 /0" operands="r/m32,CL">32 ビットr/m32 を左にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /0 ib" operands="r/m32,imm8">32 ビットr/m32 を左にimm8 回回転させる。</instruction>
+	</operation>
+	<operation mnemonic="ROR">
+		<instruction opcode="D0 /1" operands="r/m8,1">8 ビットr/m8 を右に1 回回転させる。</instruction>
+		<instruction opcode="D2 /1" operands="r/m8,CL">8 ビットr/m8 を右にCL 回回転させる。</instruction>
+		<instruction opcode="C0 /1 ib" operands="r/m8,imm8">8 ビットr/m8 を右にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /1" operands="r/m16,1">16 ビットr/m16 を右に1 回回転させる。</instruction>
+		<instruction opcode="D3 /1" operands="r/m16,CL">16 ビットr/m16 を右にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /1 ib" operands="r/m16,imm8">16 ビットr/m16 を右にimm8 回回転させる。</instruction>
+		<instruction opcode="D1 /1" operands="r/m32,1">32 ビットr/m32 を右に1 回回転させる。</instruction>
+		<instruction opcode="D3 /1" operands="r/m32,CL">32 ビットr/m32 を右にCL 回回転させる。</instruction>
+		<instruction opcode="C1 /1 ib" operands="r/m32,imm8">32 ビットr/m32 を右にimm8 回回転させる。</instruction>
+	</operation>
+	<operation mnemonic="RSM">
+		<instruction opcode="0F AA" operands="">割り込まれたプログラムの動作を再開する。</instruction>
+	</operation>
+	<operation mnemonic="RSQRTPS">
+		<instruction opcode="0F 52 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="RSQRTSS">
+		<instruction opcode="F3 0F 52 /r" operands="xmm1,xmm2/m32"></instruction>
+	</operation>
+	<operation mnemonic="SAL">
+		<instruction opcode="D0 /4" operands="r/m8,1">r/m8 に2 を1 回掛ける。</instruction>
+		<instruction opcode="D2 /4" operands="r/m8,CL">r/m8 に2 をCL 回掛ける。</instruction>
+		<instruction opcode="C0 /4 ib" operands="r/m8,imm8">r/m8 に2 をimm8 回掛ける。</instruction>
+		<instruction opcode="D1 /4" operands="r/m16,1">r/m16 に2 を1 回掛ける。</instruction>
+		<instruction opcode="D3 /4" operands="r/m16,CL">r/m16 に2 をCL 回掛ける。</instruction>
+		<instruction opcode="C1 /4 ib" operands="r/m16,imm8">r/m16 に2 をimm8 回掛ける。</instruction>
+		<instruction opcode="D1 /4" operands="r/m32,1">r/m32 に2 を1 回掛ける。</instruction>
+		<instruction opcode="D3 /4" operands="r/m32,CL">r/m32 に2 をCL 回掛ける。</instruction>
+		<instruction opcode="C1 /4 ib" operands="r/m32,imm8">r/m32 に2 をimm8 回掛ける。</instruction>
+	</operation>
+	<operation mnemonic="SAR">
+		<instruction opcode="D0 /7" operands="r/m8,1">r/m8 を2 で1 回符号付き除算する。*</instruction>
+		<instruction opcode="D2 /7" operands="r/m8,CL">r/m8 を2 でCL 回符号付き除算する。*</instruction>
+		<instruction opcode="C0 /7 ib" operands="r/m8,imm8">r/m8 を2 でimm8 回符号付き除算する。*</instruction>
+		<instruction opcode="D1 /7" operands="r/m16,1">r/m16 を2 で1 回符号付き除算する。*</instruction>
+		<instruction opcode="D3 /7" operands="r/m16,CL">r/m16 を2 でCL 回符号付き除算する。*</instruction>
+		<instruction opcode="C1 /7 ib" operands="r/m16,imm8">r/m16 を2 でimm8 回符号付き除算する。*</instruction>
+		<instruction opcode="D1 /7" operands="r/m32,1">r/m32 を2 で1 回符号付き除算する。*</instruction>
+		<instruction opcode="D3 /7" operands="r/m32,CL">r/m32 を2 でCL 回符号付き除算する。*</instruction>
+		<instruction opcode="C1 /7 ib" operands="r/m32,imm8">r/m32 を2 でimm8 回符号付き除算する。*</instruction>
+	</operation>
+	<operation mnemonic="SBB">
+		<instruction opcode="1C ib" operands="AL,imm8">AL から imm8 をボローありで引く。</instruction>
+		<instruction opcode="1D iw" operands="AX,imm16">AX から imm16 をボローありで引く。</instruction>
+		<instruction opcode="1D id" operands="EAX,imm32">EAX から imm32 をボローありで引く。</instruction>
+		<instruction opcode="80 /3 ib" operands="r/m8,imm8">r/m8 からimm8 をボローありで引く。</instruction>
+		<instruction opcode="81 /3 iw" operands="r/m16,imm16">r/m16 からimm16 をボローありで引く。</instruction>
+		<instruction opcode="81 /3 id" operands="r/m32,imm32">r/m32 からimm32 をボローありで引く。</instruction>
+		<instruction opcode="83 /3 ib" operands="r/m16,imm8">r/m16 から符号拡張されたimm8 をボローありで引く。</instruction>
+		<instruction opcode="83 /3 ib" operands="r/m32,imm8">r/m32 から符号拡張されたimm8 をボローありで引く。</instruction>
+		<instruction opcode="18 /r" operands="r/m8,r8">r/m8 からr8 をボローありで引く。</instruction>
+		<instruction opcode="19 /r" operands="r/m16,r16">r/m16 からr16 をボローありで引く。</instruction>
+		<instruction opcode="19 /r" operands="r/m32,r32">r/m32 からr32 をボローありで引く。</instruction>
+		<instruction opcode="1A /r" operands="r8,r/m8">r8 からr/m8 をボローありで引く。</instruction>
+		<instruction opcode="1B /r" operands="r16,r/m16">r16 からr/m16 をボローありで引く。</instruction>
+		<instruction opcode="1B /r" operands="r32,r/m32">r32 からr/m32 をボローありで引く。</instruction>
+	</operation>
+	<operation mnemonic="SCAS">
+		<instruction opcode="AE" operands="m8">AL をES:(E)DI のバイトと比較し、ステータス・フラグを設定する。</instruction>
+		<instruction opcode="AF" operands="m16">AX をES:(E)DI のワードと比較し、ステータス・フラグを設定する。</instruction>
+		<instruction opcode="AF" operands="m32">EAX をES:(E)DI のダブルワードと比較し、ステータス・フラグを設定</instruction>
+	</operation>
+	<operation mnemonic="SCASB">
+		<instruction opcode="AE" operands="AL">をES:(E)DI のバイトと比較し、ステータス・フラグを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SCASD">
+		<instruction opcode="AF" operands="EAX">をES:(E)DI のダブルワードと比較し、ステータス・フラグを設定</instruction>
+	</operation>
+	<operation mnemonic="SCASW">
+		<instruction opcode="AF" operands="AX">をES:(E)DI のワードと比較し、ステータス・フラグを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETA">
+		<instruction opcode="0F 97" operands="r/m8">より上(CF=0 およびZF=0) の場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETAE">
+		<instruction opcode="0F 93" operands="r/m8">より上か等しい(CF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETB">
+		<instruction opcode="0F 92" operands="r/m8">より下(CF=1) の場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETBE">
+		<instruction opcode="0F 96" operands="r/m8">より下か等しい(CF=1 またはZF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETC">
+		<instruction opcode="0F 92" operands="r/m8">キャリーがある(CF=1) 場合設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETE">
+		<instruction opcode="0F 94" operands="r/m8">等しい(ZF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETG">
+		<instruction opcode="0F 9F" operands="r/m8">より大きい(ZF=0 およびSF=OF) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETGE">
+		<instruction opcode="0F 9D" operands="r/m8">より大きいか等しい(SF=OF) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETL">
+		<instruction opcode="0F 9C" operands="r/m8">より小さい(SF&lt;&gt;OF) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETLE">
+		<instruction opcode="0F 9E" operands="r/m8">より小さいか等しい(ZF=1 またはSF&lt;&gt;OF) 場合バイトを設定す</instruction>
+	</operation>
+	<operation mnemonic="SETNA">
+		<instruction opcode="0F 96" operands="r/m8">より上でない(CF=1 またはZF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNAE">
+		<instruction opcode="0F 92" operands="r/m8">より上でなく等しくない(CF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNB">
+		<instruction opcode="0F 93" operands="r/m8">より下でない(CF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNBE">
+		<instruction opcode="0F 97" operands="r/m8">より下でなく等しくない(CF=0 およびZF=0) 場合バイトを設定</instruction>
+	</operation>
+	<operation mnemonic="SETNC">
+		<instruction opcode="0F 93" operands="r/m8">キャリーがない(CF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNE">
+		<instruction opcode="0F 95" operands="r/m8">等しくない(ZF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNG">
+		<instruction opcode="0F 9E" operands="r/m8">より大きくない(ZF=1 またはSF&lt;&gt;OF) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNGE">
+		<instruction opcode="0F 9C" operands="r/m8">より大きくなく等しくない(SF&lt;&gt;OF) 場合設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNL">
+		<instruction opcode="0F 9D" operands="r/m8">より小さくない(SF=OF) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNLE">
+		<instruction opcode="0F 9F" operands="r/m8">より小さくなく等しくない(ZF=0 およびSF=OF) 場合バイトを</instruction>
+	</operation>
+	<operation mnemonic="SETNO">
+		<instruction opcode="0F 91" operands="r/m8">オーバフローがない(OF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNP">
+		<instruction opcode="0F 9B" operands="r/m8">パリティがない(PF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNS">
+		<instruction opcode="0F 99" operands="r/m8">符号がない(SF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETNZ">
+		<instruction opcode="0F 95" operands="r/m8">ゼロでない(ZF=0) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETO">
+		<instruction opcode="0F 90" operands="r/m8">オーバフローがある(OF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETP">
+		<instruction opcode="0F 9A" operands="r/m8">パリティがある(PF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETPE">
+		<instruction opcode="0F 9A" operands="r/m8">パリティが偶数(PF=1) の場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETPO">
+		<instruction opcode="0F 9B" operands="r/m8">パリティが奇数(PF=0) の場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETS">
+		<instruction opcode="0F 98" operands="r/m8">符号がある(SF=1) 場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SETZ">
+		<instruction opcode="0F 94" operands="r/m8">ゼロ(ZF=1) の場合バイトを設定する。</instruction>
+	</operation>
+	<operation mnemonic="SFENCE">
+		<instruction opcode="0F AE /7" operands="">ストア操作をシリアル化する。</instruction>
+	</operation>
+	<operation mnemonic="SGDT">
+		<instruction opcode="0F 01 /0" operands="m">GDTR をm にストアする。</instruction>
+	</operation>
+	<operation mnemonic="SHL">
+		<instruction opcode="D0 /4" operands="r/m8,1">r/m8 に2 を1 回掛ける。</instruction>
+		<instruction opcode="D2 /4" operands="r/m8,CL">r/m8 に2 をCL 回掛ける。</instruction>
+		<instruction opcode="C0 /4 ib" operands="r/m8,imm8">r/m8 に2 をimm8 回掛ける。</instruction>
+		<instruction opcode="D1 /4" operands="r/m16,1">r/m16 に2 を1 回掛ける。</instruction>
+		<instruction opcode="D3 /4" operands="r/m16,CL">r/m16 に2 をCL 回掛ける。</instruction>
+		<instruction opcode="C1 /4 ib" operands="r/m16,imm8">r/m16 に2 をimm8 回掛ける。</instruction>
+		<instruction opcode="D1 /4" operands="r/m32,1">r/m32 に2 を1 回掛ける。</instruction>
+		<instruction opcode="D3 /4" operands="r/m32,CL">r/m32 に2 をCL 回掛ける。</instruction>
+		<instruction opcode="C1 /4 ib" operands="r/m32,imm8">r/m32 に2 をimm8 回掛ける。</instruction>
+	</operation>
+	<operation mnemonic="SHLD">
+		<instruction opcode="0F A4" operands="r/m16,r16,imm8">r/m16 を左にimm8 位置シフトし、r16 からのビットを右か</instruction>
+		<instruction opcode="0F A5" operands="r/m16,r16,CL">r/m16 を左にCL 位置シフトし、r16 からのビットを右から</instruction>
+		<instruction opcode="0F A4" operands="r/m32,r32,imm8">r/m32 を左にimm8 位置シフトし、r32 からのビットを右か</instruction>
+		<instruction opcode="0F A5" operands="r/m32,r32,CL">r/m32 を左にCL 位置シフトし、r32 からのビットを右から</instruction>
+	</operation>
+	<operation mnemonic="SHR">
+		<instruction opcode="D0 /5" operands="r/m8,1">r/m8 を2 で1 回符号なし除算する。</instruction>
+		<instruction opcode="D2 /5" operands="r/m8,CL">r/m8 を2 でCL 回符号なし除算する。</instruction>
+		<instruction opcode="C0 /5 ib" operands="r/m8,imm8">r/m8 を2 でimm8 回符号なし除算する。</instruction>
+		<instruction opcode="D1 /5" operands="r/m16,1">r/m16 を2 で1 回符号なし除算する。</instruction>
+		<instruction opcode="D3 /5" operands="r/m16,CL">r/m16 を2 でCL 回符号なし除算する。</instruction>
+		<instruction opcode="C1 /5 ib" operands="r/m16,imm8">r/m16 を2 でimm8 回符号なし除算する。</instruction>
+		<instruction opcode="D1 /5" operands="r/m32,1">r/m32 を2 で1 回符号なし除算する。</instruction>
+		<instruction opcode="D3 /5" operands="r/m32,CL">r/m32 を2 でCL 回符号なし除算する。</instruction>
+		<instruction opcode="C1 /5 ib" operands="r/m32,imm8">r/m32 を2 でimm8 回符号なし除算する。</instruction>
+	</operation>
+	<operation mnemonic="SHRD">
+		<instruction opcode="0F AC" operands="r/m16,r16,imm8">r/m16 を右にimm8 位置シフトし、r16 からのビットを左か</instruction>
+		<instruction opcode="0F AD" operands="r/m16,r16,CL">r/m16 を右にCL 位置シフトし、r16 からのビットを左から</instruction>
+		<instruction opcode="0F AC" operands="r/m32,r32,imm8">r/m32 を右にimm8 位置シフトし、r32 からのビットを左か</instruction>
+		<instruction opcode="0F AD" operands="r/m32,r32,CL">r/m32 を右にCL 位置シフトし、r32 からのビットを左から</instruction>
+	</operation>
+	<operation mnemonic="SHUFPD">
+		<instruction opcode="66 0F C6 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="SHUFPS">
+		<instruction opcode="0F C6 /r ib" operands="xmm1,xmm2/m128,imm8"></instruction>
+	</operation>
+	<operation mnemonic="SIDT">
+		<instruction opcode="0F 01 /1" operands="m">IDTR をm にストアする。</instruction>
+	</operation>
+	<operation mnemonic="SLDT">
+		<instruction opcode="0F 00 /0" operands="r/m16">セグメント・セレクタをLDTR からr/m16 にストアする。</instruction>
+		<instruction opcode="0F 00 /0" operands="r/m32">セグメント・セレクタをLDTR からr/m32 の下位16 ビッ</instruction>
+	</operation>
+	<operation mnemonic="SMSW">
+		<instruction opcode="0F 01 /4" operands="r/m16">マシン・ステータス・ワードをr/m16 にストアする。</instruction>
+		<instruction opcode="0F 01 /4" operands="r32/m16">マシン・ステータス・ワードをr32 の下位16 ビットまたは</instruction>
+	</operation>
+	<operation mnemonic="SQRTPD">
+		<instruction opcode="66 0F 51 /r" operands="xmm1,xmm2/m128">xmm2/m128 のパックド倍精度浮動小数点値の平方根</instruction>
+	</operation>
+	<operation mnemonic="SQRTPS">
+		<instruction opcode="0F 51 /r" operands="xmm1,xmm2/m128">xmm2/m128 のパックド単精度浮動小数点値の平方根</instruction>
+	</operation>
+	<operation mnemonic="SQRTSD">
+		<instruction opcode="F2 0F 51 /r" operands="xmm1,xmm2/m64">xmm2/m64 の下位の倍精度浮動小数点値の平方根を計</instruction>
+	</operation>
+	<operation mnemonic="SQRTSS">
+		<instruction opcode="F3 0F 51 /r" operands="xmm1,xmm2/m32">xmm2/m32 の最下位の単精度浮動小数点値の平方根を</instruction>
+	</operation>
+	<operation mnemonic="STC">
+		<instruction opcode="F9" operands="">CF フラグをセットする。</instruction>
+	</operation>
+	<operation mnemonic="STD">
+		<instruction opcode="FD" operands="">DF フラグをセットする。</instruction>
+	</operation>
+	<operation mnemonic="STI">
+		<instruction opcode="FB" operands="">割り込みフラグをセットする。次の命令の最後で、外部マ</instruction>
+	</operation>
+	<operation mnemonic="STMXCSR">
+		<instruction opcode="0F AE /3" operands="m32">MXCSR レジスタの内容をm32 にストアする。</instruction>
+	</operation>
+	<operation mnemonic="STOS">
+		<instruction opcode="AA" operands="m8">AL をアドレスES:(E)DI にストアする。</instruction>
+		<instruction opcode="AB" operands="m16">AX をアドレスES:(E)DI にストアする。</instruction>
+		<instruction opcode="AB" operands="m32">EAX をアドレスES:(E)DI にストアする。</instruction>
+	</operation>
+	<operation mnemonic="STOSB">
+		<instruction opcode="AA" operands="AL">をアドレスES:(E)DI にストアする。</instruction>
+	</operation>
+	<operation mnemonic="STOSD">
+		<instruction opcode="AB" operands="EAX">をアドレスES:(E)DI にストアする。</instruction>
+	</operation>
+	<operation mnemonic="STOSW">
+		<instruction opcode="AB" operands="AX">をアドレスES:(E)DI にストアする。</instruction>
+	</operation>
+	<operation mnemonic="STR">
+		<instruction opcode="0F 00 /1" operands="r/m16">セグメント・セレクタをTR からr/m16 にストアする。</instruction>
+	</operation>
+	<operation mnemonic="SUB">
+		<instruction opcode="2C ib" operands="AL,imm8">AL からimm8 を引く。</instruction>
+		<instruction opcode="2D iw" operands="AX,imm16">AX からimm16 を引く。</instruction>
+		<instruction opcode="2D id" operands="EAX,imm32">EAX からimm32 を引く。</instruction>
+		<instruction opcode="80 /5 ib" operands="r/m8,imm8">r/m8 からimm8 を引く。</instruction>
+		<instruction opcode="81 /5 iw" operands="r/m16,imm16">r/m16 からimm16 を引く。</instruction>
+		<instruction opcode="81 /5 id" operands="r/m32,imm32">r/m32 からimm32 を引く。</instruction>
+		<instruction opcode="83 /5 ib" operands="r/m16,imm8">r/m16 から符号拡張されたimm8 を引く。</instruction>
+		<instruction opcode="83 /5 ib" operands="r/m32,imm8">r/m32 から符号拡張されたimm8 を引く。</instruction>
+		<instruction opcode="28 /r" operands="r/m8,r8">r/m8 からr8 を引く。</instruction>
+		<instruction opcode="29 /r" operands="r/m16,r16">r/m16 からr16 を引く。</instruction>
+		<instruction opcode="29 /r" operands="r/m32,r32">r/m32 からr32 を引く。</instruction>
+		<instruction opcode="2A /r" operands="r8,r/m8">r8 からr/m8 を引く。</instruction>
+		<instruction opcode="2B /r" operands="r16,r/m16">r16 からr/m16 を引く。</instruction>
+		<instruction opcode="2B /r" operands="r32,r/m32">r32 からr/m32 を引く。</instruction>
+	</operation>
+	<operation mnemonic="SUBPD">
+		<instruction opcode="66 0F 5C /r" operands="xmm1,xmm2/m128">xmm1 からxmm2/m128 のパックド倍精度浮動小数点値</instruction>
+	</operation>
+	<operation mnemonic="SUBPS">
+		<instruction opcode="0F 5C /r" operands="xmm1">xmm2/m128 xmm1 のパックド単精度浮動小数点値からxmm2/mem</instruction>
+	</operation>
+	<operation mnemonic="SUBSD">
+		<instruction opcode="F2 0F 5C /r" operands="xmm1,xmm2/m64">xmm1 からxmm2/mem64 の下位の倍精度浮動小数点値</instruction>
+	</operation>
+	<operation mnemonic="SUBSS">
+		<instruction opcode="F3 0F 5C /r" operands="xmm1,xmm2/m32">xmm1 の最下位の単精度浮動小数点値からxmm2/m32</instruction>
+	</operation>
+	<operation mnemonic="SYSENTER">
+		<instruction opcode="0F 34" operands="">特権レベル0 のシステム・プロシージャへの高速コール</instruction>
+	</operation>
+	<operation mnemonic="SYSEXIT">
+		<instruction opcode="0F 35" operands="">特権レベル3 のユーザ・コードに高速リターンする。</instruction>
+	</operation>
+	<operation mnemonic="TEST">
+		<instruction opcode="A8 ib" operands="AL,imm8">imm8 とAL とのADN をとり、結果に従ってSF、ZF、PF を設定す</instruction>
+		<instruction opcode="A9 iw" operands="AX,imm16">imm16 とAX とのADN をとり、結果に従ってSF、ZF、PF を設定</instruction>
+		<instruction opcode="A9 id" operands="EAX,imm32">imm32 とEAX とのADN をとり、結果に従ってSF、ZF、PF を設</instruction>
+		<instruction opcode="F6 /0 ib" operands="r/m8,imm8">imm8 とr/m8 とのADN をとり、結果に従ってSF、ZF、PF を設定</instruction>
+		<instruction opcode="F7 /0 iw" operands="r/m16,imm16">imm16 とr/m16 とのADN をとり、結果に従ってSF、ZF、PF を設</instruction>
+		<instruction opcode="F7 /0 id" operands="r/m32,imm32">imm32 とr/m32 とのADN をとり、結果に従ってSF、ZF、PF を設</instruction>
+		<instruction opcode="84 /r" operands="r/m8,r8">r8 とr/m8 とのADN をとり、結果に従ってSF、ZF、PF を設定す</instruction>
+		<instruction opcode="85 /r" operands="r/m16,r16">r16 とr/m16 とのADN をとり、結果に従ってSF、ZF、PF を設定</instruction>
+		<instruction opcode="85 /r" operands="r/m32,r32">r32 とr/m32 とのADN をとり、結果に従ってSF、ZF、PF を設定</instruction>
+	</operation>
+	<operation mnemonic="UCOMISD">
+		<instruction opcode="66 0F 2E /r" operands="xmm1,xmm2/m64">xmm1 とxmm2/m64 の下位の倍精度浮動小数点値を</instruction>
+	</operation>
+	<operation mnemonic="UCOMISS">
+		<instruction opcode="0F 2E /r" operands="xmm1,xmm2/m32">xmm1 レジスタの最下位の単精度浮動小数点値と</instruction>
+	</operation>
+	<operation mnemonic="UD2">
+		<instruction opcode="0F 0B" operands="">無効オペコード例外を発生させる。</instruction>
+	</operation>
+	<operation mnemonic="UNPCKHPD">
+		<instruction opcode="66 0F 15 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="UNPCKHPS">
+		<instruction opcode="0F 15 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="UNPCKLPD">
+		<instruction opcode="66 0F 14 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="UNPCKLPS">
+		<instruction opcode="0F 14 /r" operands="xmm1,xmm2/m128"></instruction>
+	</operation>
+	<operation mnemonic="VERR">
+		<instruction opcode="0F 00 /4" operands="r/m16">r/m16 で指定されたセグメントを読み取りできる場合ZF=1</instruction>
+	</operation>
+	<operation mnemonic="VERW">
+		<instruction opcode="0F 00 /5" operands="r/m16">r/m16 で指定されたセグメントに書き込みできる場合ZF=1</instruction>
+	</operation>
+	<operation mnemonic="WAIT">
+		<instruction opcode="9B" operands="">未処理のマスクされていない浮動小数点例外をチェックする。</instruction>
+	</operation>
+	<operation mnemonic="WBINVD">
+		<instruction opcode="0F 09" operands="">ライトバックして内部キャッシュをフラッシュする。外部</instruction>
+	</operation>
+	<operation mnemonic="WRMSR">
+		<instruction opcode="0F 30" operands="">EDX:EAX の値をECX で指定されるMSR に書き込む。</instruction>
+	</operation>
+	<operation mnemonic="XCHG">
+		<instruction opcode="90 +rw" operands="r16,AX">AX をr16 と交換する。</instruction>
+		<instruction opcode="90 +rd" operands="r32,EAX">EAX をr32 と交換する。</instruction>
+		<instruction opcode="86 /r" operands="r/m8,r8">r8( バイト・レジスタ) をr/m8 からのバイトと交換する。</instruction>
+		<instruction opcode="86 /r" operands="r8,r/m8">r/m8 からのバイトをr8( バイト・レジスタ) と交換する。</instruction>
+		<instruction opcode="87 /r" operands="r/m16,r16">r16 をr/m16 からのワードと交換する。</instruction>
+		<instruction opcode="87 /r" operands="r16,r/m16">r/m16 からのワードをr16 と交換する。</instruction>
+		<instruction opcode="87 /r" operands="r/m32,r32">r32 をr/m32 からのダブルワードと交換する。</instruction>
+		<instruction opcode="87 /r" operands="r32,r/m32">r/m32 からのダブルワードをr32 と交換する。</instruction>
+	</operation>
+	<operation mnemonic="XLAT">
+		<instruction opcode="D7" operands="m8">AL をメモリ・バイトDS:[(E)BX+ 符号なしAL] に設定する。</instruction>
+	</operation>
+	<operation mnemonic="XLATB">
+		<instruction opcode="D7" operands="AL">をメモリ・バイトDS:[(E)BX+ 符号なしAL] に設定する。</instruction>
+	</operation>
+	<operation mnemonic="XOR">
+		<instruction opcode="34 ib" operands="AL,imm8">AL とimm8 とのXOR をとる。</instruction>
+		<instruction opcode="35 iw" operands="AX,imm16">AX とimm16 とのXOR をとる。</instruction>
+		<instruction opcode="35 id" operands="EAX,imm32">EAX とimm32 とのXOR をとる。</instruction>
+		<instruction opcode="80 /6 ib" operands="r/m8,imm8">r/m8 とimm8 とのXOR をとる。</instruction>
+		<instruction opcode="81 /6 iw" operands="r/m16,imm16">r/m16 とimm16 とのXOR をとる。</instruction>
+		<instruction opcode="81 /6 id" operands="r/m32,imm32">r/m32 とimm32 とのXOR をとる。</instruction>
+		<instruction opcode="83 /6 ib" operands="r/m16,imm8">r/m16 とimm8( 符号拡張) とのXOR をとる。</instruction>
+		<instruction opcode="83 /6 ib" operands="r/m32,imm8">r/m32 とimm8( 符号拡張) とのXOR をとる。</instruction>
+		<instruction opcode="30 /r" operands="r/m8,r8">r/m8 とr8 とのXOR をとる。</instruction>
+		<instruction opcode="31 /r" operands="r/m16,r16">r/m16 とr16 とのXOR をとる。</instruction>
+		<instruction opcode="31 /r" operands="r/m32,r32">r/m32 とr32 とのXOR をとる。</instruction>
+		<instruction opcode="32 /r" operands="r8,r/m8">r8 とr/m8 とのXOR をとる。</instruction>
+		<instruction opcode="33 /r" operands="r16,r/m16">r16 とr/m16 とのXOR をとる。</instruction>
+		<instruction opcode="33 /r" operands="r32,r/m32">r32 とr/m32 とのXOR をとる。</instruction>
+	</operation>
+	<operation mnemonic="XORPD">
+		<instruction opcode="66 0F 57 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のXOR（排他的論</instruction>
+	</operation>
+	<operation mnemonic="XORPS">
+		<instruction opcode="0F 57 /r" operands="xmm1,xmm2/m128">xmm2/m128 とxmm1 のビット単位のXOR（排他的論</instruction>
+	</operation>
+</instructionset>

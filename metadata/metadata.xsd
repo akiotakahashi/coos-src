@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<xsd:schema id="metadata" targetNamespace="http://schema.tirasweel.net/metadata"
+	xmlns="http://schema.tirasweel.net/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="metadata">
+		<xsd:complexType>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="table" type="Table"/>
+				<xsd:element name="index" type="Index"/>
+				<xsd:element name="flags" type="Flags"/>
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="Table">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="field" type="Field"/>
+		</xsd:choice>
+		<xsd:attribute name="name" type="xsd:string"/>
+		<xsd:attribute name="id" type="xsd:hexBinary"/>
+		<xsd:attribute name="type" default="table" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="Index">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="table" type="xsd:string"/>
+		</xsd:choice>
+		<xsd:attribute name="name" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="Flags">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="value">
+				<xsd:complexType>
+					<xsd:attribute name="name" type="xsd:string"/>
+					<xsd:attribute name="value" type="xsd:string"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="size" type="xsd:integer"/>
+	</xsd:complexType>
+	<xsd:complexType name="Field">
+		<xsd:attribute name="name" type="xsd:string"/>
+		<xsd:attribute name="type" type="FieldType"/>
+	</xsd:complexType>
+	<xsd:simpleType name="FieldType">
+		<xsd:restriction base="xsd:string">
+			<!--Premitives-->
+			<xsd:enumeration value="uint8"/>
+			<xsd:enumeration value="uint16"/>
+			<xsd:enumeration value="uint32"/>
+			<xsd:enumeration value="Strings"/>
+			<xsd:enumeration value="Blob"/>
+			<xsd:enumeration value="Guid"/>
+			<!--Flags-->
+			<xsd:enumeration value="AssemblyHashAlgorithm"/>
+			<xsd:enumeration value="AssemblyFlags"/>
+			<xsd:enumeration value="EventAttributes"/>
+			<xsd:enumeration value="TypeAttributes"/>
+			<xsd:enumeration value="FieldAttributes"/>
+			<xsd:enumeration value="FileAttributes"/>
+			<xsd:enumeration value="PInvokeAttributes"/>
+			<xsd:enumeration value="ManifestResourceAttributes"/>
+			<xsd:enumeration value="MethodImplAttributes"/>
+			<xsd:enumeration value="MethodAttributes"/>
+			<xsd:enumeration value="ParamAttributes"/>
+			<xsd:enumeration value="PropertyAttributes"/>
+			<xsd:enumeration value="MethodSemanticsAttributes"/>
+			<!--Table Index-->
+			<xsd:enumeration value="AssemblyRef"/>
+			<xsd:enumeration value="TypeDef"/>
+			<xsd:enumeration value="Event"/>
+			<xsd:enumeration value="Field"/>
+			<xsd:enumeration value="ModuleRef"/>
+			<xsd:enumeration value="Param"/>
+			<xsd:enumeration value="Method"/>
+			<xsd:enumeration value="Property"/>
+			<!--Coded Indexes-->
+			<xsd:enumeration value="ResolutionScope"/>
+			<xsd:enumeration value="HasCount"/>
+			<xsd:enumeration value="HasCustomAttribute"/>
+			<xsd:enumeration value="CustomAttributeType"/>
+			<xsd:enumeration value="HasDeclSecurity"/>
+			<xsd:enumeration value="TypeDefOrRef"/>
+			<xsd:enumeration value="Implementation"/>
+			<xsd:enumeration value="HasFieldMarshal"/>
+			<xsd:enumeration value="MemberForwarded"/>
+			<xsd:enumeration value="MemberRefParent"/>
+			<xsd:enumeration value="MethodDefOrRef"/>
+			<xsd:enumeration value="MethodSemanticsAttributes"/>
+			<xsd:enumeration value="HasSemantics"/>
+			<!--xsd:enumeration value="" /-->
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,1479 @@
+﻿22.2 Assembly : 0x20
+The Assembly table has the following columns:
+• HashAlgId (a 4-byte constant of type AssemblyHashAlgorithm, §23.1.1)
+• MajorVersion, MinorVersion, BuildNumber, RevisionNumber (each being 2-byte constants)
+• Flags (a 4-byte bitmask of type AssemblyFlags, §23.1.2)
+106 Partition II
+• PublicKey (an index into the Blob heap)
+• Name (an index into the String heap)
+• Culture (an index into the String heap)
+The Assembly table is defined using the .assembly directive (§6.2); its columns are obtained from the
+respective .hash algorithm, .ver, .publickey, and .culture (§6.2.1). (For an example, see §6.2.)
+This contains informative text only
+1. The Assembly table shall contain zero or one row [ERROR]
+2. HashAlgId shall be one of the specified values [ERROR]
+3. MajorVersion, MinorVersion, BuildNumber, and RevisionNumber can each have any value
+4. Flags shall have only those values set that are specified [ERROR]
+5. PublicKey can be null or non-null
+6. Name shall index a non-empty string in the String heap [ERROR]
+7. The string indexed by Name can be of unlimited length
+8. Culture can be null or non-null
+9. If Culture is non-null, it shall index a single string from the list specified (§23.1.3) [ERROR]
+[Note: Name is a simple name (e.g., “Foo”, with no drive letter, no path, and no file extension); on POSIXcompliant
+systems, Name contains no colon, no forward-slash, no backslash, and no period. end note]
+End informative text
+22.3 AssemblyOS : 0x22
+The AssemblyOS table has the following columns:
+• OSPlatformID (a 4-byte constant)
+• OSMajorVersion (a 4-byte constant)
+• OSMinorVersion (a 4-byte constant)
+This record should not be emitted into any PE file. However, if present in a PE file, it shall be treated as if all
+its fields were zero. It shall be ignored by the CLI.
+22.4 AssemblyProcessor : 0x21
+The AssemblyProcessor table has the following column:
+• Processor (a 4-byte constant)
+This record should not be emitted into any PE file. However, if present in a PE file, it should be treated as if its
+field were zero. It should be ignored by the CLI.
+22.5 AssemblyRef : 0x23
+The AssemblyRef table has the following columns:
+• MajorVersion, MinorVersion, BuildNumber, RevisionNumber (each being 2-byte constants)
+• Flags (a 4-byte bitmask of type AssemblyFlags, §23.1.2)
+• PublicKeyOrToken (an index into the Blob heap, indicating the public key or token that identifies
+the author of this Assembly)
+• Name (an index into the String heap)
+Partition II 107
+• Culture (an index into the String heap)
+• HashValue (an index into the Blob heap)
+The table is defined by the .assembly extern directive (§6.3). Its columns are filled using directives
+similar to those of the Assembly table except for the PublicKeyOrToken column, which is defined using the
+.publickeytoken directive. (For an example, see §6.3.)
+This contains informative text only
+1. MajorVersion, MinorVersion, BuildNumber, and RevisionNumber can each have any value
+2. Flags shall have only one bit set, the PublicKey bit (§23.1.2). All other bits shall be zero.
+[ERROR]
+3. PublicKeyOrToken can be null, or non-null (note that the Flags.PublicKey bit specifies
+whether the 'blob' is a full public key, or the short hashed token)
+4. If non-null, then PublicKeyOrToken shall index a valid offset in the Blob heap [ERROR]
+5. Name shall index a non-empty string, in the String heap (there is no limit to its length) [ERROR]
+6. Culture can be null or non-null.
+7. If non-null, it shall index a single string from the list specified (§23.1.3) [ERROR]
+8. HashValue can be null or non-null
+9. If non-null, then HashValue shall index a non-empty 'blob' in the Blob heap [ERROR]
+10. The AssemblyRef table shall contain no duplicates (where duplicate rows are deemd to be those
+having the same MajorVersion, MinorVersion, BuildNumber, RevisionNumber,
+PublicKeyOrToken, Name, and Culture) [WARNING]
+[Note: Name is a simple name (e.g., “Foo”, with no drive letter, no path, and no file extension); on POSIXcompliant
+systems Name contains no colon, no forward-slash, no backslash, and no period. end note]
+End informative text
+22.6 AssemblyRefOS : 0x25
+The AssemblyRefOS table has the following columns:
+• OSPlatformId (a 4-byte constant)
+• OSMajorVersion (a 4-byte constant)
+• OSMinorVersion (a 4-byte constant)
+• AssemblyRef (an index into the AssemblyRef table)
+These records should not be emitted into any PE file. However, if present in a PE file, they should be treated
+as-if their fields were zero. They should be ignored by the CLI.
+22.7 AssemblyRefProcessor : 0x24
+The AssemblyRefProcessor table has the following columns:
+• Processor (a 4-byte constant)
+• AssemblyRef (an index into the AssemblyRef table)
+These records should not be emitted into any PE file. However, if present in a PE file, they should be treated
+as-if their fields were zero. They should be ignored by the CLI.
+108 Partition II
+22.8 ClassLayout : 0x0F
+The ClassLayout table is used to define how the fields of a class or value type shall be laid out by the CLI.
+(Normally, the CLI is free to reorder and/or insert gaps between the fields defined for a class or value type.)
+[Rationale: This feature is used to lay out a managed value type in exactly the same way as an unmanaged
+C struct, allowing a managed value type to be handed to unmanaged code, which then accesses the fields
+exactly as if that block of memory had been laid out by unmanaged code. end rationale]
+The information held in the ClassLayout table depends upon the Flags value for {AutoLayout,
+SequentialLayout, ExplicitLayout} in the owner class or value type.
+A type has layout if it is marked SequentialLayout or ExplicitLayout. If any type within an inheritance chain
+has layout, then so shall all its base classes, up to the one that descends immediately from System.ValueType
+(if it exists in the type’s hierarchy); otherwise, from System.Object.
+This contains informative text only
+Layout cannot begin part way down the chain. But it is valid to stop “having layout” at any point down the
+chain.
+For example, in the diagrams below, Class A derives from System.Object; class B derives from A; class C
+derives from B. System.Object has no layout. But A, B and C are all defined with layout, and that is valid.
+The situation with classes E, F, and G is similar. G has no layout, and this too is valid. The following picture
+shows two invalid setups:
+On the left, the “chain with layout” does not start at the ‘highest’ class. And on the right, there is a ‘hole’ in the
+“chain with layout”
+Partition II 109
+Layout information for a class or value type is held in two tables (ClassLayout and FieldLayout), as shown in
+the following diagram:
+In this example, row 3 of the ClassLayout table points to row 2 in the TypeDef table (the definition for a Class,
+called “MyClass”). Rows 4–6 of the FieldLayout table point to corresponding rows in the Field table. This
+illustrates how the CLI stores the explicit offsets for the three fields that are defined in “MyClass” (there is
+always one row in the FieldLayout table for each field in the owning class or value type) So, the ClassLayout
+table acts as an extension to those rows of the TypeDef table that have layout info; since many classes do not
+have layout info, overall, this design saves space.
+End informative text
+The ClassLayout table has the following columns:
+• PackingSize (a 2-byte constant)
+• ClassSize (a 4-byte constant)
+• Parent (an index into the TypeDef table)
+The rows of the ClassLayout table are defined by placing .pack and .size directives on the body of the type
+declaration in which this type is declared (§10.2). When either of these directives is omitted, its corresponding
+value is zero. (See §10.7.)
+ClassSize of zero does not mean the class has zero size. It means that no .size directive was specified at
+definition time, in which case, the actual size is calculated from the field types, taking account of packing size
+(default or specified) and natural alignment on the target, runtime platform.
+This contains informative text only
+1. A ClassLayout table can contain zero or more rows
+2. Parent shall index a valid row in the TypeDef table, corresponding to a Class or ValueType (but
+not to an Interface) [ERROR]
+3. The Class or ValueType indexed by Parent shall be SequentialLayout or ExplicitLayout
+(§23.1.15). (That is, AutoLayout types shall not own any rows in the ClassLayout table.)
+[ERROR]
+4. If Parent indexes a SequentialLayout type, then:
+o PackingSize shall be one of {0, 1, 2, 4, 8, 16, 32, 64, 128}. (0 means use the default
+pack size for the platform on which the application is running.) [ERROR]
+o If Parent indexes a ValueType, then ClassSize shall be less than 1 MByte (0x100000
+bytes). [ERROR]
+5. If Parent indexes an ExplicitLayout type, then
+o if Parent indexes a ValueType, then ClassSize shall be less than 1 MByte (0x100000
+bytes) [ERROR]
+o PackingSize shall be 0. (It makes no sense to provide explicit offsets for each field, as
+well as a packing size.) [ERROR]
+110 Partition II
+6. Note that an ExplicitLayout type might result in a verifiable type, provided the layout does not
+create a type whose fields overlap.
+7. Layout along the length of an inheritance chain shall follow the rules specified above (starting at
+‘highest’ Type, with no ‘holes’, etc.) [ERROR]
+End informative text
+22.9 Constant : 0x0B
+The Constant table is used to store compile-time, constant values for fields, parameters, and properties.
+The Constant table has the following columns:
+• Type (a 1-byte constant, followed by a 1-byte padding zero); see §23.1.16 . The encoding of Type
+for the nullref value for FieldInit in ilasm (§16.2) is ELEMENT_TYPE_CLASS with a Value of a 4-
+byte zero. Unlike uses of ELEMENT_TYPE_CLASS in signatures, this one is not followed by a type
+token.
+• Parent (an index into the Param, Field, or Property table; more precisely, a HasConstant
+(§24.2.6) coded index)
+• Value (an index into the Blob heap)
+Note that Constant information does not directly influence runtime behavior, although it is visible via
+Reflection (and hence can be used to implement functionality such as that provided by
+System.Enum.ToString). Compilers inspect this information, at compile time, when importing metadata, but
+the value of the constant itself, if used, becomes embedded into the CIL stream the compiler emits. There are
+no CIL instructions to access the Constant table at runtime.
+A row in the Constant table for a parent is created whenever a compile-time value is specified for that parent.
+(For an example, see §16.2. )
+This contains informative text only
+1. Type shall be exactly one of: ELEMENT_TYPE_BOOLEAN, ELEMENT_TYPE_CHAR, ELEMENT_TYPE_I1,
+ELEMENT_TYPE_U1, ELEMENT_TYPE_I2, ELEMENT_TYPE_U2, ELEMENT_TYPE_I4, ELEMENT_TYPE_U4,
+ELEMENT_TYPE_I8, ELEMENT_TYPE_U8, ELEMENT_TYPE_R4, ELEMENT_TYPE_R8, or
+ELEMENT_TYPE_STRING; or ELEMENT_TYPE_CLASS with a Value of zero (§23.1.16) [ERROR]
+2. Type shall not be any of: ELEMENT_TYPE_I1, ELEMENT_TYPE_U2, ELEMENT_TYPE_U4, or
+ELEMENT_TYPE_U8 (§23.1.16) [CLS]
+3. Parent shall index a valid row in the Field, Property, or Param table. [ERROR]
+4. There shall be no duplicate rows, based upon Parent [ERROR]
+5. Type shall match exactly the declared type of the Param, Field, or Property identified by Parent
+(in the case where the parent is an enum, it shall match exactly the underlying type of that enum).
+[CLS]
+End informative text
+22.10 CustomAttribute : 0x0C
+The CustomAttribute table has the following columns:
+• Parent (an index into any metadata table, except the CustomAttribute table itself; more precisely,
+a HasCustomAttribute (§24.2.6) coded index)
+• Type (an index into the MethodDef or MemberRef table; more precisely, a CustomAttributeType
+(§24.2.6) coded index)
+• Value (an index into the Blob heap)
+Partition II 111
+The CustomAttribute table stores data that can be used to instantiate a Custom Attribute (more precisely, an
+object of the specified Custom Attribute class) at runtime. The column called Type is slightly misleading—it
+actually indexes a constructor method—the owner of that constructor method is the Type of the Custom
+Attribute.
+A row in the CustomAttribute table for a parent is created by the .custom attribute, which gives the value of
+the Type column and optionally that of the Value column (§21).
+This contains informative text only
+All binary values are stored in little-endian format (except for PackedLen items, which are used only as a count
+for the number of bytes to follow in a UTF8 string).
+1. No CustomAttribute is required; that is, Value is permitted to be null.
+2. Parent can be an index into any metadata table, except the CustomAttribute table itself [ERROR]
+3. Type shall index a valid row in the Method or MemberRef table. That row shall be a constructor
+method (for the class of which this information forms an instance) [ERROR]
+4. Value can be null or non-null.
+5. If Value is non-null, it shall index a 'blob' in the Blob heap [ERROR]
+6. The following rules apply to the overall structure of the Value 'blob' (§23.3):
+o Prolog shall be 0x0001 [ERROR]
+o There shall be as many occurrences of FixedArg as are declared in the Constructor
+method [ERROR]
+o NumNamed can be zero or more
+o There shall be exactly NumNamed occurrences of NamedArg [ERROR]
+o Each NamedArg shall be accessible by the caller [ERROR]
+o If NumNamed = 0 then there shall be no further items in the CustomAttrib [ERROR]
+7. The following rules apply to the structure of FixedArg (§23.3):
+o If this item is not for a vector (a single-dimension array with lower bound of 0), then
+there shall be exactly one Elem [ERROR]
+o If this item is for a vector, then:
+o NumElem shall be 1 or more [ERROR]
+o This shall be followed by NumElem occurrences of Elem [ERROR]
+8. The following rules apply to the structure of Elem (§23.3):
+o If this is a simple type or an enum (see §23.3 for how this is defined), then Elem
+consists simply of its value [ERROR]
+o If this is a string or a Type, then Elem consists of a SerString – PackedLen count of
+bytes, followed by the UTF8 characters [ERROR]
+o If this is a boxed simple value type (bool, char, float32, float64, int8, int16,
+int32, int64, unsigned int8, unsigned int16, unsigned int32, or unsigned
+int64), then Elem consists of the corresponding type denoter (ELEMENT_TYPE_BOOLEAN,
+ELEMENT_TYPE_CHAR, ELEMENT_TYPE_I1, ELEMENT_TYPE_U1, ELEMENT_TYPE_I2,
+ELEMENT_TYPE_U2, ELEMENT_TYPE_I4, ELEMENT_TYPE_U4, ELEMENT_TYPE_I8,
+ELEMENT_TYPE_U8, ELEMENT_TYPE_R4, or ELEMENT_TYPE_R8), followed by its value.
+[ERROR]
+9. The following rules apply to the structure of NamedArg (§23.3):
+o The single byte FIELD (0x53) or PROPERTY (0x54) [ERROR]
+112 Partition II
+o The type of the Field or Property is one of ELEMENT_TYPE_BOOLEAN,
+ELEMENT_TYPE_CHAR, ELEMENT_TYPE_I1, ELEMENT_TYPE_U1, ELEMENT_TYPE_I2,
+ELEMENT_TYPE_U2, ELEMENT_TYPE_I4, ELEMENT_TYPE_U4, ELEMENT_TYPE_I8,
+ELEMENT_TYPE_U8, ELEMENT_TYPE_R4, ELEMENT_TYPE_R8, ELEMENT_TYPE_STRING, or the
+constant 0x50 (for an argument of type System.Type) [ERROR]
+o The name of the Field or Property, respectively with the previous item, as a SerString
+– PackedLen count of bytes, followed by the UTF8 characters of the name [ERROR]
+o A FixedArg (see above) [ERROR]
+End informative text
+22.11 DeclSecurity : 0x0E
+Security attributes, which derive from System.Security.Permissions.SecurityAttribute (see Partition IV),
+can be attached to a TypeDef, a Method, or an Assembly. All constructors of this class shall take a
+System.Security.Permissions.SecurityAction value as their first parameter, describing what should be
+done with the permission on the type, method or assembly to which it is attached. Code access security
+attributes, which derive from System.Security.Permissions. CodeAccessSecurityAttribute, can have any
+of the security actions.
+These different security actions are encoded in the DeclSecurity table as a 2-byte enum (see below). All
+security custom attributes for a given security action on a method, type, or assembly shall be gathered together,
+and one System.Security.PermissionSet instance shall be created, stored in the Blob heap, and referenced
+from the DeclSecurity table.
+[Note: The general flow from a compiler’s point of view is as follows. The user specifies a custom attribute
+through some language-specific syntax that encodes a call to the attribute’s constructor. If the attribute’s type is
+derived (directly or indirectly) from System.Security.Permissions.SecurityAttribute then it is a security
+custom attribute and requires special treatment, as follows (other custom attributes are handled by simply
+recording the constructor in the metadata as described in §22.10). The attribute object is constructed, and
+provides a method (CreatePermission) to convert it into a security permission object (an object derived from
+System.Security.Permission). All the permission objects attached to a given metadata item with the same
+security action are combined together into a System.Security.PermissionSet. This permission set is
+converted into a form that is ready to be stored in XML using its ToXML method to create a
+System.Security.SecurityElement. Finally, the XML that is required for the metadata is created using the
+ToString method on the security element. end note]
+The DeclSecurity table has the following columns:
+• Action (a 2-byte value)
+• Parent (an index into the TypeDef, MethodDef, or Assembly table; more precisely, a
+HasDeclSecurity (§24.2.6) coded index)
+• PermissionSet (an index into the Blob heap)
+Action is a 2-byte representation of Security Actions (see System.Security.SecurityAction in Partition IV).
+The values 0–0xFF are reserved for future standards use. Values 0x20–0x7F and 0x100–0x07FF are for uses
+where the action can be ignored if it is not understood or supported. Values 0x80–0xFF and 0x0800–0xFFFF
+are for uses where the action shall be implemented for secure operation; in implementations where the action is
+not available, no access to the assembly, type, or method shall be permitted.
+Security Action Note Explanation of behavior Valid Scope
+Assert 1 Without further checks, satisfy Demand for the
+specified permission.
+Method, Type
+Demand 1 Check that all callers in the call chain have been
+granted specified permission, throw
+SecurityException (see Partition IV) on failure.
+Method, Type
+Partition II 113
+Deny 1 Without further checks refuse Demand for the
+specified permission.
+Method, Type
+InheritanceDemand 1 The specified permission shall be granted in order
+to inherit from class or override virtual method.
+Method, Type
+LinkDemand 1 Check that the immediate caller has been granted
+the specified permission; throw
+SecurityException (see Partition IV) on failure.
+Method, Type
+NonCasDemand 2 Check that the current assembly has been granted
+the specified permission; throw
+SecurityException (see Partition IV) otherwise.
+Method, Type
+NonCasLinkDemand 2 Check that the immediate caller has been granted
+the specified permission; throw
+SecurityException (see Partition IV) otherwise.
+Method, Type
+PrejitGrant Reserved for implementation-specific use. Assembly
+PermitOnly 1 Without further checks, refuse Demand for all
+permissions other than those specified.
+Method, Type
+RequestMinimum Specify the minimum permissions required to run. Assembly
+RequestOptional Specify the optional permissions to grant. Assembly
+RequestRefuse Specify the permissions not to be granted. Assembly
+Note 1: The specified attribute shall derive from System.Security.Permissions.CodeAccess-
+SecurityAttribute
+Note 2: The attribute shall derive from System.Security.Permissions.SecurityAttribute, but shall not
+derive from System.Security.Permissions.CodeAccessSecurityAttribute
+Parent is a metadata token that identifies the Method, Type, or Assembly on which security custom attributes
+encoded in PermissionSet was defined.
+PermissionSet is a 'blob' having the following format:
+• A byte containing a period (.).
+• A compressed int32 containing the number of attributes encoded in the blob.
+• An array of attributes each containing the following:
+o A String, which is the fully-qualified type name of the attribute. (Strings are encoded
+as a compressed int to indicate the size followed by an array of UTF8 characters.)
+o A set of properties, encoded as the named arguments to a custom attribute would be (as
+in §23.3, beginning with NumNamed).
+The permission set contains the permissions that were requested with an Action on a specific Method, Type, or
+Assembly (see Parent). In other words, the blob will contain an encoding of all the attributes on the Parent with
+that particular Action.
+[Note: The first edition of this standard specified an XML encoding of a permission set. Implementations
+should continue supporting this encoding for backward compatibility. end note]
+The rows of the DeclSecurity table are filled by attaching a .permission or .permissionset directive
+that specifies the Action and PermissionSet on a parent assembly (§6.6) or parent type or method (§10.2).
+This contains informative text only
+1. Action shall have only those values set that are specified [ERROR]
+114 Partition II
+2. Parent shall be one of TypeDef, MethodDef, or Assembly. That is, it shall index a valid row in
+the TypeDef table, the MethodDef table, or the Assembly table. [ERROR]
+3. If Parent indexes a row in the TypeDef table, that row should not define an Interface. The
+security system ignores any such parent; compilers should not emit such permissions sets.
+[WARNING]
+4. If Parent indexes a TypeDef, then its TypeDef.Flags.HasSecurity bit shall be set [ERROR]
+5. If Parent indexes a MethodDef, then its MethodDef.Flags.HasSecurity bit shall be set [ERROR]
+6. PermissionSet shall index a 'blob' in the Blob heap [ERROR]
+7. The format of the 'blob' indexed by PermissionSet shall represent a valid, encoded CLI object
+graph. (The encoded form of all standardized permissions is specified in Partition IV.) [ERROR]
+End informative text
+22.12 EventMap : 0x12
+The EventMap table has the following columns:
+• Parent (an index into the TypeDef table)
+• EventList (an index into the Event table). It marks the first of a contiguous run of Events owned
+by this Type. That run continues to the smaller of:
+o the last row of the Event table
+o the next run of Events, found by inspecting the EventList of the next row in the
+EventMap table
+Note that EventMap info does not directly influence runtime behavior; what counts is the information stored for
+each method that the event comprises.
+The EventMap and Event tables result from putting the .event directive on a class (§18).
+This contains informative text only
+1. EventMap table can contain zero or more rows
+2. There shall be no duplicate rows, based upon Parent (a given class has only one ‘pointer’ to the
+start of its event list) [ERROR]
+3. There shall be no duplicate rows, based upon EventList (different classes cannot share rows in the
+Event table) [ERROR]
+End informative text
+22.13 Event : 0x14
+Events are treated within metadata much like Properties; that is, as a way to associate a collection of methods
+defined on a given class. There are two required methods (add_ and remove_) plus an optional one (raise_);
+others are permitted. All of the methods gathered together as an Event shall be defined on the class.
+The association between a row in the TypeDef table and the collection of methods that make up a given Event
+is held in three separate tables (exactly analogous to the approach used for Properties), as follows:
+Partition II 115
+Row 3 of the EventMap table indexes row 2 of the TypeDef table on the left (MyClass), whilst indexing row 4
+of the Event table on the right (the row for an Event called DocChanged). This setup establishes that MyClass
+has an Event called DocChanged. But what methods in the MethodDef table are gathered together as
+‘belonging’ to event DocChanged? That association is contained in the MethodSemantics table – its row 2
+indexes event DocChanged to the right, and row 2 in the MethodDef table to the left (a method called
+add_DocChanged). Also, row 3 of the MethodSemantics table indexes DocChanged to the right, and row 3 in
+the MethodDef table to the left (a method called remove_DocChanged). As the shading suggests, MyClass has
+another event, called TimedOut, with two methods, add_TimedOut and remove_TimedOut.
+Event tables do a little more than group together existing rows from other tables. The Event table has columns
+for EventFlags, Name (e.g., DocChanged and TimedOut in the example here), and EventType. In addition, the
+MethodSemantics table has a column to record whether the method it indexes is an add_, a remove_, a raise_,
+or other function.
+The Event table has the following columns:
+• EventFlags (a 2-byte bitmask of type EventAttributes, §23.1.4)
+• Name (an index into the String heap)
+• EventType (an index into a TypeDef, a TypeRef, or TypeSpec table; more precisely, a
+TypeDefOrRef (§24.2.6) coded index) (This corresponds to the Type of the Event; it is not the
+Type that owns this event.)
+Note that Event information does not directly influence runtime behavior; what counts is the information stored
+for each method that the event comprises.
+The EventMap and Event tables result from putting the .event directive on a class (§18).
+This contains informative text only
+1. The Event table can contain zero or more rows
+2. Each row shall have one, and only one, owner row in the EventMap table [ERROR]
+3. EventFlags shall have only those values set that are specified (all combinations valid) [ERROR]
+4. Name shall index a non-empty string in the String heap [ERROR]
+5. The Name string shall be a valid CLS identifier [CLS]
+6. EventType can be null or non-null
+7. If EventType is non-null, then it shall index a valid row in the TypeDef or TypeRef table
+[ERROR]
+116 Partition II
+8. If EventType is non-null, then the row in the TypeDef, TypeRef, or TypeSpec table that it indexes
+shall be a Class (not an Interface or a ValueType) [ERROR]
+9. For each row, there shall be one add_ and one remove_ row in the MethodSemantics table
+[ERROR]
+10. For each row, there can be zero or one raise_ row, as well as zero or more other rows in the
+MethodSemantics table [ERROR]
+11. Within the rows owned by a given row in the TypeDef table, there shall be no duplicates based
+upon Name [ERROR]
+12. There shall be no duplicate rows based upon Name, where Name fields are compared using CLS
+conflicting-identifier-rules [CLS]
+End informative text
+22.14 ExportedType : 0x27
+The ExportedType table holds a row for each type, defined within other modules of this Assembly; that is
+exported out of this Assembly. In essence, it stores TypeDef row numbers of all types that are marked public in
+other modules that this Assembly comprises.
+The actual target row in a TypeDef table is given by the combination of TypeDefId (in effect, row number) and
+Implementation (in effect, the module that holds the target TypeDef table). Note that this is the only occurrence
+in metadata of foreign tokens; that is, token values that have a meaning in another module. (A regular token
+value is an index into a table in the current module)
+The full name of the type need not be stored directly. Instead, it can be split into two parts at any included “.”
+(although typically this is done at the last “.” in the full name). The part preceding the “.” is stored as the
+TypeNamespace and that following the “.” is stored as the TypeName. If there is no “.” in the full name, then
+the TypeNamespace shall be the index of the empty string.
+The ExportedType table has the following columns:
+• Flags (a 4-byte bitmask of type TypeAttributes, §23.1.15)
+• TypeDefId (a 4-byte index into a TypeDef table of another module in this Assembly). This
+column is used as a hint only. If the entry in the target TypeDef table matches the TypeName and
+TypeNamespace entries in this table, resolution has succeeded. But if there is a mismatch, the
+CLI shall fall back to a search of the target TypeDef table
+• TypeName (an index into the String heap)
+• TypeNamespace (an index into the String heap)
+• Implementation. This is an index (more precisely, an Implementation (§24.2.6) coded index) into
+either of the following tables:
+o File table, where that entry says which module in the current assembly holds the
+TypeDef
+o ExportedType table, where that entry is the enclosing Type of the current nested Type
+The rows in the ExportedType table are the result of the .class extern directive (§6.7).
+This contains informative text only
+The term “FullName” refers to the string created as follows: if the TypeNamespace is null, then use the
+TypeName, otherwise use the concatenation of Typenamespace, “.”, and TypeName.
+1. The ExportedType table can contain zero or more rows
+2. There shall be no entries in the ExportedType table for Types that are defined in the current
+module—just for Types defined in other modules within the Assembly [ERROR]
+Partition II 117
+3. Flags shall have only those values set that are specified [ERROR]
+4. If Implementation indexes the File table, then Flags.VisibilityMask shall be public (§23.1.15)
+[ERROR]
+5. If Implementation indexes the ExportedType table, then Flags.VisibilityMask shall be
+NestedPublic (§23.1.15) [ERROR]
+6. If non-null, TypeDefId should index a valid row in a TypeDef table in a module somewhere within
+this Assembly (but not this module), and the row so indexed should have its Flags.Public = 1
+(§23.1.15) [WARNING]
+7. TypeName shall index a non-empty string in the String heap [ERROR]
+8. TypeNamespace can be null, or non-null
+9. If TypeNamespace is non-null, then it shall index a non-empty string in the String heap [ERROR]
+10. FullName shall be a valid CLS identifier [CLS]
+11. If this is a nested Type, then TypeNamespace should be null, and TypeName should represent the
+unmangled, simple name of the nested Type [ERROR]
+12. Implementation shall be a valid index into either of the following: [ERROR]
+o the File table; that file shall hold a definition of the target Type in its TypeDef table
+o a different row in the current ExportedType table—this identifies the enclosing Type of
+the current, nested Type
+13. FullName shall match exactly the corresponding FullName for the row in the TypeDef table
+indexed by TypeDefId [ERROR]
+14. Ignoring nested Types, there shall be no duplicate rows, based upon FullName [ERROR]
+15. For nested Types, there shall be no duplicate rows, based upon TypeName and enclosing Type
+[ERROR]
+16. The complete list of Types exported from the current Assembly is given as the catenation of the
+ExportedType table with all public Types in the current TypeDef table, where “public” means a
+Flags.VisibilityMask of either Public or NestedPublic. There shall be no duplicate rows, in this
+concatenated table, based upon FullName (add Enclosing Type into the duplicates check if this is
+a nested Type) [ERROR]
+End informative text
+22.15 Field : 0x04
+The Field table has the following columns:
+• Flags (a 2-byte bitmask of type FieldAttributes, §23.1.5)
+• Name (an index into the String heap)
+• Signature (an index into the Blob heap)
+Conceptually, each row in the Field table is owned by one, and only one, row in the TypeDef table. However,
+the owner of any row in the Field table is not stored anywhere in the Field table itself. There is merely a
+‘forward-pointer’ from each row in the TypeDef table (the FieldList column), as shown in the following
+illustration.
+118 Partition II
+The TypeDef table has rows 1–4. The first row in the TypeDef table corresponds to a pseudo type, inserted
+automatically by the CLI. It is used to denote those rows in the Field table corresponding to global variables.
+The Field table has rows 1–6. Type 1 (pseudo type for ‘module’) owns rows 1 and 2 in the Field table. Type 2
+owns no rows in the Field table, even though its FieldList indexes row 3 in the Field table. Type 3 owns
+rows 3–5 in the Field table. Type 4 owns row 6 in the Field table. So, in the Field table, rows 1 and 2 belong
+to Type 1 (global variables); rows 3–5 belong to Type 3; row 6 belongs to Type 4.
+Each row in the Field table results from a top-level .field directive (§5.10), or a .field directive inside a
+Type (§10.2). (For an example, see §14.5.)
+This contains informative text only
+1. The Field table can contain zero or more rows
+2. Each row shall have one, and only one, owner row in the TypeDef table [ERROR]
+3. The owner row in the TypeDef table shall not be an Interface [CLS]
+4. Flags shall have only those values set that are specified [ERROR]
+5. The FieldAccessMask subfield of Flags shall contain precisely one of CompilerControlled,
+Private, FamANDAssem, Assembly, Family, FamORAssem, or Public (§23.1.5) [ERROR]
+6. Flags can set either or neither of Literal or InitOnly, but not both (§23.1.5) [ERROR]
+7. If Flags.Literal = 1 then Flags.Static shall also be 1 (§23.1.5) [ERROR]
+8. If Flags.RTSpecialName = 1, then Flags.SpecialName shall also be 1 (§23.1.5) [ERROR]
+9. If Flags.HasFieldMarshal = 1, then this row shall ‘own’ exactly one row in the FieldMarshal
+table (§23.1.5) [ERROR]
+10. If Flags.HasDefault = 1, then this row shall ‘own’ exactly one row in the Constant table
+(§23.1.5) [ERROR]
+11. If Flags.HasFieldRVA = 1, then this row shall ‘own’ exactly one row in the Field’s RVA table
+(§23.1.5) [ERROR]
+12. Name shall index a non-empty string in the String heap [ERROR]
+13. The Name string shall be a valid CLS identifier [CLS]
+14. Signature shall index a valid field signature in the Blob heap [ERROR]
+15. If Flags.CompilerControlled = 1 (§23.1.5), then this row is ignored completely in duplicate
+checking.
+16. If the owner of this field is the internally-generated type called <Module>, it denotes that this field
+is defined at module scope (commonly called a global variable). In this case:
+o Flags.Static shall be 1 [ERROR]
+o Flags.MemberAccessMask subfield shall be one of Public, CompilerControlled, or
+Private (§23.1.5) [ERROR]
+o module-scope fields are not allowed [CLS]
+Partition II 119
+17. There shall be no duplicate rows in the Field table, based upon owner+Name+Signature (where
+owner is the owning row in the TypeDef table, as described above) (Note however that if
+Flags.CompilerControlled = 1, then this row is completely excluded from duplicate checking)
+[ERROR]
+18. There shall be no duplicate rows in the Field table, based upon owner+Name, where Name fields
+are compared using CLS conflicting-identifier-rules. So, for example,"int i" and "float i"
+would be considered CLS duplicates. (Note however that if Flags.CompilerControlled = 1, then
+this row is completely excluded from duplicate checking, as noted above) [CLS]
+19. If this is a field of an Enum, and Name string = "value__" then:
+a. RTSpecialName shall be 1 [ERROR]
+b. owner row in TypeDef table shall derive directly from System.Enum [ERROR]
+c. the owner row in TypeDef table shall have no other instance fields [CLS]
+d. its Signature shall be one of ELEMENT_TYPE_U1, ELEMENT_TYPE_I2, ELEMENT_TYPE_I4, or
+ELEMENT_TYPE_I8 (§23.1.16 ): [CLS]
+20. its Signature shall be an integral type. [ERROR]
+End informative text
+22.16 FieldLayout : 0x10
+The FieldLayout table has the following columns:
+• Offset (a 4-byte constant)
+• Field (an index into the Field table)
+Note that each Field in any Type is defined by its Signature. When a Type instance (i.e., an object) is laid out
+by the CLI, each Field is one of four kinds:
+• Scalar: for any member of built-in type, such as int32. The size of the field is given by the size
+of that intrinsic, which varies between 1 and 8 bytes
+• ObjectRef: for ELEMENT_TYPE_CLASS, ELEMENT_TYPE_STRING, ELEMENT_TYPE_OBJECT,
+ELEMENT_TYPE_ARRAY, ELEMENT_TYPE_SZARRAY
+• Pointer: for ELEMENT_TYPE_PTR, ELEMENT_TYPE_FNPTR
+• ValueType: for ELEMENT_TYPE_VALUETYPE. The instance of that ValueType is actually laid out in
+this object, so the size of the field is the size of that ValueType
+Note that metadata specifying explicit structure layout can be valid for use on one platform but not on another,
+since some of the rules specified here are dependent on platform-specific alignment rules.
+A row in the FieldLayout table is created if the .field directive for the parent field has specified a field
+offset (§16).
+This contains informative text only
+1. A FieldLayout table can contain zero or more or rows
+2. The Type whose Fields are described by each row of the FieldLayout table shall have
+Flags.ExplicitLayout (§23.1.15) set [ERROR]
+3. Offset shall be zero or more [ERROR]
+4. Field shall index a valid row in the Field table [ERROR]
+5. Flags.Static for the row in the Field table indexed by Field shall be non-static (i.e., zero 0)
+[ERROR]
+120 Partition II
+6. Among the rows owned by a given Type there shall be no duplicates, based upon Field. That is, a
+given Field of a Type cannot be given two offsets. [ERROR]
+7. Each Field of kind ObjectRef shall be naturally aligned within the Type [ERROR]
+8. Among the rows owned by a given Type it is perfectly valid for several rows to have the same
+value of Offset. ObjectRef and a valuetype cannot have the same offset [ERROR]
+9. Every Field of an ExplicitLayout Type shall be given an offset; that is, it shall have a row in the
+FieldLayout table [ERROR]
+End informative text
+22.17 FieldMarshal : 0x0D
+The FieldMarshal table has two columns. It ‘links’ an existing row in the Field or Param table, to information
+in the Blob heap that defines how that field or parameter (which, as usual, covers the method return, as
+parameter number 0) shall be marshalled when calling to or from unmanaged code via PInvoke dispatch.
+Note that FieldMarshal information is used only by code paths that arbitrate operation with unmanaged code.
+In order to execute such paths, the caller, on most platforms, would be installed with elevated security
+permission. Once it invokes unmanaged code, it lies outside the regime that the CLI can check—it is simply
+trusted not to violate the type system.
+The FieldMarshal table has the following columns:
+• Parent (an index into Field or Param table; more precisely, a HasFieldMarshal (§24.2.6) coded
+index)
+• NativeType (an index into the Blob heap)
+For the detailed format of the 'blob', see §23.4
+A row in the FieldMarshal table is created if the .field directive for the parent field has specified a
+marshal attribute (§16.1).
+This contains informative text only
+1. A FieldMarshal table can contain zero or more rows
+2. Parent shall index a valid row in the Field or Param table (Parent values are encoded to say
+which of these two tables each refers to) [ERROR]
+3. NativeType shall index a non-null 'blob' in the Blob heap [ERROR]
+4. No two rows shall point to the same parent. In other words, after the Parent values have been
+decoded to determine whether they refer to the Field or the Param table, no two rows can point to
+the same row in the Field table or in the Param table [ERROR]
+5. The following checks apply to the MarshalSpec 'blob' (§23.4):
+a. NativeIntrinsic shall be exactly one of the constant values in its production (§23.4)
+[ERROR]
+b. If ARRAY, then ArrayElemType shall be exactly one of the constant values in its production
+[ERROR]
+c. If ARRAY, then ParamNum can be zero
+d. If ARRAY, then ParamNum cannot be < 0 [ERROR]
+e. If ARRAY, and ParamNum > 0, then Parent shall point to a row in the Param table, not in the
+Field table [ERROR]
+Partition II 121
+f. If ARRAY, and ParamNum > 0, then ParamNum cannot exceed the number of parameters
+supplied to the MethodDef (or MethodRef if a VARARG call) of which the parent Param is a
+member [ERROR]
+g. If ARRAY, then ElemMult shall be >= 1 [ERROR]
+h. If ARRAY and ElemMult != 1 issue a warning, because it is probably a mistake [WARNING]
+i. If ARRAY and ParamNum = 0, then NumElem shall be >= 1 [ERROR]
+j. If ARRAY and ParamNum != 0 and NumElem != 0 then issue a warning, because it is
+probably a mistake [WARNING]
+End informative text
+22.18 FieldRVA : 0x1D
+The FieldRVA table has the following columns:
+• RVA (a 4-byte constant)
+• Field (an index into Field table)
+Conceptually, each row in the FieldRVA table is an extension to exactly one row in the Field table, and records
+the RVA (Relative Virtual Address) within the image file at which this field’s initial value is stored.
+A row in the FieldRVA table is created for each static parent field that has specified the optional data
+label §16). The RVA column is the relative virtual address of the data in the PE file (§16.3).
+This contains informative text only
+1. RVA shall be non-zero [ERROR]
+2. RVA shall point into the current module’s data area (not its metadata area) [ERROR]
+3. Field shall index a valid row in the Field table [ERROR]
+4. Any field with an RVA shall be a ValueType (not a Class or an Interface). Moreover, it shall not
+have any private fields (and likewise for any of its fields that are themselves ValueTypes). (If
+any of these conditions were breached, code could overlay that global static and access its private
+fields.) Moreover, no fields of that ValueType can be Object References (into the GC heap)
+[ERROR]
+5. So long as two RVA-based fields comply with the previous conditions, the ranges of memory
+spanned by the two ValueTypes can overlap, with no further constraints. This is not actually an
+additional rule; it simply clarifies the position with regard to overlapped RVA-based fields
+End informative text
+22.19 File : 0x26
+The File table has the following columns:
+• Flags (a 4-byte bitmask of type FileAttributes, §23.1.6)
+• Name (an index into the String heap)
+• HashValue (an index into the Blob heap)
+The rows of the File table result from .file directives in an Assembly (§6.2.3)
+This contains informative text only
+1. Flags shall have only those values set that are specified (all combinations valid) [ERROR]
+122 Partition II
+2. Name shall index a non-empty string in the String heap. It shall be in the format
+<filename>.<extension> (e.g., “foo.dll”, but not “c:\utils\foo.dll”) [ERROR]
+3. HashValue shall index a non-empty 'blob' in the Blob heap [ERROR]
+4. There shall be no duplicate rows; that is, rows with the same Name value [ERROR]
+5. If this module contains a row in the Assembly table (that is, if this module “holds the manifest”)
+then there shall not be any row in the File table for this module; i.e., no self-reference [ERROR]
+6. If the File table is empty, then this, by definition, is a single-file assembly. In this case, the
+ExportedType table should be empty [WARNING]
+End informative text
+22.20 GenericParam : 0x2A
+The GenericParam table has the following columns:
+• Number (the 2-byte index of the generic parameter, numbered left-to-right, from zero)
+• Flags (a 2-byte bitmask of type GenericParamAttributes, §23.1.7)
+• Owner (an index into the TypeDef or MethodDef table, specifying the Type or Method to which
+this generic parameter applies; more precisely, a TypeOrMethodDef (§24.2.6) coded index)
+• Name (a non-null index into the String heap, giving the name for the generic parameter. This is
+purely descriptive and is used only by source language compilers and by Reflection)
+The GenericParam table stores the generic parameters used in generic type definitions and generic method
+definitions. These generic parameters can be constrained (i.e., generic arguments shall extend some class
+and/or implement certain interfaces) or unconstrained. (Such constraints are stored in the
+GenericParamConstraint table.)
+Conceptually, each row in the GenericParam table is owned by one, and only one, row in either the TypeDef or
+MethodDef tables.
+[Example:
+.class Dict`2<([mscorlib]System.IComparable) K, V>
+The generic parameter K of class Dict is constrained to implement System.IComparable.
+.method static void ReverseArray<T>(!!0[] 'array')
+There is no constraint on the generic parameter T of the generic method ReverseArray.
+end example]
+This contains informative text only
+1. GenericParam table can contain zero or more rows
+2. Each row shall have one, and only one, owner row in the TypeDef or MethodDef table (i.e., no
+row sharing) [ERROR]
+3. Every generic type shall own one row in the GenericParam table for each of its generic
+parameters [ERROR]
+4. Every generic method shall own one row in the GenericParam table for each of its generic
+parameters [ERROR]
+Flags:
+• Can hold the value Covariant or Contravariant, but only if the owner row corresponds to a
+generic interface, or a generic delegate class. [ERROR]
+Partition II 123
+• Otherwise, shall hold the value NonVariant (i.e., where the owner is a non delegate class, a valuetype,
+or a generic method) [ERROR]
+If Flags == Covariant then the corresponding generic parameter can appear in a type definition only as
+[ERROR]:
+• The result type of a method
+• A generic parameter to an inherited interface
+If Flags == Contravariant then the corresponding generic parameter can appear in a type definition only
+as the argument to a method [ERROR]
+Number shall have a value >= 0 and < the number of generic parameters in owner type or method.
+[ERROR]
+Successive rows of the GenericParam table that are owned by the same method shall be ordered by
+increasing Number value; there shall be no gaps in the Number sequence [ERROR]
+Name shall be non-null and index a string in the String heap [ERROR]
+[Rationale: Otherwise, Reflection output is not fully usable. end rationale]
+There shall be no duplicate rows based upon Owner+Name [ERROR] [Rationale: Otherwise, code
+using Reflection cannot disambiguate the different generic parameters. end rationale]
+There shall be no duplicate rows based upon Owner+Number [ERROR]
+End informative text
+22.21 GenericParamConstraint : 0x2C
+The GenericParamConstraint table has the following columns:
+• Owner (an index into the GenericParam table, specifying to which generic parameter this row
+refers)
+• Constraint (an index into the TypeDef, TypeRef, or TypeSpec tables, specifying from which class
+this generic parameter is constrained to derive; or which interface this generic parameter is
+constrained to implement; more precisely, a TypeDefOrRef (§24.2.6) coded index)
+The GenericParamConstraint table records the constraints for each generic parameter. Each generic parameter
+can be constrained to derive from zero or one class. Each generic parameter can be constrained to implement
+zero or more interfaces.
+Conceptually, each row in the GenericParamConstraint table is ‘owned’ by a row in the GenericParam table.
+All rows in the GenericParamConstraint table for a given Owner shall refer to distinct constraints.
+Note that if Constraint is a TypeRef to System.ValueType, then it means the constraint type shall be
+System.ValueType, or one of its sub types. However, since System.ValueType itself is a reference type, this
+particular mechanism does not guarantee that the type is a non-reference type.
+This contains informative text only
+1. The GenericParamConstraint table can contain zero or more rows
+2. Each row shall have one, and only one, owner row in the GenericParam table (i.e., no row sharing)
+[ERROR]
+3. Each row in the GenericParam table shall ‘own’ a separate row in the GenericParamConstraint
+table for each constraint that generic parameter has [ERROR]
+4. All of the rows in the GenericParamConstraint table that are owned by a given row in the
+GenericParam table shall form a contiguous range (of rows) [ERROR]
+124 Partition II
+5. Any generic parameter (corresponding to a row in the GenericParam table) shall own zero or one
+row in the GenericParamConstraint table corresponding to a class constraint. [ERROR]
+6. Any generic parameter (corresponding to a row in the GenericParam table) shall own zero or more
+rows in the GenericParamConstraint table corresponding to an interface constraint. [ERROR]
+7. There shall be no duplicate rows based upon Owner+Constraint [ERROR]
+8. Constraint shall not reference System.Void. [ERROR]
+End informative text
+22.22 ImplMap : 0x1C
+The ImplMap table holds information about unmanaged methods that can be reached from managed code,
+using PInvoke dispatch.
+Each row of the ImplMap table associates a row in the MethodDef table (MemberForwarded) with the name of
+a routine (ImportName) in some unmanaged DLL (ImportScope).
+[Note: A typical example would be: associate the managed Method stored in row N of the Method table (so
+MemberForwarded would have the value N) with the routine called “GetEnvironmentVariable” (the string
+indexed by ImportName) in the DLL called “kernel32” (the string in the ModuleRef table indexed by
+ImportScope). The CLI intercepts calls to managed Method number N, and instead forwards them as calls to
+the unmanaged routine called “GetEnvironmentVariable” in “kernel32.dll” (including marshalling any
+arguments, as required)
+The CLI does not support this mechanism to access fields that are exported from a DLL, only methods. end
+note]
+The ImplMap table has the following columns:
+• MappingFlags (a 2-byte bitmask of type PInvokeAttributes, §23.1.7)
+• MemberForwarded (an index into the Field or MethodDef table; more precisely, a
+MemberForwarded (§24.2.6) coded index). However, it only ever indexes the MethodDef table,
+since Field export is not supported.
+• ImportName (an index into the String heap)
+• ImportScope (an index into the ModuleRef table)
+A row is entered in the ImplMap table for each parent Method (§15.5) that is defined with a .pinvokeimpl
+interoperation attribute specifying the MappingFlags, ImportName, and ImportScope.
+This contains informative text only
+1. ImplMap can contain zero or more rows
+2. MappingFlags shall have only those values set that are specified [ERROR]
+3. MemberForwarded shall index a valid row in the MethodDef table [ERROR]
+4. The MappingFlags.CharSetMask (§23.1.7) in the row of the MethodDef table indexed by
+MemberForwarded shall have at most one of the following bits set: CharSetAnsi,
+CharSetUnicode, or CharSetAuto (if none is set, the default is CharSetNotSpec) [ERROR]
+5. ImportName shall index a non-empty string in the String heap [ERROR]
+6. ImportScope shall index a valid row in the ModuleRef table [ERROR]
+7. The row indexed in the MethodDef table by MemberForwarded shall have its Flags.PinvokeImpl
+= 1, and Flags.Static = 1 [ERROR]
+Partition II 125
+End informative text
+22.23 InterfaceImpl : 0x09
+The InterfaceImpl table has the following columns:
+• Class (an index into the TypeDef table)
+• Interface (an index into the TypeDef, TypeRef, or TypeSpec table; more precisely, a TypeDefOrRef
+(§24.2.6) coded index)
+The InterfaceImpl table records the interfaces a type implements explicitly. Conceptually, each row in the
+InterfaceImpl table indicates that Class implements Interface.
+This contains informative text only
+1. The InterfaceImpl table can contain zero or more rows
+2. Class shall be non-null [ERROR]
+3. If Class is non-null, then:
+a. Class shall index a valid row in the TypeDef table [ERROR]
+b. Interface shall index a valid row in the TypeDef or TypeRef table [ERROR]
+c. The row in the TypeDef, TypeRef, or TypeSpec table indexed by Interface shall be an
+interface (Flags.Interface = 1), not a Class or ValueType [ERROR]
+4. There should be no duplicates in the InterfaceImpl table, based upon non-null Class and Interface
+values [WARNING]
+5. There can be many rows with the same value for Class (since a class can implement many
+interfaces)
+6. There can be many rows with the same value for Interface (since many classes can implement the
+same interface)
+End informative text
+22.24 ManifestResource : 0x28
+The ManifestResource table has the following columns:
+• Offset (a 4-byte constant)
+• Flags (a 4-byte bitmask of type ManifestResourceAttributes, §23.1.9)
+• Name (an index into the String heap)
+• Implementation (an index into a File table, a AssemblyRef table, or null; more precisely, an
+Implementation (§24.2.6) coded index)
+The Offset specifies the byte offset within the referenced file at which this resource record begins. The
+Implementation specifies which file holds this resource. The rows in the table result from .mresource
+directives on the Assembly (§6.2.2).
+This contains informative text only
+1. The ManifestResource table can contain zero or more rows
+2. Offset shall be a valid offset into the target file, starting from the Resource entry in the CLI
+header [ERROR]
+3. Flags shall have only those values set that are specified [ERROR]
+126 Partition II
+4. The VisibilityMask (§23.1.9) subfield of Flags shall be one of Public or Private [ERROR]
+5. Name shall index a non-empty string in the String heap [ERROR]
+6. Implementation can be null or non-null (if null, it means the resource is stored in the current file)
+7. If Implementation is null, then Offset shall be a valid offset in the current file, starting from the
+Resource entry in the CLI header [ERROR]
+8. If Implementation is non-null, then it shall index a valid row in the File or AssemblyRef table
+[ERROR]
+9. There shall be no duplicate rows, based upon Name [ERROR]
+10. If the resource is an index into the File table, Offset shall be zero [ERROR]
+End informative text
+22.25 MemberRef : 0x0A
+The MemberRef table combines two sorts of references, to Methods and to Fields of a class, known as
+‘MethodRef’ and ‘FieldRef’, respectively. The MemberRef table has the following columns:
+• Class (an index into the MethodDef, ModuleRef,TypeDef, TypeRef, or TypeSpec tables; more
+precisely, a MemberRefParent (§24.2.6) coded index)
+• Name (an index into the String heap)
+• Signature (an index into the Blob heap)
+An entry is made into the MemberRef table whenever a reference is made in the CIL code to a method or field
+which is defined in another module or assembly. (Also, an entry is made for a call to a method with a VARARG
+signature, even when it is defined in the same module as the call site.)
+This contains informative text only
+1. Class shall be one of the following: [ERROR]
+a. a TypeRef token, if the class that defines the member is defined in another module. (Note
+that it is unusual, but valid, to use a TypeRef token when the member is defined in this same
+module, in which case, its TypeDef token can be used instead.)
+b. a ModuleRef token, if the member is defined, in another module of the same assembly, as a
+global function or variable.
+c. a MethodDef token, when used to supply a call-site signature for a vararg method that is
+defined in this module. The Name shall match the Name in the corresponding MethodDef
+row. The Signature shall match the Signature in the target method definition [ERROR]
+d. a TypeSpec token, if the member is a member of a generic type
+2. Class shall not be null (as this would indicate an unresolved reference to a global function or
+variable) [ERROR]
+3. Name shall index a non-empty string in the String heap [ERROR]
+4. The Name string shall be a valid CLS identifier [CLS]
+5. Signature shall index a valid field or method signature in the Blob heap. In particular, it shall
+embed exactly one of the following ‘calling conventions’: [ERROR]
+a. DEFAULT (0x0)
+b. VARARG (0x5)
+c. FIELD (0x6)
+d. GENERIC (0x10)
+Partition II 127
+6. The MemberRef table shall contain no duplicates, where duplicate rows have the same Class,
+Name, and Signature [WARNING]
+7. Signature shall not have the VARARG (0x5) calling convention [CLS]
+8. There shall be no duplicate rows, where Name fields are compared using CLS conflictingidentifier-
+rules. (In particular, note that the return type and whether parameters are marked
+ELEMENT_TYPE_BYREF (§23.1.16) are ignored in the CLS. For example, .method int32 M()and
+.method float64 M() result in duplicate rows by CLS rules. Similarly, .method void
+N(int32 i)and .method void N(int32& i)also result in duplicate rows by CLS rules.) [CLS]
+9. If Class and Name resolve to a field, then that field shall not have a value of CompilerControlled
+(§23.1.5) in its Flags.FieldAccessMask subfield [ERROR]
+10. If Class and Name resolve to a method, then that method shall not have a value of
+CompilerControlled in its Flags.MemberAccessMask (§23.1.10) subfield [ERROR]
+11. The type containing the definition of a MemberRef shall be a TypeSpec representing an
+instantiated type.
+End informative text
+22.26 MethodDef : 0x06
+The MethodDef table has the following columns:
+• RVA (a 4-byte constant)
+• ImplFlags (a 2-byte bitmask of type MethodImplAttributes, §23.1.10)
+• Flags (a 2-byte bitmask of type MethodAttributes, §23.1.10)
+• Name (an index into the String heap)
+• Signature (an index into the Blob heap)
+• ParamList (an index into the Param table). It marks the first of a contiguous run of Parameters
+owned by this method. The run continues to the smaller of:
+o the last row of the Param table
+o the next run of Parameters, found by inspecting the ParamList of the next row in the
+MethodDef table
+Conceptually, every row in the MethodDef table is owned by one, and only one, row in the TypeDef table.
+The rows in the MethodDef table result from .method directives (§15). The RVA column is computed when
+the image for the PE file is emitted and points to the COR_ILMETHOD structure for the body of the method
+(§25.4)
+[Note: If Signature is GENERIC (0x10), the generic arguments are described in the GenericParam table (§22.20).
+end note]
+This contains informative text only
+1. The MethodDef table can contain zero or more rows
+2. Each row shall have one, and only one, owner row in the TypeDef table [ERROR]
+3. ImplFlags shall have only those values set that are specified [ERROR]
+4. Flags shall have only those values set that are specified [ERROR]
+5. If Name is .ctor and the method is marked SpecialName, there shall not be a row in the
+GenericParam table which has this MethodDef as its owner. [ERROR]
+128 Partition II
+6. The MemberAccessMask (§23.1.10) subfield of Flags shall contain precisely one of
+CompilerControlled, Private, FamANDAssem, Assem, Family, FamORAssem, or Public [ERROR]
+7. The following combined bit settings in Flags are invalid [ERROR]
+a. Static | Final
+b. Static | Virtual
+c. Static | NewSlot
+d. Final | Abstract
+e. Abstract | PinvokeImpl
+f. CompilerControlled | SpecialName
+g. CompilerControlled | RTSpecialName
+8. An abstract method shall be virtual. So, if Flags.Abstract = 1 then Flags.Virtual shall also be 1
+[ERROR]
+9. If Flags.RTSpecialName = 1 then Flags.SpecialName shall also be 1 [ERROR]
+10. If Flags.HasSecurity = 1, then at least one of the following conditions shall be true: [ERROR]
+o this Method owns at least row in the DeclSecurity table
+o this Method has a custom attribute called SuppressUnmanagedCodeSecurityAttribute
+11. If this Method owns one (or more) rows in the DeclSecurity table then Flags.HasSecurity shall
+be 1 [ERROR]
+12. If this Method has a custom attribute called SuppressUnmanagedCodeSecurityAttribute then
+Flags.HasSecurity shall be 1 [ERROR]
+13. A Method can have a custom attribute called DynamicSecurityMethodAttribute, but this has no
+effect whatsoever upon the value of its Flags.HasSecurity
+14. Name shall index a non-empty string in the String heap [ERROR]
+15. Interfaces cannot have instance constructors. So, if this Method is owned by an Interface, then its
+Name cannot be .ctor [ERROR]
+16. Interfaces can only own virtual methods (not static or instance methods). So, if this Method is
+owned by an Interface, Flags.Static shall be clear [ERROR]
+17. The Name string shall be a valid CLS identifier (unless Flags.RTSpecialName is set - for
+example, .cctor is valid) [CLS]
+18. Signature shall index a valid method signature in the Blob heap [ERROR]
+19. If Flags.CompilerControlled = 1, then this row is ignored completely in duplicate checking
+20. If the owner of this method is the internally-generated type called <Module>, it denotes that this
+method is defined at module scope. [Note: In C++, the method is called global and can be
+referenced only within its compiland, from its point of declaration forwards. end note] In this
+case:
+a. Flags.Static shall be 1 [ERROR]
+b. Flags.Abstract shall be 0 [ERROR]
+c. Flags.Virtual shall be 0 [ERROR]
+d. Flags.MemberAccessMask subfield shall be one of CompilerControlled, Public, or
+Private [ERROR]
+e. module-scope methods are not allowed [CLS]
+Partition II 129
+21. It makes no sense for ValueTypes, which have no identity, to have synchronized methods (unless
+they are boxed). So, if the owner of this method is a ValueType then the method cannot be
+synchronized. That is, ImplFlags.Synchronized shall be 0 [ERROR]
+22. There shall be no duplicate rows in the MethodDef table, based upon owner + Name + Signature
+(where owner is the owning row in the TypeDef table). (Note that the Signature encodes whether
+or not the method is generic, and for generic methods, it encodes the number of generic
+parameters.) (Note, however, that if Flags.CompilerControlled = 1, then this row is excluded
+from duplicate checking) [ERROR]
+23. There shall be no duplicate rows in the MethodDef table, based upon owner + Name + Signature,
+where Name fields are compared using CLS conflicting-identifier-rules; also, the Type defined in
+the signatures shall be different. So, for example, "int i" and "float i" would be considered
+CLS duplicates; also, the return type of the method is ignored (Note, however, that if
+Flags.CompilerControlled = 1, this row is excluded from duplicate checking as explained above.)
+[CLS]
+24. If Final, NewSlot, or Strict are set in Flags, then Flags.Virtual shall also be set [ERROR]
+25. If Flags.PInvokeImpl is set, then Flags.Virtual shall be 0 [ERROR]
+26. If Flags.Abstract != 1 then exactly one of the following shall also be true: [ERROR]
+o RVA != 0
+o Flags.PInvokeImpl = 1
+o ImplFlags.Runtime = 1
+27. If the method is CompilerControlled, then the RVA shall be non-zero or marked with
+PinvokeImpl = 1 [ERROR]
+28. Signature shall have exactly one of the following managed calling conventions [ERROR]
+a. DEFAULT (0x0)
+b. VARARG (0x5)
+c. GENERIC (0x10)
+29. Signature shall have the calling convention DEFAULT (0x0) or GENERIC (0x10). [CLS]
+30. Signature: If and only if the method is not Static then the calling convention byte in Signature
+has its HASTHIS (0x20) bit set [ERROR]
+31. Signature: If the method is static, then the HASTHIS (0x20) bit in the calling convention shall
+be 0 [ERROR]
+32. If EXPLICITTHIS (0x40) in the signature is set, then HASTHIS (0x20) shall also be set (note that if
+EXPLICITTHIS is set, then the code is not verifiable) [ERROR]
+33. The EXPLICITTHIS (0x40) bit can be set only in signatures for function pointers: signatures whose
+MethodDefSig is preceded by FNPTR (0x1B) [ERROR]
+34. If RVA = 0, then either: [ERROR]
+o Flags.Abstract = 1, or
+o ImplFlags.Runtime = 1, or
+o Flags.PinvokeImpl = 1, or
+35. If RVA != 0, then: [ERROR]
+a. Flags.Abstract shall be 0, and
+b. ImplFlags.CodeTypeMask shall have exactly one of the following values: Native, CIL, or
+Runtime, and
+130 Partition II
+c. RVA shall point into the CIL code stream in this file
+36. If Flags.PinvokeImpl = 1 then [ERROR]
+o RVA = 0 and the method owns a row in the ImplMap table
+37. If Flags.RTSpecialName = 1 then Name shall be one of: [ERROR]
+a. .ctor (an object constructor method)
+b. .cctor (a class constructor method)
+38. Conversely, if Name is any of the above special names then Flags.RTSpecialName shall be set
+[ERROR]
+39. If Name = .ctor (an object constructor method) then:
+a. return type in Signature shall be ELEMENT_TYPE_VOID (§23.1.16) [ERROR]
+b. Flags.Static shall be 0 [ERROR]
+c. Flags.Abstract shall be 0 [ERROR]
+d. Flags.Virtual shall be 0 [ERROR]
+e. ‘Owner’ type shall be a valid Class or ValueType (not <Module> and not an Interface) in the
+TypeDef table [ERROR]
+f. there can be zero or more .ctors for any given ‘owner’
+40. If Name = .cctor (a class constructor method) then:
+a. the return type in Signature shall be ELEMENT_TYPE_VOID (§23.1.16) [ERROR]
+b. Signature shall have DEFAULT (0x0) for its calling convention [ERROR]
+c. there shall be no parameters supplied in Signature [ERROR]
+d. Flags.Static shall be set [ERROR]
+e. Flags.Virtual shall be clear [ERROR]
+f. Flags.Abstract shall be clear [ERROR]
+41. Among the set of methods owned by any given row in the TypeDef table there can only be 0 or 1
+methods named .cctor [ERROR]
+End informative text
+22.27 MethodImpl : 0x19
+MethodImpl tables let a compiler override the default inheritance rules provided by the CLI. Their original use
+was to allow a class C, that inherited method M from both interfaces I and J, to provide implementations for
+both methods (rather than have only one slot for M in its vtable). However, MethodImpls can be used for other
+reasons too, limited only by the compiler writer’s ingenuity within the constraints defined in the Validation
+rules below.
+In the example above, Class specifies C, MethodDeclaration specifies I::M, MethodBody specifies the method
+which provides the implementation for I::M (either a method body within C, or a method body implemented by
+a base class of C).
+The MethodImpl table has the following columns:
+• Class (an index into the TypeDef table)
+• MethodBody (an index into the MethodDef or MemberRef table; more precisely, a
+MethodDefOrRef (§24.2.6) coded index)
+Partition II 131
+• MethodDeclaration (an index into the MethodDef or MemberRef table; more precisely, a
+MethodDefOrRef (§24.2.6) coded index)
+ILAsm uses the .override directive to specify the rows of the MethodImpl table (§10.3.2 and §15.4.1).
+This contains informative text only
+1. The MethodImpl table can contain zero or more rows
+2. Class shall index a valid row in the TypeDef table [ERROR]
+3. MethodBody shall index a valid row in the MethodDef or MemberRef table [ERROR]
+4. The method indexed by MethodDeclaration shall have Flags.Virtual set [ERROR]
+5. The owner Type of the method indexed by MethodDeclaration shall not have Flags.Sealed = 0
+[ERROR]
+6. The method indexed by MethodBody shall be a member of Class or some base class of Class
+(MethodImpls do not allow compilers to ‘hook’ arbitrary method bodies) [ERROR]
+7. The method indexed by MethodBody shall be virtual [ERROR]
+8. The method indexed by MethodBody shall have its Method.RVA != 0 (cannot be an unmanaged
+method reached via PInvoke, for example) [ERROR]
+9. MethodDeclaration shall index a method in the ancestor chain of Class (reached via its Extends
+chain) or in the interface tree of Class (reached via its InterfaceImpl entries) [ERROR]
+10. The method indexed by MethodDeclaration shall not be final (its Flags.Final shall be 0)
+[ERROR]
+11. If MethodDeclaration has the Strict flag set, the method indexed by MethodDeclaration shall be
+accessible to Class. [ERROR]
+12. The method signature defined by MethodBody shall match those defined by MethodDeclaration
+[ERROR]
+13. There shall be no duplicate rows, based upon Class+MethodDeclaration [ERROR]
+End informative text
+22.28 MethodSemantics : 0x18
+The MethodSemantics table has the following columns:
+• Semantics (a 2-byte bitmask of type MethodSemanticsAttributes, §23.1.12)
+• Method (an index into the MethodDef table)
+• Association (an index into the Event or Property table; more precisely, a HasSemantics (§24.2.6)
+coded index)
+The rows of the MethodSemantics table are filled by .property (§17) and .event directives (§18).
+(See §22.13 for more information.)
+This contains informative text only
+1. MethodSemantics table can contain zero or more rows
+2. Semantics shall have only those values set that are specified [ERROR]
+3. Method shall index a valid row in the MethodDef table, and that row shall be for a method defined
+on the same class as the Property or Event this row describes [ERROR]
+4. All methods for a given Property or Event shall have the same accessibility (ie the
+MemberAccessMask subfield of their Flags row) and cannot be CompilerControlled [CLS]
+132 Partition II
+5. Semantics: constrained as follows:
+o If this row is for a Property, then exactly one of Setter, Getter, or Other shall be set
+[ERROR]
+o If this row is for an Event, then exactly one of AddOn, RemoveOn, Fire, or Other shall
+be set [ERROR]
+6. If this row is for an Event, and its Semantics is Addon or RemoveOn, then the row in the MethodDef
+table indexed by Method shall take a Delegate as a parameter, and return void [ERROR]
+7. If this row is for an Event, and its Semantics is Fire, then the row indexed in the MethodDef table
+by Method can return any type
+8. For each property, there shall be a setter, or a getter, or both [CLS]
+9. Any getter method for a property whose Name is xxx shall be called get_xxx [CLS]
+10. Any setter method for a property whose Name is xxx shall be called set_xxx [CLS]
+11. If a property provides both getter and setter methods, then these methods shall have the same
+value in the Flags.MemberAccessMask subfield [CLS]
+12. If a property provides both getter and setter methods, then these methods shall have the same
+value for their Method.Flags.Virtual [CLS]
+13. Any getter and setter methods shall have Method.Flags.SpecialName = 1 [CLS]
+14. Any getter method shall have a return type which matches the signature indexed by the
+Property.Type field [CLS]
+15. The last parameter for any setter method shall have a type which matches the signature indexed
+by the Property.Type field [CLS]
+16. Any setter method shall have return type ELEMENT_TYPE_VOID (§23.1.16) in Method.Signature
+[CLS]
+17. If the property is indexed, the indexes for getter and setter shall agree in number and type [CLS]
+18. Any AddOn method for an event whose Name is xxx shall have the signature: void add_xxx
+(<DelegateType> handler) [CLS]
+19. Any RemoveOn method for an event whose Name is xxx shall have the signature: void
+remove_xxx(<DelegateType> handler) [CLS]
+20. Any Fire method for an event whose Name is xxx shall have the signature: void
+raise_xxx(Event e) [CLS]
+End informative text
+22.29 MethodSpec : 0x2B
+The MethodSpec table has the following columns:
+• Method (an index into the MethodDef or MemberRef table, specifying to which generic method
+this row refers; that is, which generic method this row is an instantiation of; more precisely, a
+MethodDefOrRef (§24.2.6) coded index)
+• Instantiation (an index into the Blob heap (§23.2.15), holding the signature of this instantiation)
+The MethodSpec table records the signature of an instantiated generic method.
+Each unique instantiation of a generic method (i.e., a combination of Method and Instantiation) shall be
+represented by a single row in the table.
+This contains informative text only
+Partition II 133
+1. The MethodSpec table can contain zero or more rows
+2. One or more rows can refer to the same row in the MethodDef or MemberRef table. (There can be
+multiple instantiations of the same generic method.)
+3. The signature stored at Instantiation shall be a valid instantiation of the signature of the generic
+method stored at Method [ERROR]
+4. There shall be no duplicate rows based upon Method+Instantiation [ERROR]
+End informative text
+22.30 Module : 0x00
+The Module table has the following columns:
+• Generation (a 2-byte value, reserved, shall be zero)
+• Name (an index into the String heap)
+• Mvid (an index into the Guid heap; simply a Guid used to distinguish between two versions of the
+same module)
+• EncId (an index into the Guid heap; reserved, shall be zero)
+• EncBaseId (an index into the Guid heap; reserved, shall be zero)
+The Mvid column shall index a unique GUID in the GUID heap (§24.2.5) that identifies this instance of the
+module. The Mvid can be ignored on read by conforming implementations of the CLI. The Mvid should be
+newly generated for every module, using the algorithm specified in ISO/IEC 11578:1996 (Annex A) or another
+compatible algorithm.
+[Note: The term GUID stands for Globally Unique IDentifier, a 16-byte long number typically displayed using
+its hexadecimal encoding. A GUID can be generated by several well-known algorithms including those used
+for UUIDs (Universally Unique IDentifiers) in RPC and CORBA, as well as CLSIDs, GUIDs, and IIDs in
+COM. end note]
+[Rationale: While the VES itself makes no use of the Mvid, other tools (such as debuggers, which are outside
+the scope of this standard) rely on the fact that the Mvid almost always differs from one module to another. end
+rationale]
+The Generation, EncId, and EncBaseId columns can be written as zero, and can be ignored by conforming
+implementations of the CLI. The rows in the Module table result from .module directives in the Assembly
+(§6.4).
+This contains informative text only
+1. The Module table shall contain one and only one row [ERROR]
+2. Name shall index a non-empty string. This string should match exactly any corresponding
+ModuleRef.Name string that resolves to this module. [ERROR]
+3. Mvid shall index a non-null GUID in the Guid heap [ERROR]
+End informative text
+22.31 ModuleRef : 0x1A
+The ModuleRef table has the following column:
+• Name (an index into the String heap)
+The rows in the ModuleRef table result from .module extern directives in the Assembly (§6.5).
+134 Partition II
+This contains informative text only
+1. Name shall index a non-empty string in the String heap. This string shall enable the CLI to locate
+the target module (typically, it might name the file used to hold the module) [ERROR]
+2. There should be no duplicate rows [WARNING]
+3. Name should match an entry in the Name column of the File table. Moreover, that entry shall
+enable the CLI to locate the target module (typically it might name the file used to hold the
+module) [ERROR]
+End informative text
+22.32 NestedClass : 0x29
+The NestedClass table has the following columns:
+• NestedClass (an index into the TypeDef table)
+• EnclosingClass (an index into the TypeDef table)
+NestedClass is defined as lexically ‘inside’ the text of its enclosing Type.
+This contains informative text only
+The NestedClass table records which Type definitions are nested within which other Type definition. In a
+typical high-level language, the nested class is defined as lexically ‘inside’ the text of its enclosing Type
+1. The NestedClass table can contain zero or more rows
+2. NestedClass shall index a valid row in the TypeDef table [ERROR]
+3. EnclosingClass shall index a valid row in the TypeDef table (note particularly, it is not allowed to
+index the TypeRef table) [ERROR]
+4. There should be no duplicate rows (ie same values for NestedClass and EnclosingClass)
+[WARNING]
+5. A given Type can only be nested by one encloser. So, there cannot be two rows with the same
+value for NestedClass, but different value for EnclosingClass [ERROR]
+6. A given Type can ‘own’ several different nested Types, so it is perfectly valid to have two or
+more rows with the same value for EnclosingClass but different values for NestedClass
+End informative text
+22.33 Param : 0x08
+The Param table has the following columns:
+• Flags (a 2-byte bitmask of type ParamAttributes, §23.1.13)
+• Sequence (a 2-byte constant)
+• Name (an index into the String heap)
+Conceptually, every row in the Param table is owned by one, and only one, row in the MethodDef table
+The rows in the Param table result from the parameters in a method declaration (§15.4), or from a .param
+attribute attached to a method (§15.4.1).
+This contains informative text only
+1. Param table can contain zero or more rows
+Partition II 135
+2. Each row shall have one, and only one, owner row in the MethodDef table [ERROR]
+3. Flags shall have only those values set that are specified (all combinations valid) [ERROR]
+4. Sequence shall have a value >= 0 and <= number of parameters in owner method. A Sequence
+value of 0 refers to the owner method’s return type; its parameters are then numbered from 1
+onwards [ERROR]
+5. Successive rows of the Param table that are owned by the same method shall be ordered by
+increasing Sequence value - although gaps in the sequence are allowed [WARNING]
+6. If Flags.HasDefault = 1 then this row shall own exactly one row in the Constant table [ERROR]
+7. If Flags.HasDefault = 0, then there shall be no rows in the Constant table owned by this row
+[ERROR]
+8. parameters cannot be given default values, so Flags.HasDefault shall be 0 [CLS]
+9. if Flags.FieldMarshal = 1 then this row shall own exactly one row in the FieldMarshal table
+[ERROR]
+10. Name can be null or non-null
+11. If Name is non-null, then it shall index a non-empty string in the String heap [WARNING]
+End informative text
+22.34 Property : 0x17
+Properties within metadata are best viewed as a means to gather together collections of methods defined on a
+class, give them a name, and not much else. The methods are typically get_ and set_ methods, already defined
+on the class, and inserted like any other methods into the MethodDef table. The association is held together by
+three separate tables, as shown below:
+Row 3 of the PropertyMap table indexes row 2 of the TypeDef table on the left (MyClass), whilst indexing
+row 4 of the Property table on the right – the row for a property called Foo. This setup establishes that
+MyClass has a property called Foo. But what methods in the MethodDef table are gathered together as
+‘belonging’ to property Foo? That association is contained in the MethodSemantics table – its row 2 indexes
+property Foo to the right, and row 2 in the MethodDef table to the left (a method called get_Foo). Also, row 3
+of the MethodSemantics table indexes Foo to the right, and row 3 in the MethodDef table to the left (a method
+called set_Foo). As the shading suggests, MyClass has another property, called Bar, with two methods,
+get_Bar and set_Bar.
+Property tables do a little more than group together existing rows from other tables. The Property table has
+columns for Flags, Name (eg Foo and Bar in the example here) and Type. In addition, the MethodSemantics
+table has a column to record whether the method it points at is a set_, a get_ or other.
+136 Partition II
+[Note: The CLS (see Partition I) refers to instance, virtual, and static properties. The signature of a property
+(from the Type column) can be used to distinguish a static property, since instance and virtual properties will
+have the “HASTHIS” bit set in the signature (§23.2.1) while a static property will not. The distinction between
+an instance and a virtual property depends on the signature of the getter and setter methods, which the CLS
+requires to be either both virtual or both instance. end note]
+The Property ( 0x17 ) table has the following columns:
+• Flags (a 2-byte bitmask of type PropertyAttributes, §23.1.14)
+• Name (an index into the String heap)
+• Type (an index into the Blob heap) (The name of this column is misleading. It does not index a
+TypeDef or TypeRef table—instead it indexes the signature in the Blob heap of the Property)
+This contains informative text only
+1. Property table can contain zero or more rows
+2. Each row shall have one, and only one, owner row in the PropertyMap table (as described above)
+[ERROR]
+3. PropFlags shall have only those values set that are specified (all combinations valid) [ERROR]
+4. Name shall index a non-empty string in the String heap [ERROR]
+5. The Name string shall be a valid CLS identifier [CLS]
+6. Type shall index a non-null signature in the Blob heap [ERROR]
+7. The signature indexed by Type shall be a valid signature for a property (ie, low nibble of leading
+byte is 0x8). Apart from this leading byte, the signature is the same as the property’s get_ method
+[ERROR]
+8. Within the rows owned by a given row in the TypeDef table, there shall be no duplicates based
+upon Name+Type [ERROR]
+9. There shall be no duplicate rows based upon Name, where Name fields are compared using CLS
+conflicting-identifier-rules (in particular, properties cannot be overloaded by their Type – a class
+cannot have two properties, "int Foo" and "String Foo", for example) [CLS]
+End informative text
+22.35 PropertyMap : 0x15
+The PropertyMap table has the following columns:
+• Parent (an index into the TypeDef table)
+• PropertyList (an index into the Property table). It marks the first of a contiguous run of
+Properties owned by Parent. The run continues to the smaller of:
+o the last row of the Property table
+o the next run of Properties, found by inspecting the PropertyList of the next row in this
+PropertyMap table
+The PropertyMap and Property tables result from putting the .property directive on a class (§17).
+This contains informative text only
+1. PropertyMap table can contain zero or more rows
+2. There shall be no duplicate rows, based upon Parent (a given class has only one ‘pointer’ to the
+start of its property list) [ERROR]
+Partition II 137
+3. There shall be no duplicate rows, based upon PropertyList (different classes cannot share rows in
+the Property table) [ERROR]
+End informative text
+22.36 StandAloneSig : 0x11
+Signatures are stored in the metadata Blob heap. In most cases, they are indexed by a column in some table—
+Field.Signature, Method.Signature, MemberRef.Signature, etc. However, there are two cases that require a
+metadata token for a signature that is not indexed by any metadata table. The StandAloneSig table fulfils this
+need. It has just one column, which points to a Signature in the Blob heap.
+The signature shall describe either:
+• a method – code generators create a row in the StandAloneSig table for each occurrence of a calli
+CIL instruction. That row indexes the call-site signature for the function pointer operand of the
+calli instruction
+• local variables – code generators create one row in the StandAloneSig table for each method, to
+describe all of its local variables. The .locals directive (§15.4.1) in ILAsm generates a row in
+the StandAloneSig table.
+TheStandAloneSig table has the following column:
+• Signature (an index into the Blob heap)
+[Example:
+// On encountering the calli instruction, ilasm generates a signature
+// in the blob heap (DEFAULT, ParamCount = 1, RetType = int32, Param1 = int32),
+// indexed by the StandAloneSig table:
+.assembly Test {}
+.method static int32 AddTen(int32)
+{ ldarg.0
+ldc.i4 10
+add
+ret
+}
+.class Test
+{ .method static void main()
+{ .entrypoint
+ldc.i4.1
+ldftn int32 AddTen(int32)
+calli int32(int32)
+pop
+ret
+}
+}
+end example]
+This contains informative text only
+1. The StandAloneSig table can contain zero or more rows
+2. Signature shall index a valid signature in the Blob heap [ERROR]
+3. The signature 'blob' indexed by Signature shall be a valid METHOD or LOCALS signature [ERROR]
+4. Duplicate rows are allowed
+End informative text
+138 Partition II
+22.37 TypeDef : 0x02
+The TypeDef table has the following columns:
+• Flags (a 4-byte bitmask of type TypeAttributes, §23.1.15)
+• TypeName (an index into the String heap)
+• TypeNamespace (an index into the String heap)
+• Extends (an index into the TypeDef, TypeRef, or TypeSpec table; more precisely, a TypeDefOrRef
+(§24.2.6) coded index)
+• FieldList (an index into the Field table; it marks the first of a contiguous run of Fields owned by
+this Type). The run continues to the smaller of:
+o the last row of the Field table
+o the next run of Fields, found by inspecting the FieldList of the next row in this
+TypeDef table
+• MethodList (an index into the MethodDef table; it marks the first of a continguous run of Methods
+owned by this Type). The run continues to the smaller of:
+o the last row of the MethodDef table
+o the next run of Methods, found by inspecting the MethodList of the next row in this
+TypeDef table
+The first row of the TypeDef table represents the pseudo class that acts as parent for functions and variables
+defined at module scope.
+Note that any type shall be one, and only one, of
+• Class (Flags.Interface = 0, and derives ultimately from System.Object)
+• Interface (Flags.Interface = 1)
+• Value type, derived ultimately from System.ValueType
+For any given type, there are two separate and distinct chains of pointers to other types (the pointers are
+actually implemented as indexes into metadata tables). The two chains are:
+• Extension chain – defined via the Extends column of the TypeDef table. Typically, a derived
+Class extends a base Class (always one, and only one, base Class)
+• Interface chains – defined via the InterfaceImpl table. Typically, a Class implements zero, one or
+more Interfaces
+These two chains (extension and interface) are always kept separate in metadata. The Extends chain represents
+one-to-one relations—that is, one Class extends (or ‘derives from’) exactly one other Class (called its
+immediate base class). The Interface chains can represent one-to-many relations—that is, one Class might well
+implement two or more Interfaces.
+An interface can also implement one or more other interfaces—metadata stores those links via the
+InterfaceImpl table (the nomenclature is a little inappropriate here—there is no “implementation” involved;
+perhaps a clearer name might have been Interface table, or InterfaceInherit table)
+Another slightly specialized type is a nested type which is declared in ILAsm as lexically nested within an
+enclosing type declaration. Whether a type is nested can be determined by the value of its Flags.Visibility subfield
+– it shall be one of the set {NestedPublic, NestedPrivate, NestedFamily, NestedAssembly,
+NestedFamANDAssem, NestedFamORAssem}.
+If a type is generic, its parameters are defined in the GenericParam table (§22.20). Entries in the
+GenericParam table reference entries in the TypeDef table; there is no reference from the TypeDef table to the
+GenericParam table.
+Partition II 139
+This contains informative text only
+The roots of the inheritance hierarchies look like this:
+There is one system-defined root, System.Object. All Classes and ValueTypes shall derive, ultimately, from
+System.Object; Classes can derive from other Classes (through a single, non-looping chain) to any depth
+required. This Extends inheritance chain is shown with heavy arrows.
+(See below for details of the System.Delegate Class)
+Interfaces do not inherit from one another; however, they can have zero or more required interfaces, which
+shall be implemented. The Interface requirement chain is shown as light, dashed arrows. This includes links
+between Interfaces and Classes/ValueTypes – where the latter are said to implement that interface or interfaces.
+Regular ValueTypes (i.e., excluding Enums – see later) are defined as deriving directly from
+System.ValueType. Regular ValueTypes cannot be derived to a depth of more than one. (Another way to state
+this is that user-defined ValueTypes shall be sealed.) User-defined Enums shall derive directly from
+System.Enum. Enums cannot be derived to a depth of more than one below System.Enum. (Another way to
+state this is that user-defined Enums shall be sealed.) System.Enum derives directly from System.ValueType.
+User-defined delegates derive from System.Delegate. Delegates cannot be derived to a depth of more than
+one.
+For the directives to declare types see §9.
+1. A TypeDef table can contain one or more rows.
+2. Flags:
+a. Flags shall have only those values set that are specified [ERROR]
+b. can set 0 or 1 of SequentialLayout and ExplicitLayout (if none set, then defaults to
+AutoLayout) [ERROR]
+c. can set 0 or 1 of UnicodeClass and AutoClass (if none set, then defaults to AnsiClass)
+[ERROR]
+d. If Flags.HasSecurity = 1, then at least one of the following conditions shall be true:
+[ERROR]
+• this Type owns at least one row in the DeclSecurity table
+• this Type has a custom attribute called SuppressUnmanagedCodeSecurityAttribute
+e. If this Type owns one (or more) rows in the DeclSecurity table then Flags.HasSecurity shall
+be 1 [ERROR]
+140 Partition II
+f. If this Type has a custom attribute called SuppressUnmanagedCodeSecurityAttribute then
+Flags.HasSecurity shall be 1 [ERROR]
+g. Note that it is valid for an Interface to have HasSecurity set. However, the security system
+ignores any permission requests attached to that Interface
+3. Name shall index a non-empty string in the String heap [ERROR]
+4. The TypeName string shall be a valid CLS identifier [CLS]
+5. TypeNamespace can be null or non-null
+6. If non-null, then TypeNamespace shall index a non-empty string in the String heap [ERROR]
+7. If non-null, TypeNamespace’s string shall be a valid CLS Identifier [CLS]
+8. Every Class (with the exception of System.Object and the special class <Module>) shall extend
+one, and only one, other Class - so Extends for a Class shall be non-null [ERROR]
+9. System.Object shall have an Extends value of null [ERROR]
+10. System.ValueType shall have an Extends value of System.Object [ERROR]
+11. With the exception of System.Object and the special class <Module>, for any Class, Extends shall
+index a valid row in the TypeDef, TypeRef, or TypeSpec table, where valid means 1 <= row <=
+rowcount. In addition, that row itself shall be a Class (not an Interface or ValueType) In
+addition, that base Class shall not be sealed (its Flags.Sealed shall be 0) [ERROR]
+12. A Class cannot extend itself, or any of its children (i.e., its derived Classes), since this would
+introduce loops in the hierarchy tree [ERROR] (For generic types, see §9.1 and §9.2.)
+13. An Interface never extends another Type - so Extends shall be null (Interfaces do implement other
+Interfaces, but recall that this relationship is captured via the InterfaceImpl table, rather than the
+Extends column) [ERROR]
+14. FieldList can be null or non-null
+15. A Class or Interface can ‘own’ zero or more fields
+16. A ValueType shall have a non-zero size - either by defining at least one field, or by providing a
+non-zero ClassSize [ERROR]
+17. If FieldList is non-null, it shall index a valid row in the Field table, where valid means 1 <= row
+<= rowcount+1 [ERROR]
+18. MethodList can be null or non-null
+19. A Type can ‘own’ zero or more methods
+20. The runtime size of a ValueType shall not exceed 1 MByte (0x100000 bytes) [ERROR]
+21. If MethodList is non-null, it shall index a valid row in the MethodDef table, where valid means 1
+<= row <= rowcount+1 [ERROR]
+22. A Class which has one or more abstract methods cannot be instantiated, and shall have
+Flags.Abstract = 1. Note that the methods owned by the class include all of those inherited from
+its base class and interfaces it implements, plus those defined via its MethodList. (The CLI shall
+analyze class definitions at runtime; if it finds a class to have one or more abstract methods, but
+has Flags.Abstract = 0, it will throw an exception) [ERROR]
+23. An Interface shall have Flags.Abstract = 1 [ERROR]
+24. It is valid for an abstract Type to have a constructor method (ie, a method named .ctor)
+25. Any non-abstract Type (ie Flags.Abstract = 0) shall provide an implementation (body) for every
+method its contract requires. Its methods can be inherited from its base class, from the interfaces
+it implements, or defined by itself. The implementations can be inherited from its base class, or
+defined by itself [ERROR]
+Partition II 141
+26. An Interface (Flags.Interface = 1) can own static fields (Field.Static = 1) but cannot own instance
+fields (Field.Static = 0) [ERROR]
+27. An Interface cannot be sealed (if Flags.Interface = 1, then Flags.Sealed shall be 0) [ERROR]
+28. All of the methods owned by an Interface (Flags.Interface = 1) shall be abstract (Flags.Abstract
+= 1) [ERROR]
+29. There shall be no duplicate rows in the TypeDef table, based on TypeNamespace+TypeName
+(unless this is a nested type - see below) [ERROR]
+30. If this is a nested type, there shall be no duplicate row in the TypeDef table, based upon
+TypeNamespace+TypeName+OwnerRowInNestedClassTable [ERROR]
+31. There shall be no duplicate rows, where TypeNamespace+TypeName fields are compared using
+CLS conflicting-identifier-rules (unless this is a nested type - see below) [CLS]
+32. If this is a nested type, there shall be no duplicate rows, based upon
+TypeNamespace+TypeName+OwnerRowInNestedClassTable and where
+TypeNamespace+TypeName fields are compared using CLS conflicting-identifier-rules [CLS]
+33. If Extends = System.Enum (i.e., type is a user-defined Enum) then:
+a. shall be sealed (Sealed = 1) [ERROR]
+b. shall not have any methods of its own (MethodList chain shall be zero length) [ERROR]
+c. shall not implement any interfaces (no entries in InterfaceImpl table for this type)
+[ERROR]
+d. shall not have any properties [ERROR]
+e. shall not have any events [ERROR]
+f. any static fields shall be literal (have Flags.Literal = 1) [ERROR]
+g. shall have one or more static, literal fields, each of which has the type of the Enum [CLS]
+h. shall be exactly one instance field, of built-in integer type [ERROR]
+i. the Name string of the instance field shall be "value__", the field shall be marked
+RTSpecialName, and that field shall have one of the CLS integer types [CLS]
+j. shall not have any static fields unless they are literal [ERROR]
+34. A Nested type (defined above) shall own exactly one row in the NestedClass table, where ‘owns’
+means a row in that NestedClass table whose NestedClass column holds the TypeDef token for
+this type definition [ERROR]
+35. A ValueType shall be sealed [ERROR]
+End informative text
+22.38 TypeRef : 0x01
+The TypeRef table has the following columns:
+• ResolutionScope (an index into a Module, ModuleRef, AssemblyRef or TypeRef table, or null;
+more precisely, a ResolutionScope (§24.2.6) coded index)
+• TypeName (an index into the String heap)
+• TypeNamespace (an index into the String heap)
+This contains informative text only
+1. ResolutionScope shall be exactly one of:
+142 Partition II
+a. null - in this case, there shall be a row in the ExportedType table for this Type - its
+Implementation field shall contain a File token or an AssemblyRef token that says where the
+type is defined [ERROR]
+b. a TypeRef token, if this is a nested type (which can be determined by, for example,
+inspecting the Flags column in its TypeDef table - the accessibility subfield is one of the
+tdNestedXXX set) [ERROR]
+c. a ModuleRef token, if the target type is defined in another module within the same
+Assembly as this one [ERROR]
+d. a Module token, if the target type is defined in the current module - this should not occur in
+a CLI (“compressed metadata”) module [WARNING]
+e. an AssemblyRef token, if the target type is defined in a different Assembly from the current
+module [ERROR]
+2. TypeName shall index a non-empty string in the String heap [ERROR]
+3. TypeNamespace can be null, or non-null
+4. If non-null, TypeNamespace shall index a non-empty string in the String heap [ERROR]
+5. The TypeName string shall be a valid CLS identifier [CLS]
+6. There shall be no duplicate rows, where a duplicate has the same ResolutionScope, TypeName and
+TypeNamespace [ERROR]
+7. There shall be no duplicate rows, where TypeName and TypeNamespace fields are compared
+using CLS conflicting-identifier-rules [CLS]
+End informative text
+22.39 TypeSpec : 0x1B
+The TypeSpec table has just one column, which indexes the specification of a Type, stored in the Blob heap.
+This provides a metadata token for that Type (rather than simply an index into the Blob heap). This is required,
+typically, for array operations, such as creating, or calling methods on the array class.
+The TypeSpec table has the following column:
+• Signature (index into the Blob heap, where the blob is formatted as specified in §23.2.14)
+Note that TypeSpec tokens can be used with any of the CIL instructions that take a TypeDef or TypeRef token;
+specifically, castclass, cpobj, initobj, isinst, ldelema, ldobj, mkrefany, newarr, refanyval, sizeof, stobj,
+box, and unbox.
+This contains informative

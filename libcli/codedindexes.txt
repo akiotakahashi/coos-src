@@ -1,0 +1,68 @@
+:TypeDefOrRef
+TypeDef 0
+TypeRef 1
+TypeSpec 2
+:HasConstant
+Field 0
+Param 1
+Property 2
+:HasCustomAttribute
+MethodDef 0
+Field 1
+TypeRef 2
+TypeDef 3
+Param 4
+InterfaceImpl 5
+MemberRef 6
+Module 7
+DeclSecurity 8
+Property 9
+Event 10
+StandAloneSig 11
+ModuleRef 12
+TypeSpec 13
+Assembly 14
+AssemblyRef 15
+File 16
+ExportedType 17
+ManifestResource 18
+:HasFieldMarshal
+Field 0
+Param 1
+:HasDeclSecurity
+TypeDef 0
+MethodDef 1
+Assembly 2
+:MemberRefParent
+TypeDef 0
+TypeRef 1
+ModuleRef 2
+MethodDef 3
+TypeSpec 4
+:HasSemantics
+Event 0
+Property 1
+:MethodDefOrRef
+MethodDef 0
+MemberRef 1
+:MemberForwarded
+Field 0
+MethodDef 1
+:Implementation
+File 0
+AssemblyRef 1
+ExportedType 2
+:CustomAttributeType
+Not used 0
+Not used 1
+MethodDef 2
+MemberRef 3
+Not used 4
+:ResolutionScope
+Module 0
+ModuleRef 1
+AssemblyRef 2
+TypeRef 3
+:TypeOrMethodDef
+TypeDef 0
+MethodDef 1

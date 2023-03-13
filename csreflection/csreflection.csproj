@@ -1,0 +1,107 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16A2748F-4B8F-4DD6-9293-7F06F06E2DEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CooS</RootNamespace>
+    <AssemblyName>csreflection</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.0.2, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyBase.cs" />
+    <Compile Include="Reflection\AssemblyRefDesc.cs" />
+    <Compile Include="Reflection\CompondKind.cs" />
+    <Compile Include="Reflection\Generics\GenericFieldBase.cs" />
+    <Compile Include="Reflection\Generics\InstantiatedField.cs" />
+    <Compile Include="Reflection\Generics\SpecializedMethod.cs" />
+    <Compile Include="Reflection\Generics\GenericParameterType.cs" />
+    <Compile Include="Reflection\Generics\GenericTypeBase.cs" />
+    <Compile Include="Reflection\Generics\GenericMethodBase.cs" />
+    <Compile Include="Reflection\Generics\InstantiatedMethod.cs" />
+    <Compile Include="Reflection\Generics\InstantiatedType.cs" />
+    <Compile Include="Reflection\Generics\GenericMethodImpl.cs" />
+    <Compile Include="Reflection\Generics\GenericFieldImpl.cs" />
+    <Compile Include="Reflection\MemberNotFoundException.cs" />
+    <Compile Include="Reflection\MemberRefDesc.cs" />
+    <Compile Include="Reflection\MethodNotFoundException.cs" />
+    <Compile Include="Reflection\Generics\SpecializedType.cs" />
+    <Compile Include="Reflection\TypeNotFoundException.cs" />
+    <Compile Include="Reflection\FieldNotFoundException.cs" />
+    <Compile Include="Reflection\TypeRefDesc.cs" />
+    <Compile Include="Reflection\Generics\SpecializedList.cs" />
+    <Compile Include="Reflection\IGenericParameterize.cs" />
+    <Compile Include="Reflection\Derived\ArrayType.cs" />
+    <Compile Include="Reflection\Derived\ByRefPointerType.cs" />
+    <Compile Include="Reflection\Derived\ByValPointerType.cs" />
+    <Compile Include="Reflection\Derived\DerivedType.cs" />
+    <Compile Include="Reflection\Derived\MnArrayType.cs" />
+    <Compile Include="Reflection\Derived\PointerType.cs" />
+    <Compile Include="Reflection\Derived\SzArrayType.cs" />
+    <Compile Include="Reflection\IntrinsicType.cs" />
+    <Compile Include="Reflection\MemberBase.cs" />
+    <Compile Include="Reflection\FieldBase.cs" />
+    <Compile Include="Reflection\ILoader.cs" />
+    <Compile Include="Reflection\MethodBase.cs" />
+    <Compile Include="Reflection\ParamBase.cs" />
+    <Compile Include="Reflection\TypeBase.cs" />
+    <Compile Include="Reflection\PrimitiveType.cs" />
+    <Compile Include="World.cs" />
+    <Compile Include="WorldImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\csformat\csformat.csproj">
+      <Project>{4452E2D1-90B8-401A-8F4E-9189FA930575}</Project>
+      <Name>csformat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csutility\csutility.csproj">
+      <Project>{FF7256E9-F3AC-484C-924F-52F33177F73B}</Project>
+      <Name>csutility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

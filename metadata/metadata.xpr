@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <meta>
+        <lastOpenedFiles>
+            <file name="metadata.xsd"/>
+            <file name="metadata.xsl"/>
+            <file focused="true" name="metadata.xml"/>
+        </lastOpenedFiles>
+    </meta>
+    <projectTree name="metadata.xpr">
+        <file name="metadata.xml"/>
+        <file name="metadata.xsd"/>
+        <file name="metadata.xsl"/>
+    </projectTree>
+</project>

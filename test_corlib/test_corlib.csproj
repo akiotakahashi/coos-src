@@ -1,0 +1,147 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45B77FA6-F0A1-406B-978A-22BBE7D716EA}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>test_corlib</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>0</FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\cscorlib\cscorlib.csproj">
+      <Name>cscorlib</Name>
+      <Project>{94A0A262-6D0C-4775-B097-A16E39269E2C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\csgraphics\csgraphics.csproj">
+      <Name>csgraphics</Name>
+      <Project>{6E0DFE58-21DB-468A-A36A-792A2B6D20C3}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\cskorlib\cskorlib.vcproj">
+      <Name>cskorlib</Name>
+      <Project>{D871E6FC-6CC1-4B3B-AB1F-4BEDB7C6144C}</Project>
+      <Package>{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CooS\CodeModels\CLI\AssemblyDefTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\CodeModels\CLI\Metadata\MetadataRootTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\CodeModels\CLI\MethodDefInfoTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\CodeModels\Java\ClassFileTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\Collections\InttableTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\Collections\TrieTreeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\Execution\CodeManagerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\FileSystem\PathInfoTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\Reflection\AssemblyManagerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\Reflection\TypeImplTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\TestUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CooS\Wrap\System\IO\PathTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="System\TestInt32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestForEach.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_Application.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FreeType\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="shift_jis" ?>
+<instructionset>
+	<operation mnemonic="ADD">
+		<instruction opcode="04 ib" operands="AL,imm8">imm8 をAL に加算する。</instruction>
+		<instruction opcode="05 iw" operands="AX,imm16">imm16 をAX に加算する。</instruction>
+		<instruction opcode="05 id" operands="EAX,imm32">imm32 をEAX に加算する。</instruction>
+		<instruction opcode="80 /0 ib" operands="r/m8,imm8">imm8 をr/m8 に加算する。</instruction>
+		<instruction opcode="81 /0 iw" operands="r/m16,imm16">imm16 をr/m16 に加算する。</instruction>
+		<instruction opcode="81 /0 id" operands="r/m32,imm32">imm32 をr/m32 に加算する。</instruction>
+		<instruction opcode="83 /0 ib" operands="r/m16,imm8">符号拡張imm8 をrm16 に加算する。</instruction>
+		<instruction opcode="83 /0 ib" operands="r/m32,imm8">符号拡張imm8 をrm32 に加算する。</instruction>
+		<instruction opcode="00 /r" operands="r/m8,r8">r8 をr/m8 に加算する。</instruction>
+		<instruction opcode="01 /r" operands="r/m16,r16">r16 をr/m16 に加算する。</instruction>
+		<instruction opcode="01 /r" operands="r/m32,r32">r32 をr/m32 に加算する。</instruction>
+		<instruction opcode="02 /r" operands="r8,r/m8">r/m8 をr8 に加算する。</instruction>
+		<instruction opcode="03 /r" operands="r16,r/m16">r/m16 をr16 に加算する。</instruction>
+		<instruction opcode="03 /r" operands="r32,r/m32">r/m32 をr32 に加算する。</instruction>
+	</operation>
+	<operation mnemonic="AND">
+		<instruction opcode="24 ib" operands="AL,imm8">AL とimm8 とのAND をとる。</instruction>
+		<instruction opcode="25 iw" operands="AX,imm16">AX とimm16 とのAND をとる。</instruction>
+		<instruction opcode="25 id" operands="EAX,imm32">EAX とimm32 とのAND をとる。</instruction>
+		<instruction opcode="80 /4 ib" operands="r/m8,imm8">r/m8 とimm8 とのAND をとる。</instruction>
+		<instruction opcode="81 /4 iw" operands="r/m16,imm16">r/m16 とimm16 とのAND をとる。</instruction>
+		<instruction opcode="81 /4 id" operands="r/m32,imm32">r/m32 とimm32 とのAND をとる。</instruction>
+		<instruction opcode="83 /4 ib" operands="r/m16,imm8">r/m16 とimm8 ( 符号拡張) とのAND をとる。</instruction>
+		<instruction opcode="83 /4 ib" operands="r/m32,imm8">r/m32 とimm8 ( 符号拡張) とのAND をとる。</instruction>
+		<instruction opcode="20 /r" operands="r/m8,r8">r/m8 とr8 とのAND をとる。</instruction>
+		<instruction opcode="21 /r" operands="r/m16,r16">r/m16 とr16 とのAND をとる。</instruction>
+		<instruction opcode="21 /r" operands="r/m32,r32">r/m32 とr32 とのAND をとる。</instruction>
+		<instruction opcode="22 /r" operands="r8,r/m8">r8 とr/m8 とのAND をとる。</instruction>
+		<instruction opcode="23 /r" operands="r16,r/m16">r16 とr/m16 とのAND をとる。</instruction>
+		<instruction opcode="23 /r" operands="r32,r/m32">r32 とr/m32 とのAND をとる。</instruction>
+	</operation>
+	<operation mnemonic="CMP">
+		<instruction opcode="3C ib" operands="AL,imm8">imm8 をAL と比較する。</instruction>
+		<instruction opcode="3D iw" operands="AX,imm16">imm16 をAX と比較する。</instruction>
+		<instruction opcode="3D id" operands="EAX,imm32">imm32 をEAX と比較する。</instruction>
+		<instruction opcode="80 /7 ib" operands="r/m8,imm8">imm8 をr/m8 と比較する。</instruction>
+		<instruction opcode="81 /7 iw" operands="r/m16,imm16">imm16 をr/m16 と比較する。</instruction>
+		<instruction opcode="81 /7 id" operands="r/m32,imm32">imm32 をr/m32 と比較する。</instruction>
+		<instruction opcode="83 /7 ib" operands="r/m16,imm8">imm8 をr/m16 と比較する。</instruction>
+		<instruction opcode="83 /7 ib" operands="r/m32,imm8">imm8 をr/m32 と比較する。</instruction>
+		<instruction opcode="38 /r" operands="r/m8,r8">r8 をr/m8 と比較する。</instruction>
+		<instruction opcode="39 /r" operands="r/m16,r16">r16 をr/m16 と比較する。</instruction>
+		<instruction opcode="39 /r" operands="r/m32,r32">r32 をr/m32 と比較する。</instruction>
+		<instruction opcode="3A /r" operands="r8,r/m8">r/m8 をr8 と比較する。</instruction>
+		<instruction opcode="3B /r" operands="r16,r/m16">r/m16 をr16 と比較する。</instruction>
+		<instruction opcode="3B /r" operands="r32,r/m32">r/m32 をr32 と比較する。</instruction>
+	</operation>
+</instructionset>

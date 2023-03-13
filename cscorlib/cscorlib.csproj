@@ -1,0 +1,1011 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{94A0A262-6D0C-4775-B097-A16E39269E2C}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>cscorlib</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CooS</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <Name>mscorlib</Name>
+      <HintPath>..\cdimage\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <ProjectReference Include="..\cskorlib\cskorlib.vcproj">
+      <Name>cskorlib</Name>
+      <Project>{D871E6FC-6CC1-4B3B-AB1F-4BEDB7C6144C}</Project>
+      <Package>{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\csutility\csutility.csproj">
+      <Project>{FF7256E9-F3AC-484C-924F-52F33177F73B}</Project>
+      <Name>csutility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ia32assembler\ia32assembler.csproj">
+      <Name>ia32assembler</Name>
+      <Project>{8952F266-E92D-4FEB-AD76-1743841FDFF4}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDomainImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architecture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architectures\IA32\IA32Assembler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architectures\IA32\IA32Interrupt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architectures\IA32\RegisterSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architectures\IA32\ServiceHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architectures\InterruptHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Architectures\IOPort.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assist.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Beep.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\AbsoluteLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Assembler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\BadILException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\BadImageException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\BadOperandException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\AssemblyDef.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\CliType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\CodeFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\ConstructorDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\FieldDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\FieldRefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\Compiler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\EvaluationFrame.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\EvaluationStack.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\ILStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\Instruction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\InstructionPrefixes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\IntrinsicType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\NullType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Manipulation\Synthesizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\AssemblyFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\BadMetadataException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\BlobHeap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\BlobRow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\CodedTokenId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\CorHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\ElementType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\GuidHeap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Heap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\ManifestResourceAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\MetadataRoot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\MethodIL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\MethodSemanticsAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\PInvokeAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Row.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Rows.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Stream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\StringsHeap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Table.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\TableId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Tables.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\TablesHeap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\TablesHeapBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\TabsDecoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Token.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\TokenType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\UserStringsHeap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metadata\Utils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\ArrayType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\ByRefPointerType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\ByValPointerType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\ClassType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\ConcreteType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\DelegateType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\DerivedType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\EnumType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\InterfaceType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\MnArrayType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\PointerType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\PrimitiveType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\StringType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\StructType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\SzArrayType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Metatype\TypeUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\MethodDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\MethodRefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\MethodSigInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\ParameterDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\BadSignatureException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\CallingConventionFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\ConstraintSig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\CustomMod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\FieldSig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\LocalVar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\LocalVarSig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\MethodSig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\MethodSigImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\ParamSig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\RetType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\SignatureReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\SignatureUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\TypeDefOrRefEncoded.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\Signature\TypeSig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CLI\StandardBinder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CodeInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CodeLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CodeLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\CodeUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Condition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\Characteristics.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\CheckSum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\COFFHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\DataDir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\DOSHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\ExeSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\ImageUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\MachineId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\PEHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Codetable.cs" />
+    <Compile Include="Execution\DLL\PEImage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\PEUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\RVA.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\Section.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\SectionCharacteristics.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\DLL\Subsystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Heaplet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\IBranchTarget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\AssemblyDef.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\ClassFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\FieldDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\JavaUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\AccessFlag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\attribute_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\class_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\code_attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\ConstantTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\cp_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\double_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\fieldref_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\field_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\float_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\integer_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\interfacemethodref_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\long_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\memberref_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\member_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\methodref_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\method_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\nameandtype_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\string_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\Utf8Index.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\Metadata\utf8_info.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\MethodDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\ReversiveReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\Java\TypeDefInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\MethodFilteringCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeModels\RelativeLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\ATADevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\ATAPIController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\ATAPIDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\ATAPIException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\ATAPITimeoutException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\CDROM\CdromDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\CDROM\CdromMedia.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\CDROM\MediaAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\CDROM\SenseKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\DeviceBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\DeviceFeatures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\DeviceType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\Harddisk\HarddiskDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\Harddisk\HddMedia.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\InterruptReason.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\InterruptState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\MediaAccessMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\MediaBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\MediaControlMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\MediaType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\ATAPI\StatusRegister.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\Controllers\DMAController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\Controllers\InterruptController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\Controllers\IntervalTimer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\DisplayAdapters\Generic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\DisplayAdapters\VBE\ModeInfoBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\DisplayAdapters\VBE\PMInfoBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\DisplayAdapters\VBE\VbeInfoBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\KeyboardController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\Keyboard\KeyCode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\Keyboard\KeyCodeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\Keyboard\KeyStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\Keyboard\PS2Keyboard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\Keyboard\ScanCodeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\PS2\Mouse\PS2Mouse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\StorageDevices\FDD\FloppyDisk.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\StorageDevices\FDD\FloppyDiskController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\StorageDevices\FDD\FloppyDiskDrive.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\StorageDevices\FDD\ReadDataResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\StorageDevices\FDD\ST0.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Execution\CodeManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Execution\RunState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Archive.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Aspect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\BasePerspective.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Book.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\BookInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\DirectoryRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\FileFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\Iso9660.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\Iso9660Archive.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\Iso9660Directory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\Iso9660File.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\Iso9660Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\LongDateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\ShortDateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\u16b.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\u32b.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\VolumeDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CDFS\VolumeDescriptorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CooS\CoosFileSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CooS\CoosStringFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\CooS\CoosSystemDirectory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\DirectoryAspect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\BPB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\BPB16.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\BPB32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\DirectoryEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATArchive.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATDate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATDirectory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATFileSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATRootDirectory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\FATTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FAT\LongNameEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FileAspect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\FileSystemProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Page.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Partition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\PathInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Perspective.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\PerspectiveFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem\Storage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Initializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Kernel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Management\AssemblyNotFoundException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Management\AssemblyResolver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Management\DeviceManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Management\FileSystemManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Memory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Execution\AssemblyBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\AssemblyImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Execution\AssemblyManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\CLI\ByRefPointer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\CLI\ByValPointer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\CLI\SzArray.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ConstructorInfoImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\FieldInfoBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\FieldInfoImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\FilteredMemberCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\MemberNotFoundException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\MethodInfoImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\MethodNotFoundException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ParameterInfoImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\PseudoType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\TypeImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\TypeNotFoundException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shell\ShellBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shell\ShellInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shell\ShellMouse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shell\ShellOutput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\ContextList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\ThreadContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\ThreadManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\ThreadService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\IO\FileImpl.cs" />
+    <Compile Include="Utility\IO\Path.cs" />
+    <Compile Include="Utility\TypePath.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\SubstituteAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\AppDomain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Array.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Buffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Char.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Console.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\CurrentTimeZone.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\DateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Delegate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Drawing\GDIPlus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Engine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Enum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Environment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\GC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Globalization\CompareInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Globalization\CultureInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\IO\MonoIO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\IO\Path.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Object.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Reflection\Assembly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Reflection\FieldInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Reflection\MethodBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Reflection\MethodInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Runtime\CompilerServices\RuntimeHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Runtime\InteropServices\GCHandle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Runtime\InteropServices\Marshal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Runtime\Remoting\RemotingServices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Security\Cryptography\RNGCryptoServiceProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Security\SecurityManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Text\Encoding.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Threading\Interlocked.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Threading\Monitor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Threading\Thread.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrap\System\Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Drivers\TimerDevices\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,10 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Default" />
+  <Config name="Default" binpathtype="Auto">
+    <assembly path="ffmt\bin\Debug\ffmt.dll" />
+    <assembly path="flex\bin\Debug\flex.exe" />
+    <assembly path="fref\bin\Debug\fref.exe" />
+    <assembly path="fint\bin\Debug\fint.exe" />
+    <assembly path="fc\bin\Debug\fc.exe" />
+  </Config>
+</NUnitProject>

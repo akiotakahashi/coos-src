@@ -1,0 +1,177 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7790D347-7677-4147-9616-55317E8181ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CooS.Formats.CLI</RootNamespace>
+    <AssemblyName>libcli</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cliutil.cs" />
+    <Compile Include="CLI\IL\InstructionPrefixes.cs" />
+    <Compile Include="CLI\IL\Instruction.cs" />
+    <Compile Include="CLI\Metadata\BadMetadataException.cs" />
+    <Compile Include="CLI\Metadata\Heaps\TablesHeap_Indexes.cs" />
+    <Compile Include="CLI\Metadata\Heaps\TablesHeap_Access.cs" />
+    <Compile Include="CLI\Metadata\Indexes\CustomAttributeTypeCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\HasConstantCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\HasCustomAttributeCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\HasDeclSecurityCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\HasFieldMarshalCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\HasSemanticsCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\ImplementationCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\MemberForwardedCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\MemberRefParentCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\MethodDefOrRefCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\ResolutionScopeCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\TypeDefOrRefCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\Heaps\BlobHeap.cs" />
+    <Compile Include="CLI\Metadata\BlobHeapIndex.cs" />
+    <Compile Include="CLI\Metadata\GuidHeapIndex.cs" />
+    <Compile Include="CLI\Metadata\UserStringHeapIndex.cs" />
+    <Compile Include="CLI\Metadata\Attributes.cs" />
+    <Compile Include="CLI\Metadata\RowToken.cs" />
+    <Compile Include="CLI\Signature\ArrayShape.cs" />
+    <Compile Include="CLI\Signature\BadSignatureException.cs" />
+    <Compile Include="CLI\Signature\CallingConventionFlags.cs" />
+    <Compile Include="CLI\Signature\ConstraintSig.cs" />
+    <Compile Include="CLI\Signature\CustomMod.cs" />
+    <Compile Include="CLI\ElementType.cs" />
+    <Compile Include="CLI\Signature\FieldSig.cs" />
+    <Compile Include="CLI\Signature\LocalVar.cs" />
+    <Compile Include="CLI\Signature\LocalVarSig.cs" />
+    <Compile Include="CLI\Signature\MemberSig.cs" />
+    <Compile Include="CLI\Signature\MethodSig.cs" />
+    <Compile Include="CLI\Signature\MethodSpecSig.cs" />
+    <Compile Include="CLI\Signature\ParamSig.cs" />
+    <Compile Include="CLI\Signature\RetType.cs" />
+    <Compile Include="CLI\Signature\SignatureBase.cs" />
+    <Compile Include="CLI\Signature\SignatureFactory.cs" />
+    <Compile Include="CLI\Signature\SignatureReader.cs" />
+    <Compile Include="CLI\Signature\SignatureUtility.cs" />
+    <Compile Include="CLI\Signature\TypeDefOrRefEncoded.cs" />
+    <Compile Include="CLI\Signature\TypeSig.cs" />
+    <Compile Include="DLL\CorHeader.cs" />
+    <Compile Include="CLI\Metadata\Heaps\GuidHeap.cs" />
+    <Compile Include="CLI\Metadata\Heaps\TablesHeap.cs" />
+    <Compile Include="CLI\Metadata\Heaps\UserStringsHeap.cs" />
+    <Compile Include="CLI\Metadata\CodedIndex.cs" />
+    <Compile Include="CLI\Metadata\RowIndex.cs" />
+    <Compile Include="CLI\Metadata\Indexes\TypeOrMethodDefCodedIndex.cs" />
+    <Compile Include="CLI\Metadata\MetadataRoot.cs" />
+    <Compile Include="CLI\Metadata\MethodIL.cs" />
+    <Compile Include="CLI\Metadata\Rows\AssemblyOSRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\AssemblyProcessorRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\AssemblyRefOSRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\AssemblyRefProcessorRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\AssemblyRefRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\AssemblyRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ClassLayoutRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ConstantRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\CustomAttributeRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\DeclSecurityRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\EventMapRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\EventRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ExportedTypeRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\FieldLayoutRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\FieldMarshalRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\FieldRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\FieldRVARow.cs" />
+    <Compile Include="CLI\Metadata\Rows\FileRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\GenericParamConstraintRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\GenericParamRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ImplMapRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\InterfaceImplRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ManifestResourceRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\MemberRefRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\MethodDefRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\MethodImplRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\MethodSemanticsRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\MethodSpecRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ModuleRefRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ModuleRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\NestedClassRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\ParamRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\PropertyMapRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\PropertyRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\StandAloneSigRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\TypeDefRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\TypeRefRow.cs" />
+    <Compile Include="CLI\Metadata\Rows\TypeSpecRow.cs" />
+    <Compile Include="CLI\Metadata\HeapStream.cs" />
+    <Compile Include="CLI\Metadata\StringHeapIndex.cs" />
+    <Compile Include="CLI\Metadata\Heaps\StringsHeap.cs" />
+    <Compile Include="CLI\Metadata\TableId.cs" />
+    <Compile Include="CLI\Metadata\CodedIndexes.cs" />
+    <Compile Include="CLI\Metadata\Table.cs" />
+    <Compile Include="CLI\Metadata\HeapIndexes.cs" />
+    <Compile Include="CLI\Metadata\RowFactory.cs" />
+    <Compile Include="CLI\Metadata\Heaps\Heap.cs" />
+    <Compile Include="DLL\CorFlags.cs" />
+    <Compile Include="DLL\ImageUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\csformat\csformat.csproj">
+      <Project>{4452E2D1-90B8-401A-8F4E-9189FA930575}</Project>
+      <Name>csformat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csutility\csutility.csproj">
+      <Project>{FF7256E9-F3AC-484C-924F-52F33177F73B}</Project>
+      <Name>csutility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\petoolkit\petoolkit.csproj">
+      <Project>{FB2CC4F8-9831-4D99-91D6-37F3EFFA4220}</Project>
+      <Name>petoolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="codedindexes.txt" />
+    <Content Include="tablerows.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

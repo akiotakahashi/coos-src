@@ -1,0 +1,292 @@
+<?xml-stylesheet href="metadata.xsl" type="text/xsl" ?>
+<md:metadata xmlns:md="http://schema.tirasweel.net/metadata"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.tirasweel.net/metadata D:\Repository\clios\metadata\metadata.xsd">
+	<table name="Blob" type="stream"/>
+	<table name="Guid" type="stream"/>
+	<table name="Strings" type="stream"/>
+	<table name="UserString" type="stream"/>
+	<table name="Assembly" id="20">
+		<field name="HashAlgId" type="AssemblyHashAlgorithm"/>
+		<field name="MajorVersion" type="uint16"/>
+		<field name="MinorVersion" type="uint16"/>
+		<field name="BuildNumber" type="uint16"/>
+		<field name="RevisionNumber" type="uint16"/>
+		<field name="Flags" type="AssemblyFlags"/>
+		<field name="PublicKey" type="Blob"/>
+		<field name="Name" type="Strings"/>
+		<field name="Culture" type="Strings"/>
+	</table>
+	<table name="AssemblyOS" id="22">
+		<field name="OSPlatformID" type="uint32"/>
+		<field name="OSMajorVersion" type="uint32"/>
+		<field name="OSMinorVersion" type="uint32"/>
+	</table>
+	<table name="AssemblyProcessor" id="21">
+		<field name="Processor" type="uint32"/>
+	</table>
+	<table name="AssemblyRef" id="23">
+		<field name="MajorVersion" type="uint16"/>
+		<field name="MinorVersion" type="uint16"/>
+		<field name="BuildNumber" type="uint16"/>
+		<field name="RevisionNumber" type="uint16"/>
+		<field name="Flags" type="AssemblyFlags"/>
+		<field name="PublicKeyOrToken" type="Blob"/>
+		<field name="Name" type="Strings"/>
+		<field name="Culture" type="Strings"/>
+		<field name="HashValue" type="Blob"/>
+	</table>
+	<table name="AssemblyRefOS" id="25">
+		<field name="OSPlatformId" type="uint32"/>
+		<field name="OSMajorVersion" type="uint32"/>
+		<field name="OSMinorVersion" type="uint32"/>
+		<field name="AssemblyRef" type="AssemblyRef"/>
+	</table>
+	<table name="AssemblyRefProcessor" id="24">
+		<field name="Processor" type="uint32"/>
+		<field name="AssemblyRef" type="AssemblyRef"/>
+	</table>
+	<table name="ClassLayout" id="0F">
+		<field name="PackingSize" type="uint16"/>
+		<field name="ClassSize" type="uint32"/>
+		<field name="Parent" type="TypeDef"/>
+	</table>
+	<table name="Constant" id="0B">
+		<field name="Type" type="uint8"/>
+		<field name="Padding" type="uint8"/>
+		<field name="Parent" type="HasConst"/>
+		<field name="Value" type="Blob"/>
+	</table>
+	<table name="CustomAttribute" id="0C">
+		<field name="Parent" type="HasCustomAttribute"/>
+		<field name="Type" type="CustomAttributeType"/>
+		<field name="Value" type="Blob"/>
+	</table>
+	<table name="DeclSecurity" id="0E">
+		<field name="Action" type="uint16"/>
+		<field name="Parent" type="HasDeclSecurity"/>
+		<field name="PermissionSet" type="Blob"/>
+	</table>
+	<table name="EventMap" id="12">
+		<field name="Parent" type="TypeDef"/>
+		<field name="EventList" type="Event"/>
+	</table>
+	<table name="Event" id="14">
+		<field name="EventFlags" type="EventAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="EventType" type="TypeDefOrRef"/>
+	</table>
+	<table name="ExportedType" id="27">
+		<field name="Flags" type="TypeAttributes"/>
+		<field name="TypeDefId" type="uint32"/>
+		<field name="TypeName" type="Strings"/>
+		<field name="TypeNamespace" type="Strings"/>
+		<field name="Implementation" type="Implementation"/>
+	</table>
+	<table name="Field" id="04">
+		<field name="Flags" type="FieldAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="Signature" type="Blob"/>
+	</table>
+	<table name="FieldLayout" id="10">
+		<field name="Offset" type="uint32"/>
+		<field name="Field" type="Field"/>
+	</table>
+	<table name="FieldMarshal" id="0D">
+		<field name="Parent" type="HasFieldMarshal"/>
+		<field name="NativeType" type="Blob"/>
+	</table>
+	<table name="FieldRVA" id="1D">
+		<field name="RVA" type="uint32"/>
+		<field name="Field" type="Field"/>
+	</table>
+	<table name="File" id="26">
+		<field name="Flags" type="FileAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="HashValue" type="Blob"/>
+	</table>
+	<table name="ImplMap" id="1C">
+		<field name="MappingFlags" type="PInvokeAttributes"/>
+		<field name="MemberForwarded" type="MemberForwarded"/>
+		<field name="ImportName" type="Strings"/>
+		<field name="ImportScope" type="ModuleRef"/>
+	</table>
+	<table name="InterfaceImpl" id="09">
+		<field name="Class" type="TypeDef"/>
+		<field name="Interface" type="TypeDefOrRef"/>
+	</table>
+	<table name="ManifestResource" id="28">
+		<field name="Offset" type="uint32"/>
+		<field name="Flags" type="ManifestResourceAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="Implementation" type="Implementation"/>
+	</table>
+	<table name="MemberRef" id="0A">
+		<field name="Class" type="MemberRefParent"/>
+		<field name="Name" type="Strings"/>
+		<field name="Signature" type="Blob"/>
+	</table>
+	<table name="Method" id="06">
+		<field name="RVA" type="uint32"/>
+		<field name="ImplFlags" type="MethodImplAttributes"/>
+		<field name="Flags" type="MethodAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="Signature" type="Blob"/>
+		<field name="ParamList" type="Param"/>
+	</table>
+	<table name="MethodRef" id="07"/>
+	<table name="MethodImpl" id="19">
+		<field name="Class" type="TypeDef"/>
+		<field name="MethodBody" type="MethodDefOrRef"/>
+		<field name="MethodDeclaration" type="MethodDefOrRef"/>
+	</table>
+	<table name="MethodSemantics" id="18">
+		<field name="Semantics" type="MethodSemanticsAttributes"/>
+		<field name="Method" type="Method"/>
+		<field name="Association" type="HasSemantics"/>
+	</table>
+	<table name="Module" id="00">
+		<field name="Generation" type="uint16"/>
+		<field name="Name" type="Strings"/>
+		<field name="Mvid" type="Guid"/>
+		<field name="EncId" type="Guid"/>
+		<field name="EncBaseId" type="Guid"/>
+	</table>
+	<table name="ModuleRef" id="1A">
+		<field name="Name" type="Strings"/>
+	</table>
+	<table name="NestedClass" id="29">
+		<field name="nestedClass" type="TypeDef"/>
+		<field name="EnclosingClass" type="TypeDef"/>
+	</table>
+	<table name="Param" id="08">
+		<field name="Flags" type="ParamAttributes"/>
+		<field name="Sequence" type="uint16"/>
+		<field name="Name" type="Strings"/>
+	</table>
+	<table name="Property" id="17">
+		<field name="Flags" type="PropertyAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="Type" type="Blob"/>
+	</table>
+	<table name="PropertyMap" id="15">
+		<field name="Parent" type="TypeDef"/>
+		<field name="PropertyList" type="Property"/>
+	</table>
+	<table name="StandAloneSig" id="11">
+		<field name="Signature" type="Blob"/>
+	</table>
+	<table name="TypeDef" id="02">
+		<field name="Flags" type="TypeAttributes"/>
+		<field name="Name" type="Strings"/>
+		<field name="Namespace" type="Strings"/>
+		<field name="Extends" type="TypeDefOrRef"/>
+		<field name="FieldList" type="Field"/>
+		<field name="MethodList" type="Method"/>
+	</table>
+	<table name="TypeRef" id="01">
+		<field name="ResolutionScope" type="ResolutionScope"/>
+		<field name="Name" type="Strings"/>
+		<field name="Namespace" type="Strings"/>
+	</table>
+	<table name="TypeSpec" id="1B">
+		<field name="Signature" type="Blob"/>
+	</table>
+	<index name="ResolutionScope">
+		<tableref>Module</tableref>
+		<tableref>ModuleRef</tableref>
+		<tableref>AssemblyRef</tableref>
+		<tableref>TypeRef</tableref>
+	</index>
+	<index name="HasConst">
+		<tableref>Field</tableref>
+		<tableref>Param</tableref>
+		<tableref>Property</tableref>
+	</index>
+	<index name="HasCustomAttribute">
+		<!-- index into any? metadata table, except the CustomAttribute table itself. -->
+		<tableref>Method</tableref>
+		<tableref>Field</tableref>
+		<tableref>TypeRef</tableref>
+		<tableref>TypeDef</tableref>
+		<tableref>Param</tableref>
+		<tableref>InterfaceImpl</tableref>
+		<tableref>MemberRef</tableref>
+		<tableref>Module</tableref>
+		<!--tableref>Permission</tableref-->
+		<tableref>DeclSecurity</tableref>
+		<tableref>Property</tableref>
+		<tableref>Event</tableref>
+		<!--tableref>Signature</tableref-->
+		<tableref>StandAloneSig</tableref>
+		<tableref>ModuleRef</tableref>
+		<tableref>TypeSpec</tableref>
+		<tableref>Assembly</tableref>
+		<tableref>AssemblyRef</tableref>
+		<tableref>File</tableref>
+		<tableref>ExportedType</tableref>
+		<tableref>ManifestResource</tableref>
+	</index>
+	<index name="CustomAttributeType">
+		<tableref>NOT_USED</tableref>
+		<tableref>NOT_USED</tableref>
+		<tableref>Method</tableref>
+		<tableref>MethodRef</tableref>
+	</index>
+	<index name="HasDeclSecurity">
+		<tableref>TypeDef</tableref>
+		<tableref>Method</tableref>
+		<tableref>Assembly</tableref>
+	</index>
+	<index name="TypeDefOrRef">
+		<tableref>TypeDef</tableref>
+		<tableref>TypeRef</tableref>
+		<tableref>TypeSpec</tableref>
+	</index>
+	<index name="Implementation">
+		<tableref>File</tableref>
+		<!-- AssemblyRef is written by  figure 23.2.6 but not on document. -->
+		<tableref>AssemblyRef</tableref>
+		<tableref>ExportedType</tableref>
+	</index>
+	<index name="HasFieldMarshal">
+		<tableref>Field</tableref>
+		<tableref>Param</tableref>
+	</index>
+	<index name="MemberForwarded">
+		<tableref>Field</tableref>
+		<tableref>Method</tableref>
+	</index>
+	<index name="MemberRefParent">
+		<tableref>NOT_USED</tableref>
+		<tableref>TypeRef</tableref>
+		<tableref>ModuleRef</tableref>
+		<tableref>Method</tableref>
+		<tableref>TypeSpec</tableref>
+		<!-- TypeDef is written on document but not in the figure in 23.2.6 -->
+		<!--tableref>TypeDef</tableref-->
+	</index>
+	<index name="MethodDefOrRef">
+		<tableref>Method</tableref>
+		<tableref>MemberRef</tableref>
+	</index>
+	<index name="HasSemantics">
+		<tableref>Event</tableref>
+		<tableref>Property</tableref>
+	</index>
+	<flags name="AssemblyHashAlgorithm" size="4"/>
+	<flags name="AssemblyFlags" size="4"/>
+	<flags name="EventAttributes" size="2">
+		<value name="SpecialName" value="0x0200">Event is special.</value>
+		<value name="RTSpecialName " value="0x0400"/>
+	</flags>
+	<flags name="FieldAttributes" size="2"/>
+	<flags name="FileAttributes" size="4"/>
+	<flags name="PInvokeAttributes" size="2"/>
+	<flags name="ManifestResourceAttributes" size="4"/>
+	<flags name="MethodAttributes" size="2"/>
+	<flags name="MethodImplAttributes" size="2"/>
+	<flags name="MethodSemanticsAttributes" size="2"/>
+	<flags name="ParamAttributes" size="2"/>
+	<flags name="PropertyAttributes" size="2"/>
+	<flags name="TypeAttributes" size="4"/>
+</md:metadata>
